@@ -41,10 +41,17 @@ const Navbar = () => {
     <nav className={`fixed w-full z-50 transition-all duration-300 ${scrolled ? 'bg-white/90 backdrop-blur-md py-4 shadow-sm' : 'bg-transparent py-6'}`}>
       <div className="max-w-7xl mx-auto px-6 flex justify-between items-center">
         <Link to="/" className="group flex items-center gap-3">
+          {/* Mobile: mark only */}
+          <img
+            src="/logo-mark.jpg"
+            alt="Plant Genome Regulation Lab"
+            className="h-10 w-auto object-contain md:hidden"
+          />
+          {/* Desktop: full lockup */}
           <img
             src="/logo-banner.jpg"
             alt="Plant Genome Regulation Lab"
-            className="h-10 md:h-12 w-auto object-contain"
+            className="hidden md:block h-12 w-auto object-contain"
           />
           <span className="sr-only">{content.labName}</span>
         </Link>
