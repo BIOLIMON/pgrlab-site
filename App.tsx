@@ -40,11 +40,13 @@ const Navbar = () => {
   return (
     <nav className={`fixed w-full z-50 transition-all duration-300 ${scrolled ? 'bg-white/90 backdrop-blur-md py-4 shadow-sm' : 'bg-transparent py-6'}`}>
       <div className="max-w-7xl mx-auto px-6 flex justify-between items-center">
-        <Link to="/" className="group flex items-center gap-2">
-          <div className="w-10 h-10 bg-brand-900 rounded-full flex items-center justify-center text-accent group-hover:bg-brand-500 transition-colors">
-            <FlaskConical size={20} />
-          </div>
-          <span className="font-display font-bold text-xl tracking-tight text-brand-900">{content.labName}</span>
+        <Link to="/" className="group flex items-center gap-3">
+          <img
+            src="/logo-banner.jpg"
+            alt="Plant Genome Regulation Lab"
+            className="h-8 md:h-9 w-auto object-contain"
+          />
+          <span className="sr-only">{content.labName}</span>
         </Link>
 
         {/* Desktop Nav */}
@@ -111,11 +113,13 @@ const Footer = () => (
   <footer className="bg-gray-50 pt-24 pb-12 px-6 border-t border-gray-100">
     <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-12 mb-16">
       <div className="col-span-1 md:col-span-2">
-        <Link to="/" className="flex items-center gap-2 mb-6">
-          <div className="w-8 h-8 bg-brand-900 rounded-full flex items-center justify-center text-accent">
-            <FlaskConical size={16} />
-          </div>
-          <span className="font-display font-bold text-xl tracking-tight text-brand-900">{content.labName}</span>
+        <Link to="/" className="flex items-center gap-3 mb-6">
+          <img
+            src="/logo-banner.jpg"
+            alt="Plant Genome Regulation Lab"
+            className="h-8 w-auto object-contain"
+          />
+          <span className="sr-only">{content.labName}</span>
         </Link>
         <p className="text-gray-500 max-w-sm mb-8 leading-relaxed">
           {content.mission}
