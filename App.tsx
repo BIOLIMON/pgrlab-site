@@ -44,7 +44,7 @@ const Navbar = () => {
           <img
             src="/logo-banner.jpg"
             alt="Plant Genome Regulation Lab"
-            className="h-8 md:h-9 w-auto object-contain"
+            className="h-10 md:h-12 w-auto object-contain"
           />
           <span className="sr-only">{content.labName}</span>
         </Link>
