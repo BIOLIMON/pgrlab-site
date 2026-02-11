@@ -1,0 +1,8 @@
+{
+  "$schema": "https://developers.cloudflare.com/worker/schema.json",
+  "name": "pgrlab-site",
+  "compatibility_date": "2026-02-11",
+  "assets": {
+    "directory": "./dist"
+  }
+}
