@@ -171,50 +171,23 @@ const Footer = () => (
   </footer>
 );
 
-function Maintenance() {
-  return (
-    <div className="min-h-screen flex items-center justify-center bg-gradient-to-b from-gray-50 to-white px-6">
-      <div className="w-full max-w-2xl text-center">
-        <div className="flex items-center justify-center gap-3 mb-6">
-          <img
-            src="/logo-mark.jpg"
-            alt="Plant Genome Regulation Lab"
-            className="h-12 w-auto object-contain"
-          />
-          <span className="sr-only">{content.labName}</span>
-        </div>
-
-        <h1 className="font-display text-3xl md:text-4xl font-bold text-brand-900 mb-3">
-          Sitio en mantenimiento
-        </h1>
-        <p className="text-gray-600 text-lg leading-relaxed mb-8">
-          Estamos actualizando el sitio del Plant Genome Regulation Lab. Volvemos pronto.
-        </p>
-
-        <div className="inline-flex flex-col sm:flex-row items-center justify-center gap-3">
-          <a
-            href={`mailto:${content.contact.email}`}
-            className="bg-brand-900 text-white px-6 py-3 rounded-xl font-bold hover:bg-brand-600 transition-all"
-          >
-            Contacto
-          </a>
-          <a
-            href={`mailto:${content.contact.email}`}
-            className="text-brand-900 font-semibold underline underline-offset-4"
-          >
-            {content.contact.email}
-          </a>
-        </div>
-
-        <p className="mt-10 text-sm text-gray-400">
-          © {new Date().getFullYear()} {content.labName}
-        </p>
-      </div>
-    </div>
-  );
-}
-
 export default function App() {
-  // Maintenance curtain (temporary)
-  return <Maintenance />;
+  return (
+    <Router>
+      <div className="min-h-screen flex flex-col selection:bg-accent/30">
+        <Navbar />
+        <main className="flex-grow pt-20">
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/research" element={<Research />} />
+            <Route path="/team" element={<Team />} />
+            <Route path="/publications" element={<Publications />} />
+            <Route path="/resources" element={<Resources />} />
+            <Route path="/contact" element={<Contact />} />
+          </Routes>
+        </main>
+        <Footer />
+      </div>
+    </Router>
+  );
 }
