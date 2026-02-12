@@ -1,9 +1,9 @@
 
 import React, { useState, useEffect } from 'react';
 import { HashRouter as Router, Routes, Route, Link, useLocation } from 'react-router-dom';
-import { 
-  Menu, X, ArrowRight, Github, Twitter, Mail, 
-  ChevronRight, ExternalLink, Microscope, 
+import {
+  Menu, X, ArrowRight, Github, Twitter, Mail,
+  ChevronRight, ExternalLink, Microscope,
   FlaskConical, Users, BookOpen, Database, Send,
   Fingerprint, Thermometer, Cpu, Target
 } from 'lucide-react';
@@ -43,15 +43,15 @@ const Navbar = () => {
         <Link to="/" className="group flex items-center gap-3">
           {/* Mobile: mark only */}
           <img
-            src="/logo-mark.jpg"
+            src="/logo-mark.png"
             alt="Plant Genome Regulation Lab"
-            className="h-10 w-auto object-contain md:hidden"
+            className="h-16 w-auto object-contain md:hidden"
           />
           {/* Desktop: full lockup */}
           <img
-            src="/logo-banner.jpg"
+            src="/logo-banner.png"
             alt="Plant Genome Regulation Lab"
-            className="hidden md:block h-12 w-auto object-contain"
+            className="hidden md:block h-24 w-auto object-contain"
           />
           <span className="sr-only">{content.labName}</span>
         </Link>
@@ -59,7 +59,7 @@ const Navbar = () => {
         {/* Desktop Nav */}
         <div className="hidden md:flex items-center gap-8">
           {navLinks.map((link) => (
-            <Link 
+            <Link
               key={link.path}
               to={link.path}
               className={`font-medium transition-colors hover:text-brand-500 ${location.pathname === link.path ? 'text-brand-500' : 'text-gray-600'}`}
@@ -67,8 +67,8 @@ const Navbar = () => {
               {link.label}
             </Link>
           ))}
-          <Link 
-            to="/contact" 
+          <Link
+            to="/contact"
             className="bg-brand-900 text-white px-6 py-2 rounded-full font-bold hover:bg-brand-600 transition-all transform hover:-translate-y-0.5"
           >
             Join the Lab
@@ -84,7 +84,7 @@ const Navbar = () => {
       {/* Mobile Menu */}
       <AnimatePresence>
         {isOpen && (
-          <motion.div 
+          <motion.div
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: 'auto' }}
             exit={{ opacity: 0, height: 0 }}
@@ -92,7 +92,7 @@ const Navbar = () => {
           >
             <div className="flex flex-col p-6 gap-4">
               {navLinks.map((link) => (
-                <Link 
+                <Link
                   key={link.path}
                   to={link.path}
                   className="text-lg font-medium text-gray-800"
@@ -101,8 +101,8 @@ const Navbar = () => {
                   {link.label}
                 </Link>
               ))}
-              <Link 
-                to="/contact" 
+              <Link
+                to="/contact"
                 className="bg-brand-900 text-white px-6 py-3 rounded-xl font-bold text-center"
                 onClick={() => setIsOpen(false)}
               >
@@ -122,7 +122,7 @@ const Footer = () => (
       <div className="col-span-1 md:col-span-2">
         <Link to="/" className="flex items-center gap-3 mb-6">
           <img
-            src="/logo-banner.jpg"
+            src="/logo-banner.png"
             alt="Plant Genome Regulation Lab"
             className="h-8 w-auto object-contain"
           />
@@ -143,7 +143,7 @@ const Footer = () => (
           </a>
         </div>
       </div>
-      
+
       <div>
         <h4 className="font-display font-bold text-brand-900 mb-6 uppercase tracking-wider text-sm">Quick Links</h4>
         <ul className="space-y-4">
@@ -163,7 +163,7 @@ const Footer = () => (
         <p className="text-brand-600 font-semibold">{content.contact.email}</p>
       </div>
     </div>
-    
+
     <div className="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center pt-12 border-t border-gray-200 text-gray-400 text-sm">
       <p>© {new Date().getFullYear()} {content.labName}. All rights reserved.</p>
       <p className="mt-4 md:mt-0">Designed for Science & Discovery</p>
@@ -177,7 +177,7 @@ function Maintenance() {
       <div className="w-full max-w-2xl text-center">
         <div className="flex items-center justify-center gap-3 mb-6">
           <img
-            src="/logo-mark.jpg"
+            src="/logo-mark.png"
             alt="Plant Genome Regulation Lab"
             className="h-12 w-auto object-contain"
           />
@@ -215,6 +215,34 @@ function Maintenance() {
 }
 
 export default function App() {
-  // Maintenance curtain (temporary)
-  return <Maintenance />;
+  return (
+    <Router>
+      <div className="flex flex-col min-h-screen bg-gray-50">
+        <ScrollToTop />
+        <Navbar />
+        <main className="flex-grow pt-24 pb-12">
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/research" element={<Research />} />
+            <Route path="/team" element={<Team />} />
+            <Route path="/publications" element={<Publications />} />
+            <Route path="/resources" element={<Resources />} />
+            <Route path="/contact" element={<Contact />} />
+          </Routes>
+        </main>
+        <Footer />
+      </div>
+    </Router>
+  );
+}
+
+// Helper to scroll to top on route change
+function ScrollToTop() {
+  const { pathname } = useLocation();
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [pathname]);
+
+  return null;
 }
