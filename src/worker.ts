@@ -12,6 +12,11 @@ export default {
       return new Response(r.body, { status: r.status, statusText: r.statusText, headers: h });
     };
 
+    // Hard ping endpoint to confirm routing hits the Worker.
+    if (url.pathname === '/__worker_ping') {
+      return tag(new Response('ok', { status: 200, headers: { 'content-type': 'text/plain' } }));
+    }
+
     // First try to serve the requested asset/path.
     const res = await env.ASSETS.fetch(request);
 
