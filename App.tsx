@@ -18,29 +18,10 @@ const ScrollToTop: React.FC = () => {
   return null;
 };
 
-// Dynamic page titles
-const pageTitles: Record<string, string> = {
-  '/': 'PGR Lab | Plant Genome Regulation',
-  '/research': 'Research | PGR Lab',
-  '/publications': 'Publications | PGR Lab',
-  '/team': 'Team | PGR Lab',
-  '/resources': 'Resources | PGR Lab',
-  '/contact': 'Contact | PGR Lab',
-};
-
-const DynamicTitle: React.FC = () => {
-  const { pathname } = useLocation();
-  useEffect(() => {
-    document.title = pageTitles[pathname] || 'PGR Lab | Plant Genome Regulation';
-  }, [pathname]);
-  return null;
-};
-
 const App: React.FC = () => {
   return (
     <Router>
       <ScrollToTop />
-      <DynamicTitle />
       <Layout>
         <Routes>
           <Route path="/" element={<Home />} />

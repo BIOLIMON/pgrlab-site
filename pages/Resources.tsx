@@ -2,10 +2,14 @@
 import React from 'react';
 import { Section, SectionHeader, Card, Button } from '../components/UI';
 import { contentData } from '../content/content';
-import { usePageTitle } from '../hooks/usePageTitle';
+import { useSeo } from '../hooks/useSeo';
 
 export const Resources: React.FC = () => {
-  usePageTitle('Resources & Tools | Plant Genome Regulation Lab');
+  useSeo({
+    title: 'Resources | Plant Genome Regulation Lab (JMA Lab)',
+    description: 'Open tools, datasets and platforms from the JMA Lab: network inference resources, omics visualization tools, and computational biology pipelines.',
+    path: '/resources',
+  });
   const { resources } = contentData;
   return (
     <div className="pt-20">

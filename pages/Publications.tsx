@@ -2,10 +2,14 @@
 import React, { useState } from 'react';
 import { Section, SectionHeader, Button } from '../components/UI';
 import { contentData } from '../content/content';
-import { usePageTitle } from '../hooks/usePageTitle';
+import { useSeo } from '../hooks/useSeo';
 
 export const Publications: React.FC = () => {
-  usePageTitle('Publications | Plant Genome Regulation Lab');
+  useSeo({
+    title: 'Publications | Plant Genome Regulation Lab (JMA Lab)',
+    description: 'Peer-reviewed publications on gene regulatory networks, transcriptomics, chromatin accessibility, drought stress and nitrogen signaling in Arabidopsis and tomato.',
+    path: '/publications',
+  });
   const { publications } = contentData;
   const [filter, setFilter] = useState('All');
   const tags = ['All', ...Array.from(new Set(publications.flatMap(p => p.tags)))];

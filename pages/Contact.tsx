@@ -1,9 +1,13 @@
 import React from 'react';
 import { Section, SectionHeader, Button, Card } from '../components/UI';
-import { usePageTitle } from '../hooks/usePageTitle';
+import { useSeo } from '../hooks/useSeo';
 
 export const Contact: React.FC = () => {
-  usePageTitle('Contact Us | Plant Genome Regulation Lab');
+  useSeo({
+    title: 'Contact | Plant Genome Regulation Lab (JMA Lab)',
+    description: 'Contact the Plant Genome Regulation Lab (JMA Lab) at UNAB, Santiago, Chile for collaborations, positions and research inquiries.',
+    path: '/contact',
+  });
   return (
     <div className="pt-20">
       <Section>

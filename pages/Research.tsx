@@ -2,7 +2,7 @@
 import React from 'react';
 import { Section, SectionHeader, Card } from '../components/UI';
 import { contentData } from '../content/content';
-import { usePageTitle } from '../hooks/usePageTitle';
+import { useSeo } from '../hooks/useSeo';
 
 const themeDetails: Record<string, { bullets: string[] }> = {
   'theme-1': {

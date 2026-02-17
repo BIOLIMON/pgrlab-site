@@ -2,10 +2,14 @@ import React from 'react';
 import { Section, SectionHeader } from '../components/UI';
 import { TeamGraph } from '../components/TeamGraph';
 import { contentData } from '../content/content';
-import { usePageTitle } from '../hooks/usePageTitle';
+import { useSeo } from '../hooks/useSeo';
 
 export const Team: React.FC = () => {
-  usePageTitle('The Team | Plant Genome Regulation Lab');
+  useSeo({
+    title: 'Team | Plant Genome Regulation Lab (JMA Lab)',
+    description: 'Meet the JMA Lab team at UNAB: researchers and students working on plant genome regulation, systems biology and multi-omics for climate-resilient crops.',
+    path: '/team',
+  });
   const { team } = contentData;
 
   return (

@@ -6,10 +6,14 @@ import { contentData } from '../content/content';
 
 import { AnimatedCounter } from '../components/AnimatedCounter';
 
-import { usePageTitle } from '../hooks/usePageTitle';
+import { useSeo } from '../hooks/useSeo';
 
 export const Home: React.FC = () => {
-  usePageTitle('Plant Genome Regulation Lab | Systems Biology & Multi-Omics | JMA Lab');
+  useSeo({
+    title: 'Plant Genome Regulation Lab (JMA Lab) | UNAB Santiago, Chile',
+    description: 'Plant Genome Regulation Lab (JMA Lab) studies plant genome regulation, gene regulatory networks, and stress adaptation (drought, nitrogen) using multi-omics and systems biology at UNAB, Santiago, Chile.',
+    path: '/',
+  });
   const { tagline, heroSubtext, metrics, researchThemes, publications } = contentData;
   const featuredPubs = publications.filter(p => p.featured);
 
