@@ -8,6 +8,7 @@ const Navbar: React.FC = () => {
   const [isOpen, setIsOpen] = React.useState(false);
 
   const navItems = [
+    { label: 'About', path: '/about' },
     { label: 'Research', path: '/research' },
     { label: 'Publications', path: '/publications' },
     { label: 'Team', path: '/team' },
@@ -91,9 +92,11 @@ const Footer: React.FC = () => {
           <div>
             <h3 className="font-semibold text-sm uppercase tracking-wider text-slate-400 mb-6">Links</h3>
             <ul className="space-y-4 text-sm font-medium text-slate-600">
+              <li><Link to="/about" className="hover:text-cyan-600">About the Lab</Link></li>
               <li><Link to="/research" className="hover:text-cyan-600">Our Science</Link></li>
               <li><Link to="/publications" className="hover:text-cyan-600">Recent Papers</Link></li>
-              <li><Link to="/team" className="hover:text-cyan-600">The Pack</Link></li>
+              <li><Link to="/team" className="hover:text-cyan-600">Team</Link></li>
+              <li><Link to="/contact" className="hover:text-cyan-600">Contact</Link></li>
             </ul>
           </div>
           <div>

@@ -19,6 +19,11 @@ const routes = [
       'Plant Genome Regulation Lab (JMA Lab) studies plant genome regulation, gene regulatory networks, and stress adaptation (drought, nitrogen) using multi-omics and systems biology at UNAB, Santiago, Chile.',
   },
   {
+    route: '/about',
+    title: 'About | Plant Genome Regulation Lab (JMA Lab)',
+    description: 'About the Plant Genome Regulation Lab (JMA Lab) at CBV-UNAB, Santiago, Chile. We study plant genome regulation and gene regulatory networks using multi-omics and systems biology to understand drought stress and nitrogen signaling.',
+  },
+  {
     route: '/research',
     title: 'Research | Plant Genome Regulation Lab (JMA Lab)',
     description:
