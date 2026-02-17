@@ -2,8 +2,11 @@
 import React from 'react';
 import { Section, SectionHeader, Card, Button } from '../components/UI';
 import { contentData } from '../content/content';
+import { usePageTitle } from '../hooks/usePageTitle';
 
 export const Resources: React.FC = () => {
+  usePageTitle('Resources & Tools | Plant Genome Regulation Lab');
+  const { resources } = contentData;
   return (
     <div className="pt-20">
       <Section>

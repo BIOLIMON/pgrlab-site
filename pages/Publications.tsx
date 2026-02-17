@@ -2,21 +2,24 @@
 import React, { useState } from 'react';
 import { Section, SectionHeader, Button } from '../components/UI';
 import { contentData } from '../content/content';
+import { usePageTitle } from '../hooks/usePageTitle';
 
 export const Publications: React.FC = () => {
+  usePageTitle('Publications | Plant Genome Regulation Lab');
+  const { publications } = contentData;
   const [filter, setFilter] = useState('All');
-  const tags = ['All', ...Array.from(new Set(contentData.publications.flatMap(p => p.tags)))];
+  const tags = ['All', ...Array.from(new Set(publications.flatMap(p => p.tags)))];
 
-  const filtered = filter === 'All' 
-    ? contentData.publications 
-    : contentData.publications.filter(p => p.tags.includes(filter));
+  const filtered = filter === 'All'
+    ? publications
+    : publications.filter(p => p.tags.includes(filter));
 
   return (
     <div className="pt-20">
       <Section>
-        <SectionHeader 
-          title="Bibliography" 
-          subtitle="A comprehensive list of our scientific contributions to the field of plant genomics." 
+        <SectionHeader
+          title="Bibliography"
+          subtitle="A comprehensive list of our scientific contributions to the field of plant genomics."
         />
 
         {/* Filters */}
@@ -25,11 +28,10 @@ export const Publications: React.FC = () => {
             <button
               key={tag}
               onClick={() => setFilter(tag)}
-              className={`px-6 py-2 rounded-full text-sm font-bold transition-all ${
-                filter === tag 
-                  ? 'bg-slate-900 text-white shadow-lg' 
+              className={`px-6 py-2 rounded-full text-sm font-bold transition-all ${filter === tag
+                  ? 'bg-slate-900 text-white shadow-lg'
                   : 'bg-slate-100 text-slate-500 hover:bg-slate-200'
-              }`}
+                }`}
             >
               {tag}
             </button>

@@ -1,8 +1,9 @@
-
 import React from 'react';
 import { Section, SectionHeader, Button, Card } from '../components/UI';
+import { usePageTitle } from '../hooks/usePageTitle';
 
 export const Contact: React.FC = () => {
+  usePageTitle('Contact Us | Plant Genome Regulation Lab');
   return (
     <div className="pt-20">
       <Section>

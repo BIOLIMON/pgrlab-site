@@ -6,7 +6,10 @@ import { contentData } from '../content/content';
 
 import { AnimatedCounter } from '../components/AnimatedCounter';
 
+import { usePageTitle } from '../hooks/usePageTitle';
+
 export const Home: React.FC = () => {
+  usePageTitle('Plant Genome Regulation Lab | Systems Biology & Multi-Omics | JMA Lab');
   const { tagline, heroSubtext, metrics, researchThemes, publications } = contentData;
   const featuredPubs = publications.filter(p => p.featured);
 
