@@ -9,6 +9,7 @@ export default {
     const tag = (r: Response) => {
       const h = new Headers(r.headers);
       h.set('x-pgrlab-worker', 'pgrlab-site');
+      h.set('x-pgrlab-path', url.pathname);
       return new Response(r.body, { status: r.status, statusText: r.statusText, headers: h });
     };
 
@@ -20,8 +21,11 @@ export default {
     // First try to serve the requested asset/path.
     const res = await env.ASSETS.fetch(request);
 
-    // If it exists (or it's not a 404), return it.
-    if (res.status !== 404) return tag(res);
+    // SPA fallback conditions. Some assets handlers return 307 -> / for unknown paths.
+    const isRedirect = res.status === 301 || res.status === 302 || res.status === 303 || res.status === 307 || res.status === 308;
+
+    // If it exists (and isn't a redirect/404), return it.
+    if (res.status !== 404 && !isRedirect) return tag(res);
 
     // SPA fallback:
     // - For client-side routes like /team, return index.html so React Router can render.
