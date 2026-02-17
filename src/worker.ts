@@ -42,7 +42,14 @@ export default {
 
     // Note: on this deployment, /index.html redirects to /. Use / as the SPA shell.
     const shellUrl = new URL('/', url.origin);
-    const shell = await env.ASSETS.fetch(new Request(shellUrl.toString(), request));
+    const shell = await env.ASSETS.fetch(
+      new Request(shellUrl.toString(), {
+        method: 'GET',
+        headers: {
+          accept: 'text/html',
+        },
+      })
+    );
     return tag(shell);
   },
 };
