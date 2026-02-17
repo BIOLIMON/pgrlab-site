@@ -19,8 +19,7 @@ const Navbar: React.FC = () => {
     <nav className="sticky top-0 z-50 bg-white/80 backdrop-blur-md border-b border-slate-100">
       <div className="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
         <Link to="/" className="flex items-center space-x-2">
-          <div className="w-8 h-8 bg-cyan-500 rounded-full"></div>
-          <span className="font-display font-bold text-xl tracking-tight">PGR LAB</span>
+          <img src="/logo-full.png" alt="PGR Lab Logo" className="h-10 w-auto" />
         </Link>
         <div className="hidden md:flex items-center space-x-8">
           {navItems.map((item) => (
@@ -63,8 +62,8 @@ const Navbar: React.FC = () => {
                 to={item.path}
                 onClick={() => setIsOpen(false)}
                 className={`block px-3 py-2 rounded-md text-base font-medium ${pathname === item.path
-                    ? 'text-cyan-600 bg-cyan-50'
-                    : 'text-slate-600 hover:text-cyan-600 hover:bg-slate-50'
+                  ? 'text-cyan-600 bg-cyan-50'
+                  : 'text-slate-600 hover:text-cyan-600 hover:bg-slate-50'
                   }`}
               >
                 {item.label}
