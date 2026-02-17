@@ -4,17 +4,11 @@ export interface NavItem {
   path: string;
 }
 
-export interface Stat {
-  value: string;
-  label: string;
-}
-
-export interface ResearchTheme {
+export interface Theme {
   id: string;
   title: string;
   description: string;
   icon: string;
-  image?: string;
 }
 
 export interface Publication {
@@ -28,29 +22,35 @@ export interface Publication {
   featured: boolean;
 }
 
-export interface TeamMember {
+export interface Member {
   id: string;
   name: string;
   role: string;
   bio: string;
   image: string;
+  imagePosition?: string;
   orcid?: string;
-  category: 'PI' | 'PhD' | 'Master' | 'Postdoc' | 'Alumni' | 'Staff';
+  social?: {
+    twitter?: string;
+    linkedin?: string;
+  };
 }
 
-export interface LabContent {
+export interface Content {
   labName: string;
   tagline: string;
-  mission: string;
-  heroCta: string;
-  stats: Stat[];
-  researchThemes: ResearchTheme[];
+  heroSubtext: string;
+  metrics: {
+    label: string;
+    value: string;
+  }[];
+  researchThemes: Theme[];
   publications: Publication[];
-  team: TeamMember[];
-  partners: string[];
-  contact: {
-    email: string;
-    address: string;
-    location: string;
-  };
+  team: Member[];
+  resources: {
+    name: string;
+    description: string;
+    link: string;
+    type: string;
+  }[];
 }

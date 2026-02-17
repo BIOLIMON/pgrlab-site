@@ -1,240 +1,165 @@
 
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { motion } from 'framer-motion';
-import { 
-  ArrowRight, Microscope, Fingerprint, Thermometer, 
-  Cpu, Target, BookOpen, Users, Globe, Mail, ExternalLink
-} from 'lucide-react';
-import { content } from '../content.ts';
-import { ResearchTheme } from '../types';
+import { Section, SectionHeader, Button, Card } from '../components/UI';
+import { contentData } from '../content/content';
 
-const IconMap: Record<string, any> = {
-  Microscope, Fingerprint, Thermometer, Cpu, Target
-};
+import { AnimatedCounter } from '../components/AnimatedCounter';
 
-const SectionHeader = ({ title, subtitle, centered = false }: { title: string, subtitle?: string, centered?: boolean }) => (
-  <div className={`mb-16 ${centered ? 'text-center max-w-2xl mx-auto' : 'max-w-2xl'}`}>
-    <h2 className="text-4xl md:text-5xl font-display font-extrabold text-brand-900 mb-6 tracking-tight">
-      {title}
-    </h2>
-    {subtitle && <p className="text-xl text-gray-500 leading-relaxed">{subtitle}</p>}
-  </div>
-);
+export const Home: React.FC = () => {
+  const { tagline, heroSubtext, metrics, researchThemes, publications } = contentData;
+  const featuredPubs = publications.filter(p => p.featured);
 
-const ThemeCard = ({ theme, index }: { theme: ResearchTheme, index: number, key?: React.Key }) => {
-  const Icon = IconMap[theme.icon] || Microscope;
-  
   return (
-    <motion.div 
-      initial={{ opacity: 0, y: 20 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      transition={{ delay: index * 0.1 }}
-      className="p-8 bg-white border border-gray-100 rounded-3xl shadow-sm hover:shadow-xl hover:border-brand-500 transition-all group"
-    >
-      <div className="w-14 h-14 bg-gray-50 rounded-2xl flex items-center justify-center text-brand-900 group-hover:bg-brand-900 group-hover:text-accent transition-all mb-6">
-        <Icon size={28} />
-      </div>
-      <h3 className="text-2xl font-display font-bold text-brand-900 mb-4">{theme.title}</h3>
-      <p className="text-gray-500 mb-6 leading-relaxed">{theme.description}</p>
-      <Link to="/research" className="inline-flex items-center gap-2 text-brand-600 font-bold group/link">
-        Learn more <ArrowRight size={18} className="transition-transform group-hover/link:translate-x-1" />
-      </Link>
-    </motion.div>
-  );
-};
-
-export default function Home() {
-  return (
-    <div className="bg-white">
+    <>
       {/* Hero Section */}
-      <section className="relative pt-20 pb-32 px-6 overflow-hidden">
-        <div className="absolute top-0 right-0 w-1/3 h-screen bg-brand-50 -z-10 rounded-l-[100px] hidden lg:block" />
-        <div className="max-w-7xl mx-auto grid lg:grid-cols-2 gap-16 items-center">
-          <motion.div 
-            initial={{ opacity: 0, x: -20 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.6 }}
-          >
-            <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-accent/10 border border-accent/20 text-accent-dark font-bold text-sm mb-8">
-              <Microscope size={14} /> Breaking Frontiers in Plant Science
-            </div>
-            <h1 className="text-6xl md:text-8xl font-display font-extrabold text-brand-900 mb-8 leading-[1.05] tracking-tight">
-              Decoding the <span className="text-transparent bg-clip-text bg-gradient-to-r from-brand-600 to-accent">Language</span> of Plants.
+      <section className="relative pt-32 pb-40 px-6 overflow-hidden bg-dot-pattern">
+        <div className="max-w-7xl mx-auto relative z-10">
+          <div className="max-w-4xl">
+            <span className="inline-block px-4 py-1.5 rounded-full bg-cyan-50 text-cyan-600 font-bold text-xs uppercase tracking-widest mb-8">
+              CBV-UNAB · Núcleo Milenio PhytoLearning
+            </span>
+            <h1 className="text-6xl md:text-8xl font-bold tracking-tighter leading-[0.9] mb-10">
+              {tagline}
             </h1>
-            <p className="text-2xl text-gray-500 mb-12 leading-relaxed max-w-xl font-light">
-              We investigate how plant genomes orchestrate complex responses to an ever-changing environment.
+            <p className="text-xl md:text-2xl text-slate-500 mb-12 max-w-2xl leading-relaxed">
+              {heroSubtext}
             </p>
-            <div className="flex flex-col sm:flex-row gap-4">
-              <Link to="/research" className="px-8 py-4 bg-brand-900 text-white rounded-full font-bold text-lg hover:bg-brand-600 transition-all flex items-center justify-center gap-2 shadow-lg shadow-brand-900/20">
-                {content.heroCta} <ArrowRight size={20} />
+            <div className="flex flex-wrap gap-4">
+              <Link to="/research">
+                <Button variant="secondary">Explore Our Research</Button>
               </Link>
-              <Link to="/publications" className="px-8 py-4 bg-white text-brand-900 border-2 border-brand-900 rounded-full font-bold text-lg hover:bg-gray-50 transition-all flex items-center justify-center gap-2">
-                Recent Papers
-              </Link>
+
             </div>
-          </motion.div>
-          
-          <motion.div 
-            initial={{ opacity: 0, scale: 0.9 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.8 }}
-            className="relative"
-          >
-            <div className="aspect-square rounded-3xl overflow-hidden shadow-2xl">
-              <img 
-                src="https://picsum.photos/seed/plant-lab/800/800" 
-                alt="Plant biology research" 
-                className="w-full h-full object-cover"
-              />
-            </div>
-            {/* Floating Card */}
-            <div className="absolute -bottom-10 -left-10 bg-white p-6 rounded-2xl shadow-xl border border-gray-100 hidden md:block max-w-xs">
-              <div className="flex items-center gap-4 mb-4">
-                <div className="w-12 h-12 bg-accent rounded-full flex items-center justify-center text-brand-900">
-                  <Globe size={24} />
-                </div>
-                <div>
-                  <div className="text-2xl font-bold text-brand-900">12+</div>
-                  <div className="text-xs text-gray-400 font-bold uppercase tracking-widest">Collaborators</div>
-                </div>
-              </div>
-              <p className="text-sm text-gray-500">Working with leading labs across Europe, North America, and LatAm.</p>
-            </div>
-          </motion.div>
+          </div>
         </div>
       </section>
 
-      {/* Stats Section */}
-      <section className="py-20 bg-brand-900 text-white px-6">
-        <div className="max-w-7xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-12 text-center">
-          {content.stats.map((stat, i) => (
-            <motion.div 
-              key={i}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ delay: i * 0.1 }}
-            >
-              <div className="text-5xl md:text-6xl font-display font-extrabold text-accent mb-2">{stat.value}</div>
-              <div className="text-sm uppercase tracking-widest font-bold opacity-60">{stat.label}</div>
-            </motion.div>
+      {/* Metrics Section */}
+      <section className="bg-slate-900 py-20">
+        <div className="max-w-7xl mx-auto px-6">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
+            {metrics.map((metric, i) => (
+              <div key={i} className="text-center md:text-left">
+                <div className="text-4xl md:text-5xl font-bold text-white mb-2">
+                  <AnimatedCounter value={metric.value} />
+                </div>
+                <div className="text-sm font-bold text-cyan-400 uppercase tracking-widest">{metric.label}</div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Research themes */}
+      <Section>
+        <SectionHeader
+          title="Research Priorities"
+          subtitle="Our work integrates multi-omics and systems biology to dissect the regulatory networks governing plant stress adaptation."
+        />
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+          {researchThemes.map((theme) => (
+            <Card key={theme.id}>
+              <div className="w-12 h-12 bg-slate-50 rounded-2xl flex items-center justify-center mb-8 group-hover:bg-cyan-50 transition-colors">
+                <div className="w-6 h-6 border-2 border-slate-900 rounded-sm"></div>
+              </div>
+              <h3 className="text-2xl font-bold mb-4">{theme.title}</h3>
+              <p className="text-slate-500 leading-relaxed mb-8">{theme.description}</p>
+              <Link to="/research" className="text-sm font-bold flex items-center group-hover:text-cyan-600 transition-colors">
+                Learn more <span className="ml-2 group-hover:translate-x-1 transition-transform">→</span>
+              </Link>
+            </Card>
           ))}
         </div>
-      </section>
-
-      {/* Research Themes */}
-      <section className="py-32 px-6">
-        <div className="max-w-7xl mx-auto">
-          <SectionHeader 
-            title="What we are solving" 
-            subtitle="Our research spans from basic molecular mechanisms to translational plant biotechnology."
-          />
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-            {content.researchThemes.map((theme, i) => (
-              <ThemeCard key={theme.id} theme={theme} index={i} />
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* "How We Work" / Process Section (Plasmidsaurus inspired) */}
-      <section className="py-32 bg-gray-50 px-6">
-        <div className="max-w-7xl mx-auto">
-          <SectionHeader 
-            title="Seamless Science" 
-            subtitle="We believe research should be collaborative, open, and results-driven."
-            centered
-          />
-          <div className="grid md:grid-cols-3 gap-12 mt-20">
-            {[
-              { step: "01", title: "Reach Out", text: "Send us an email or visit our lab to discuss potential collaboration or joining our team.", icon: Mail },
-              { step: "02", title: "Collaborate", text: "We define clear research goals, sharing resources, data, and protocols openly.", icon: Users },
-              { step: "03", title: "Impact", text: "Our joint work leads to high-impact publications and real-world plant solutions.", icon: Target }
-            ].map((item, i) => (
-              <div key={i} className="relative p-10 bg-white rounded-3xl shadow-sm border border-gray-100 text-center flex flex-col items-center">
-                <div className="absolute -top-6 w-12 h-12 bg-accent rounded-full flex items-center justify-center font-bold text-brand-900 shadow-md">
-                  {item.step}
-                </div>
-                <div className="mb-8 p-4 bg-brand-50 rounded-2xl text-brand-600">
-                  <item.icon size={32} />
-                </div>
-                <h3 className="text-2xl font-display font-bold text-brand-900 mb-4">{item.title}</h3>
-                <p className="text-gray-500 leading-relaxed">{item.text}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
+      </Section>
 
       {/* Featured Publications */}
-      <section className="py-32 px-6">
-        <div className="max-w-7xl mx-auto">
-          <div className="flex flex-col md:flex-row justify-between items-end mb-16">
-            <SectionHeader 
-              title="Science we've shared" 
-              subtitle="Latest peer-reviewed contributions to the global scientific community."
-            />
-            <Link to="/publications" className="mb-10 text-brand-900 font-bold flex items-center gap-2 hover:text-brand-500 transition-colors">
-              See all publications <ArrowRight size={20} />
-            </Link>
-          </div>
-          
-          <div className="space-y-6">
-            {content.publications.slice(0, 3).map((pub, i) => (
-              <motion.div 
-                key={pub.id}
-                initial={{ opacity: 0, x: -20 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                transition={{ delay: i * 0.1 }}
-                className="group p-8 border border-gray-100 rounded-3xl hover:border-brand-500 transition-all bg-white hover:shadow-xl"
-              >
-                <div className="flex flex-col md:flex-row gap-8 items-start">
-                  <div className="w-16 h-16 bg-brand-50 rounded-2xl flex items-center justify-center shrink-0 group-hover:bg-brand-500 group-hover:text-white transition-all">
-                    <BookOpen size={24} />
-                  </div>
-                  <div>
-                    <div className="flex gap-2 mb-4 flex-wrap">
-                      {pub.tags.map(tag => (
-                        <span key={tag} className="text-[10px] uppercase tracking-widest font-extrabold px-2 py-1 bg-gray-100 text-gray-500 rounded-md">
-                          {tag}
-                        </span>
-                      ))}
-                    </div>
-                    <h4 className="text-2xl font-display font-bold text-brand-900 mb-2 leading-snug">
-                      {pub.title}
-                    </h4>
-                    <p className="text-gray-500 mb-4">{pub.authors} — <span className="italic font-medium">{pub.journal} ({pub.year})</span></p>
-                    <a href={`https://doi.org/${pub.doi}`} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 text-brand-600 font-bold hover:underline">
-                      View DOI <ExternalLink size={16} />
-                    </a>
-                  </div>
+      <Section className="bg-slate-50">
+        <SectionHeader title="Selected Publications" subtitle="Key contributions to the understanding of plant transcriptional regulation and systems biology." />
+        <div className="space-y-6">
+          {featuredPubs.map((pub) => (
+            <div key={pub.id} className="bg-white p-8 md:p-12 rounded-[40px] border border-slate-100 flex flex-col md:flex-row gap-10 items-start md:items-center">
+              <div className="flex-grow">
+                <div className="flex flex-wrap gap-2 mb-6">
+                  {pub.tags.map(tag => (
+                    <span key={tag} className="px-3 py-1 bg-slate-100 text-slate-500 rounded-full text-[10px] font-bold uppercase tracking-wider">{tag}</span>
+                  ))}
                 </div>
-              </motion.div>
-            ))}
+                <h3 className="text-2xl md:text-3xl font-bold mb-4">{pub.title}</h3>
+                <p className="text-slate-500 mb-2 font-medium">{pub.authors}</p>
+                <p className="text-cyan-600 font-bold italic">{pub.journal} ({pub.year})</p>
+              </div>
+              <a href={`https://doi.org/${pub.doi}`} target="_blank" rel="noreferrer" className="flex-shrink-0">
+                <Button variant="outline">View DOI</Button>
+              </a>
+            </div>
+          ))}
+          <div className="pt-10 text-center">
+            <Link to="/publications">
+              <span className="text-sm font-bold text-slate-400 hover:text-slate-900 cursor-pointer">View full bibliography →</span>
+            </Link>
           </div>
         </div>
-      </section>
+      </Section>
 
-      {/* CTA Final */}
-      <section className="py-32 px-6">
-        <div className="max-w-7xl mx-auto bg-brand-900 rounded-[60px] p-12 md:p-24 text-center relative overflow-hidden">
-          <div className="absolute top-0 left-0 w-full h-full bg-[radial-gradient(circle_at_top_right,rgba(6,182,212,0.15),transparent)] pointer-events-none" />
-          <h2 className="text-5xl md:text-7xl font-display font-extrabold text-white mb-8 tracking-tight">
-            Ready to <span className="text-accent">collaborate?</span>
-          </h2>
-          <p className="text-xl text-brand-200 mb-12 max-w-2xl mx-auto leading-relaxed">
-            We are always looking for passionate researchers and innovative partners to join us in our mission.
-          </p>
-          <div className="flex flex-col sm:flex-row gap-6 justify-center">
-            <Link to="/contact" className="px-10 py-5 bg-accent text-brand-900 rounded-full font-extrabold text-xl hover:bg-white transition-all transform hover:-translate-y-1">
-              Join the Team
-            </Link>
-            <Link to="/contact" className="px-10 py-5 border-2 border-white/20 text-white rounded-full font-bold text-xl hover:bg-white/10 transition-all">
-              Contact PI
-            </Link>
+      {/* Scientific Collaborations */}
+      <Section>
+        <div className="bg-slate-900 rounded-[60px] p-12 md:p-24 text-white relative overflow-hidden">
+          <div className="relative z-10 max-w-4xl mx-auto">
+            <h2 className="text-4xl md:text-5xl font-bold mb-6 leading-tight text-center">
+              Global research network in plant regulatory biology.
+            </h2>
+            <p className="text-lg text-slate-300 mb-16 text-center max-w-3xl mx-auto leading-relaxed">
+              We collaborate with leading groups in systems biology, plant genomics, and computational modeling to understand how plants integrate environmental signals across scales.
+            </p>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-10 mb-16">
+              {[
+                {
+                  icon: (
+                    <svg className="w-8 h-8" fill="none" stroke="currentColor" strokeWidth={1.5} viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" d="M12 21a9.004 9.004 0 008.716-6.747M12 21a9.004 9.004 0 01-8.716-6.747M12 21c2.485 0 4.5-4.03 4.5-9S14.485 3 12 3m0 18c-2.485 0-4.5-4.03-4.5-9S9.515 3 12 3m0 0a8.997 8.997 0 017.843 4.582M12 3a8.997 8.997 0 00-7.843 4.582m15.686 0A11.953 11.953 0 0112 10.5c-2.998 0-5.74-1.1-7.843-2.918m15.686 0A8.959 8.959 0 0121 12c0 .778-.099 1.533-.284 2.253m0 0A17.919 17.919 0 0112 16.5a17.92 17.92 0 01-8.716-2.247m0 0A8.966 8.966 0 003 12c0-1.264.26-2.467.732-3.558" />
+                    </svg>
+                  ),
+                  label: "Academic Partnerships",
+                  desc: "Collaborative projects across Latin America, Europe, and North America integrating transcriptomics, chromatin dynamics, and predictive modeling."
+                },
+                {
+                  icon: (
+                    <svg className="w-8 h-8" fill="none" stroke="currentColor" strokeWidth={1.5} viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" d="M20.25 6.375c0 2.278-3.694 4.125-8.25 4.125S3.75 8.653 3.75 6.375m16.5 0c0-2.278-3.694-4.125-8.25-4.125S3.75 4.097 3.75 6.375m16.5 0v11.25c0 2.278-3.694 4.125-8.25 4.125s-8.25-1.847-8.25-4.125V6.375m16.5 0v3.75m-16.5-3.75v3.75m16.5 0v3.75C20.25 16.153 16.556 18 12 18s-8.25-1.847-8.25-4.125v-3.75m16.5 0c0 2.278-3.694 4.125-8.25 4.125s-8.25-1.847-8.25-4.125" />
+                    </svg>
+                  ),
+                  label: "Data & Technology Platforms",
+                  desc: "Shared development of network inference tools, multi-omic integration pipelines, and open web-based resources."
+                },
+                {
+                  icon: (
+                    <svg className="w-8 h-8" fill="none" stroke="currentColor" strokeWidth={1.5} viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" d="M4.26 10.147a60.438 60.438 0 00-.491 6.347A48.627 48.627 0 0112 20.904a48.627 48.627 0 018.232-4.41 60.46 60.46 0 00-.491-6.347m-15.482 0a50.57 50.57 0 00-2.658-.813A59.905 59.905 0 0112 3.493a59.902 59.902 0 0110.399 5.84c-.896.248-1.783.52-2.658.814m-15.482 0A50.697 50.697 0 0112 13.489a50.702 50.702 0 017.74-3.342M6.75 15a.75.75 0 100-1.5.75.75 0 000 1.5zm0 0v-3.675A55.378 55.378 0 0112 8.443m-7.007 11.55A5.981 5.981 0 006.75 15.75v-1.5" />
+                    </svg>
+                  ),
+                  label: "Training & Mobility",
+                  desc: "Joint supervision of graduate students, postdoctoral exchanges, and international workshops bridging experimental biology and computational modeling."
+                }
+              ].map((item, i) => (
+                <div key={i} className="bg-white/5 backdrop-blur-sm rounded-3xl p-8 border border-white/10">
+                  <div className="text-cyan-400 mb-5">{item.icon}</div>
+                  <div className="font-bold text-lg mb-3">{item.label}</div>
+                  <div className="text-slate-400 text-sm leading-relaxed">{item.desc}</div>
+                </div>
+              ))}
+            </div>
+            <div className="text-center">
+              <Link to="/contact">
+                <Button variant="primary" className="!bg-white/10 !text-white !border !border-white/20 !px-10 !py-5 text-base hover:!bg-white/20 transition-all">Collaborate with us</Button>
+              </Link>
+            </div>
           </div>
+          {/* Subtle decoration */}
+          <div className="absolute top-0 right-0 w-80 h-80 bg-cyan-500/15 rounded-full blur-3xl -mr-40 -mt-40"></div>
+          <div className="absolute bottom-0 left-0 w-80 h-80 bg-cyan-500/10 rounded-full blur-3xl -ml-40 -mb-40"></div>
         </div>
-      </section>
-    </div>
+      </Section>
+    </>
   );
-}
+};

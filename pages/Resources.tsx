@@ -1,83 +1,47 @@
 
 import React from 'react';
-import { Database, FileText, Code, Github, Download, ExternalLink } from 'lucide-react';
-import { motion } from 'framer-motion';
+import { Section, SectionHeader, Card, Button } from '../components/UI';
+import { contentData } from '../content/content';
 
-// Fixed: Added optional key to props type definition to satisfy TypeScript's JSX attribute check
-const ResourceCard = ({ title, description, icon: Icon, link }: { title: string, description: string, icon: any, link: string, key?: React.Key }) => (
-  <motion.div 
-    whileHover={{ y: -5 }}
-    className="bg-white p-8 rounded-[40px] border border-gray-100 shadow-sm hover:shadow-xl hover:border-brand-500 transition-all group"
-  >
-    <div className="w-14 h-14 bg-gray-50 rounded-2xl flex items-center justify-center text-brand-900 mb-8 group-hover:bg-brand-900 group-hover:text-white transition-all">
-      <Icon size={28} />
-    </div>
-    <h3 className="text-2xl font-display font-extrabold text-brand-900 mb-4">{title}</h3>
-    <p className="text-gray-500 leading-relaxed mb-8">{description}</p>
-    <a href={link} className="inline-flex items-center gap-2 font-bold text-brand-600 group-hover:underline">
-      View Resource <ExternalLink size={18} />
-    </a>
-  </motion.div>
-);
-
-export default function Resources() {
-  const categories = [
-    {
-      title: "Bioinformatics Tools",
-      items: [
-        { title: "ChromoPipe", description: "Automated pipeline for ATAC-seq and ChIP-seq quality control and peak calling.", icon: Code, link: "#" },
-        { title: "PlantNET", description: "Deep learning model for regulatory motif discovery in non-model organisms.", icon: Github, link: "#" }
-      ]
-    },
-    {
-      title: "Lab Protocols",
-      items: [
-        { title: "Root-ATAC v2.0", description: "Optimized protocol for high-resolution chromatin profiling in plant root tips.", icon: FileText, link: "#" },
-        { title: "Drought-Stress Assay", description: "Standardized methodology for controlled drought imposition in Arabidopsis.", icon: Download, link: "#" }
-      ]
-    },
-    {
-      title: "Datasets",
-      items: [
-        { title: "Heat-Stress Atlas", description: "Comprehensive transcriptomic atlas of 10 crop species under heat stress.", icon: Database, link: "#" }
-      ]
-    }
-  ];
-
+export const Resources: React.FC = () => {
   return (
-    <div className="bg-white min-h-screen">
-      <section className="pt-24 pb-20 px-6">
-        <div className="max-w-7xl mx-auto">
-          <motion.h1 
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            className="text-5xl md:text-7xl font-display font-extrabold text-brand-900 mb-8"
-          >
-            Open <span className="text-accent-dark">Resources</span>
-          </motion.h1>
-          <p className="text-2xl text-gray-500 max-w-3xl leading-relaxed">
-            We advocate for open science. Access our software, protocols, and public datasets here.
-          </p>
-        </div>
-      </section>
+    <div className="pt-20">
+      <Section>
+        <SectionHeader
+          title="Open Science"
+          subtitle="Protocols, datasets, and software developed in-house, available for the scientific community."
+        />
 
-      <section className="py-12 px-6 pb-32">
-        <div className="max-w-7xl mx-auto space-y-24">
-          {categories.map((cat, i) => (
-            <div key={i}>
-              <h2 className="text-3xl font-display font-extrabold text-brand-900 mb-12 flex items-center gap-4">
-                {cat.title}
-                <div className="h-px bg-gray-100 flex-grow" />
-              </h2>
-              <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-                {cat.items.map((item, j) => (
-                  <ResourceCard key={j} {...item} />
-                ))}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+          {contentData.resources.map((res, i) => (
+            <Card key={i}>
+              <div className="flex justify-between items-start mb-8">
+                <span className="px-3 py-1 bg-cyan-50 text-cyan-600 rounded-full text-[10px] font-bold uppercase tracking-widest">
+                  {res.type}
+                </span>
+                <div className="w-10 h-10 border border-slate-200 rounded-xl flex items-center justify-center">
+                  <div className="w-4 h-4 bg-slate-100 rounded-full"></div>
+                </div>
               </div>
-            </div>
+              <h3 className="text-3xl font-bold mb-4">{res.name}</h3>
+              <p className="text-slate-500 leading-relaxed mb-10">{res.description}</p>
+              <a href={res.link} target="_blank" rel="noreferrer">
+                <Button variant="secondary" className="w-full flex items-center justify-center gap-2">
+                  <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z" /></svg>
+                  GitHub
+                </Button>
+              </a>
+            </Card>
           ))}
         </div>
-      </section>
+      </Section>
+
+      <Section className="bg-slate-50 rounded-b-[60px]">
+        <div className="max-w-4xl mx-auto text-center">
+          <SectionHeader align="center" title="Can't find what you need?" subtitle="We provide custom genomic analysis and protocol advice for collaborators." />
+          <Button variant="outline">Request Assistance</Button>
+        </div>
+      </Section>
     </div>
   );
-}
+};

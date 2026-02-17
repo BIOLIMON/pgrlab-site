@@ -1,76 +1,122 @@
 
 import React from 'react';
-import { motion } from 'framer-motion';
-import { Microscope, Target, Database, FlaskConical, Globe, BookOpen } from 'lucide-react';
-import { content } from '../content.ts';
+import { Section, SectionHeader, Card } from '../components/UI';
+import { contentData } from '../content/content';
 
-export default function Research() {
+const themeDetails: Record<string, { bullets: string[] }> = {
+  'theme-1': {
+    bullets: [
+      'Reconstruction and modeling of genome-scale regulatory networks.',
+      'Integration of transcriptomics, chromatin accessibility, and signaling pathways.',
+      'Systems-level understanding of signal antagonism and coordination.',
+    ],
+  },
+  'theme-2': {
+    bullets: [
+      'Identification of regulatory modules associated with early stress preparedness.',
+      'Comparative analysis of stress-resilient and crop species.',
+      'Biomarker discovery for physiological state prediction.',
+    ],
+  },
+  'theme-3': {
+    bullets: [
+      'Chromatin and transcriptional reprogramming under nutrient fluctuations.',
+      'Network-based integration of validated and predicted regulatory interactions.',
+      'Data-driven strategies to enhance sustainable fertilization practices.',
+    ],
+  },
+  'theme-4': {
+    bullets: [
+      'Integration of genotyping, transcriptomics, chromatin profiling, and high-throughput phenotyping.',
+      'Incorporation of enviromics and real-time sensor data into regulatory and physiological models.',
+      'Development of predictive frameworks linking molecular states to agronomic traits.',
+      'Systems-level modeling to support precision agriculture and climate-resilient crop design.',
+    ],
+  },
+};
+
+const fundingData = [
+  {
+    name: 'ANID Fondecyt Regular',
+    description: 'Identifying key transcription factors and dynamic transcriptional logic to improve drought tolerance and growth in tomatoes.',
+    period: 'Active 2025',
+  },
+  {
+    name: 'Núcleo Milenio PhytoLearning',
+    description: 'Interinstitutional project integrating data science and AI with plant biology to enhance crop resilience under climate change.',
+    period: 'Active 2024–2027',
+  },
+  {
+    name: 'EMBO Global Investigator',
+    description: 'International distinction granting access to European collaboration networks, leadership training, and funding for frontier research.',
+    period: 'Active 2026–2029',
+  },
+];
+
+export const Research: React.FC = () => {
   return (
-    <div className="bg-white min-h-screen">
-      {/* Header */}
-      <section className="pt-24 pb-20 px-6">
-        <div className="max-w-7xl mx-auto">
-          <motion.h1 
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            className="text-5xl md:text-7xl font-display font-extrabold text-brand-900 mb-8"
-          >
-            Research <span className="text-brand-500">Directions</span>
-          </motion.h1>
-          <p className="text-2xl text-gray-500 max-w-3xl leading-relaxed">
-            From the nucleus to the field. We bridge molecular biology and plant physiology to understand regulatory complexity.
-          </p>
+    <div className="pt-20">
+      <Section>
+        <SectionHeader
+          title="Our Science"
+          subtitle="Understanding the regulatory logic of plant genomes to combat climate change."
+        />
+        <div className="grid grid-cols-1 gap-16">
+          {contentData.researchThemes.map((theme, i) => {
+            const details = themeDetails[theme.id];
+            const themeImages: Record<string, string> = {
+              'theme-1': '/images/research/theme-1.png',
+              'theme-2': '/images/research/theme-2.png',
+              'theme-3': '/images/research/theme-3.png',
+              'theme-4': '/images/research/theme-4.png',
+            };
+            const imgSrc = themeImages[theme.id] || `https://picsum.photos/seed/${theme.id}/800/600`;
+            return (
+              <div key={theme.id} className={`flex flex-col md:flex-row gap-16 items-center ${i % 2 !== 0 ? 'md:flex-row-reverse' : ''}`}>
+                <div className="w-full md:w-1/2">
+                  <img
+                    src={imgSrc}
+                    alt={theme.title}
+                    className="rounded-[40px] shadow-2xl shadow-slate-200"
+                  />
+                </div>
+                <div className="w-full md:w-1/2">
+                  <div className="w-12 h-1 bg-cyan-400 rounded-full mb-6"></div>
+                  <h3 className="text-4xl md:text-5xl font-bold mb-8 leading-tight">{theme.title}</h3>
+                  <p className="text-xl text-slate-500 leading-relaxed mb-10">
+                    {theme.description}
+                  </p>
+                  {details && (
+                    <div className="space-y-4">
+                      {details.bullets.map((bullet, j) => (
+                        <div key={j} className="flex items-start gap-4">
+                          <div className="w-6 h-6 rounded-full bg-cyan-100 flex-shrink-0 mt-1"></div>
+                          <p className="text-slate-600">{bullet}</p>
+                        </div>
+                      ))}
+                    </div>
+                  )}
+                </div>
+              </div>
+            );
+          })}
         </div>
-      </section>
+      </Section>
 
-      {/* Detailed Themes */}
-      <section className="py-20 px-6 bg-gray-50">
-        <div className="max-w-7xl mx-auto space-y-24">
-          {content.researchThemes.map((theme, i) => (
-            <motion.div 
-              key={theme.id}
-              initial={{ opacity: 0, y: 40 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              className={`flex flex-col ${i % 2 === 0 ? 'lg:flex-row' : 'lg:flex-row-reverse'} gap-16 items-center`}
-            >
-              <div className="lg:w-1/2">
-                <div className="w-16 h-16 bg-brand-900 text-accent rounded-2xl flex items-center justify-center mb-8">
-                  <Microscope size={32} />
-                </div>
-                <h2 className="text-4xl font-display font-extrabold text-brand-900 mb-6">{theme.title}</h2>
-                <p className="text-xl text-gray-600 leading-relaxed mb-8">
-                  {theme.description} Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-                </p>
-                <div className="flex flex-wrap gap-4">
-                  {["Epigenetics", "Genomics", "Plant Breeding", "Bioinformatics"].map(tag => (
-                    <span key={tag} className="px-4 py-2 bg-white border border-gray-200 rounded-full text-sm font-bold text-gray-500">
-                      {tag}
-                    </span>
-                  ))}
-                </div>
-              </div>
-              <div className="lg:w-1/2 aspect-[16/10] bg-gray-200 rounded-3xl overflow-hidden shadow-2xl">
-                <img src={`https://picsum.photos/seed/research-${i}/800/500`} alt={theme.title} className="w-full h-full object-cover" />
-              </div>
-            </motion.div>
+      <Section className="bg-slate-900 text-white rounded-t-[60px]">
+        <SectionHeader title="Active Funding" subtitle="Our work is supported by top national and international funding agencies." />
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          {fundingData.map((fund, i) => (
+            <div key={i} className="bg-white/5 border border-white/10 p-10 rounded-[40px]">
+              <div className="font-display font-bold text-2xl mb-4">{fund.name}</div>
+              <p className="text-slate-400 text-sm leading-relaxed mb-6">
+                {fund.description}
+              </p>
+              <div className="text-cyan-400 font-bold text-xs uppercase tracking-widest">{fund.period}</div>
+            </div>
           ))}
         </div>
-      </section>
-
-      {/* Funding / Partners */}
-      <section className="py-32 px-6">
-        <div className="max-w-4xl mx-auto text-center">
-          <h2 className="text-4xl font-display font-extrabold text-brand-900 mb-12">Supported by</h2>
-          <div className="flex flex-wrap justify-center gap-x-12 gap-y-8">
-            {content.partners.map((partner, i) => (
-              <span key={i} className="text-xl font-display font-bold text-gray-400 grayscale hover:grayscale-0 transition-all cursor-default">
-                {partner}
-              </span>
-            ))}
-          </div>
-        </div>
-      </section>
+      </Section>
     </div>
   );
-}
+};
