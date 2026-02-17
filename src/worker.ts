@@ -40,8 +40,9 @@ export default {
     // Only for safe navigation methods.
     if (method !== 'GET' && method !== 'HEAD') return tag(res);
 
-    const indexUrl = new URL('/index.html', url.origin);
-    const idx = await env.ASSETS.fetch(new Request(indexUrl.toString(), request));
-    return tag(idx);
+    // Note: on this deployment, /index.html redirects to /. Use / as the SPA shell.
+    const shellUrl = new URL('/', url.origin);
+    const shell = await env.ASSETS.fetch(new Request(shellUrl.toString(), request));
+    return tag(shell);
   },
 };
