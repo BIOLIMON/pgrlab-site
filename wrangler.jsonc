@@ -7,13 +7,10 @@
 
   // Ensure the Worker actually receives requests for subpaths.
   // If routes are configured in the dashboard already, this is harmless.
-  "routes": [
-    "pgrlab.cl/*",
-    "www.pgrlab.cl/*"
-  ],
+  "routes": ["pgrlab.cl/*", "www.pgrlab.cl/*"],
 
   "assets": {
     "directory": "./dist",
-    "binding": "ASSETS"
-  }
+    "binding": "ASSETS",
+  },
 }

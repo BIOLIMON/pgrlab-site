@@ -7,17 +7,18 @@ import { useSeo } from '../hooks/useSeo';
 export const Team: React.FC = () => {
   useSeo({
     title: 'Team | Plant Genome Regulation Lab (JMA Lab)',
-    description: 'Meet the JMA Lab team at UNAB: researchers and students working on plant genome regulation, systems biology and multi-omics for climate-resilient crops.',
+    description:
+      'Meet the JMA Lab team at UNAB: researchers and students working on plant genome regulation, systems biology and multi-omics for climate-resilient crops.',
     path: '/team',
   });
-  const { team } = contentData;
+
 
   return (
-    <div className="pt-20">
+    <div className='pt-20'>
       <Section>
         <SectionHeader
-          title="The Pack"
-          subtitle="Diverse, creative, and data-obsessed scientists working at the edge of the known. Click on any member to learn more."
+          title='The Pack'
+          subtitle='Diverse, creative, and data-obsessed scientists working at the edge of the known. Click on any member to learn more.'
         />
         <TeamGraph members={contentData.team} />
       </Section>

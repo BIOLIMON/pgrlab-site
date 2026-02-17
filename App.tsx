@@ -1,4 +1,3 @@
-
 import React, { useEffect } from 'react';
 import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
 import { Layout } from './components/Layout';
@@ -25,13 +24,13 @@ const App: React.FC = () => {
       <ScrollToTop />
       <Layout>
         <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/about" element={<About />} />
-          <Route path="/research" element={<Research />} />
-          <Route path="/publications" element={<Publications />} />
-          <Route path="/team" element={<Team />} />
-          <Route path="/resources" element={<Resources />} />
-          <Route path="/contact" element={<Contact />} />
+          <Route path='/' element={<Home />} />
+          <Route path='/about' element={<About />} />
+          <Route path='/research' element={<Research />} />
+          <Route path='/publications' element={<Publications />} />
+          <Route path='/team' element={<Team />} />
+          <Route path='/resources' element={<Resources />} />
+          <Route path='/contact' element={<Contact />} />
         </Routes>
       </Layout>
     </Router>

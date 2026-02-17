@@ -3,40 +3,49 @@
 **Alcance y método (transparencia):** este documento fue construido desde fuentes públicas accesibles sin autenticación. El buscador web estuvo con rate-limit durante la recolección, así que el grueso viene de (i) sitios institucionales UNAB/CBV y (ii) el ecosistema PhytoLearning (páginas + sitemap).
 
 ## 1) Identidad / afiliación
+
 - **Nombre(s):** Plant Genome Regulation Lab / JMA Lab (en CBV también aparece como “Lab Regulación del Genoma Vegetal”).
 - **Institución:** Centro de Biotecnología Vegetal (CBV), Facultad de Ciencias de la Vida, Universidad Andrés Bello (UNAB), Santiago, Chile.
 - **Director (asociado públicamente):** Dr. José Miguel Álvarez Herrera (mencionado como director del Plant Genome Regulation Lab en nota UNAB sobre Núcleo Milenio PhytoLearning).
 
 ## 2) Contexto CBV UNAB (marco institucional)
+
 - El **CBV UNAB** declara que nace el **año 2005**, alberga **8 laboratorios** y reúne ~70 miembros (investigadores/as, postdocs y estudiantes).
 - Declara vínculos con iniciativas de excelencia (menciona Milenio e iBio) y vinculación con industria (ejemplos: Concha y Toro, ANASAC, Consorcio Biofrutales).
 - El bloque “Lab Regulación del Genoma Vegetal” describe líneas de investigación ligadas a sequía, redes regulatorias, machine learning, epigenética y biomarcadores.
 
 ## 3) Líneas de investigación (según CBV + PhytoLearning)
+
 ### Desde CBV (Lab Regulación del Genoma Vegetal)
+
 - Respuesta temprana a **estrés por sequía** (mecanismos regulatorios).
 - Redes regulatorias para adaptación a **sequía y nitrógeno** usando **Big Data + machine learning**.
 - **Epigenética** en adaptación a sequía.
 - **Biomarcadores** basados en expresión génica para detección de estrés.
 
 ### Desde PhytoLearning (macro-líneas)
-- **Modelos vegetales:** redes de regulación en *Arabidopsis* y tomate bajo estrés hídrico y cambios nutricionales.
+
+- **Modelos vegetales:** redes de regulación en _Arabidopsis_ y tomate bajo estrés hídrico y cambios nutricionales.
 - **Adaptación del tomate:** mecanismos transcripcionales en variantes adaptadas a desierto frente a sequía y nutrición.
 - **IA y fenotipado:** herramientas de IA para fenotipado automático de respuestas a estrés.
 
 ## 4) Proyectos / hitos (línea de tiempo)
+
 - **2005:** creación del CBV UNAB (marco institucional).
 - **2024 (ANID / Milenio):** UNAB reporta adjudicación de Núcleo Milenio “**PhytoLearning**” (Ciencia de Datos y Resiliencia Vegetal) encabezado por José Miguel Álvarez (UNAB lo identifica como director del Plant Genome Regulation Lab del CBV).
 - **2025 (EMBO):** nota de PhytoLearning indica selección de José Miguel Álvarez como **EMBO Global Investigator 2025**; se enfatiza red de excelencia europea y oportunidades para estudiantes/postdocs.
 
 ## 5) Ecosistema PhytoLearning (estructura + equipo)
+
 ### Investigadores principales (PhytoLearning)
+
 - José Miguel Álvarez Herrera (Director)
 - Elena Vidal Olate (Directora alterna)
 - Gonzalo Ruz Heredia
 - Braulio Soto Cerda
 
 ### Colaboradores internacionales (según PhytoLearning)
+
 - José Tomás Matus (I2SysBio, Univ. Valencia, España)
 - Joaquín Medina Alcázar (CBGP INIA-UPM, Madrid, España)
 - Gabriel Krouk (CNRS–INRAe Montpellier)
@@ -46,18 +55,22 @@
 - Adriano Nunes
 
 ### Personas asociadas explícitamente al “Plant Genome Regulation Lab” en PhytoLearning
+
 **Asistentes de investigación (ejemplos):**
+
 - Mauricio Fabián Arias Castro (Lab: Plant Genome Regulation Lab)
 - Catalina Isabel Cofré Espinoza (Lab: Plant Genome Regulation Lab)
 - Macarena Andrea Muñoz Silva (Lab: Plant Genome Regulation Lab)
 
 **Estudiantes (ejemplos):**
+
 - Luciano Franco Ahumada Langer (Doctorado UNAB; Lab: Plant Genome Regulation Lab)
 - Rimer Mayta Poca (Magíster UNAB; Lab: Plant Genome Regulation Lab)
 - Sebastián Ortiz (Tesista pregrado UCH; Lab: Plant Genome Regulation Lab)
 - Rachid Emil Sjoberg Tala (Doctorado UNAB; Lab: Plant Genome Regulation Lab)
 
 ## 6) Publicaciones (con DOI/link)
+
 > Nota: la página de PhytoLearning “Publicaciones” mezcla varias áreas; acá dejo las que están explícitas con DOI/link y son relevantes a regulación/redes/plantas (más una de plataforma).
 
 - **Organ-level gene-regulatory networks inferred from transcriptomic data reveal context-specific regulation and highlight novel regulators of ripening and ABA-mediated responses in tomato** — https://www.sciencedirect.com/science/article/pii/S2590346225002615
@@ -66,6 +79,7 @@
 - **The Plantae Visualization Platform: a comprehensive web-based tool for the integration, visualization, and analysis of omic data across plant and related species (preprint)** — https://doi.org/10.1101/2024.12.19.629382
 
 ## 7) Noticias / divulgación relevante (PhytoLearning + UNAB)
+
 A partir del sitemap de PhytoLearning, hay varias notas donde se menciona a José Miguel Álvarez / PhytoLearning / UNAB. Aquí una lista de URLs (títulos desde `<title>`):
 
 - Presentan innovador Núcleo Milenio en ciencia de datos y resiliencia vegetal en el que participa la UCT - Phytolearning — https://phytolearning.cl/2025/05/08/presentan-innovador-nucleo-milenio-en-ciencia-de-datos-y-resiliencia-vegetal-en-el-que-participa-la-uct/
@@ -95,6 +109,7 @@ A partir del sitemap de PhytoLearning, hay varias notas donde se menciona a Jos�
 - José Miguel Álvarez Herrera - Phytolearning — https://phytolearning.cl/jose-miguel-alvarez-herrera/
 
 ## 8) Fuentes principales (para verificación)
+
 - UNAB Noticias (Núcleo Milenio 2024): https://noticias.unab.cl/investigadores-unab-se-adjudican-dos-proyectos-nucleo-milenio-2024/
 - CBV UNAB (Centro de Biotecnología Vegetal): https://cbv.unab.cl/
 - PhytoLearning - Publicaciones: https://phytolearning.cl/publicaciones/

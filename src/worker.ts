@@ -1,7 +1,7 @@
 export default {
   async fetch(
     request: Request,
-    env: { ASSETS: { fetch: (req: Request) => Promise<Response> } }
+    env: { ASSETS: { fetch: (req: Request) => Promise<Response> } },
   ): Promise<Response> {
     const url = new URL(request.url);
 
@@ -22,7 +22,12 @@ export default {
     const res = await env.ASSETS.fetch(request);
 
     // SPA fallback conditions. Some assets handlers return 307 -> / for unknown paths.
-    const isRedirect = res.status === 301 || res.status === 302 || res.status === 303 || res.status === 307 || res.status === 308;
+    const isRedirect =
+      res.status === 301 ||
+      res.status === 302 ||
+      res.status === 303 ||
+      res.status === 307 ||
+      res.status === 308;
 
     // If it exists (and isn't a redirect/404), return it.
     if (res.status !== 404 && !isRedirect) return tag(res);
@@ -48,7 +53,7 @@ export default {
         headers: {
           accept: 'text/html',
         },
-      })
+      }),
     );
     return tag(shell);
   },

@@ -1,77 +1,97 @@
 # JMA LAB / Plant Genome Regulation Lab — Mega-merge deep research (v1)
 
-**Qué es esto:** consolidación (“mega-merge”) de 3 informes locales + *expansión de fuentes* (links/DOIs/notas) para documentar historia, trayectoria, publicaciones, redes y vinculación del **Plant Genome Regulation Lab / Laboratorio de Regulación del Genoma Vegetal (CBV UNAB)**.
+**Qué es esto:** consolidación (“mega-merge”) de 3 informes locales + _expansión de fuentes_ (links/DOIs/notas) para documentar historia, trayectoria, publicaciones, redes y vinculación del **Plant Genome Regulation Lab / Laboratorio de Regulación del Genoma Vegetal (CBV UNAB)**.
 
 **Importante (calidad de evidencia):** este documento mezcla (A) datos verificables (con link) y (B) afirmaciones presentes en los informes base que pueden requerir verificación adicional. Donde aplique, marco **[POR VERIFICAR]**.
 
 ## 1) Identidad, afiliación y “nombres”
+
 - Plant Genome Regulation Lab / JMA Lab / “Laboratorio de Regulación del Genoma Vegetal” (CBV UNAB).
 - Ubicación institucional: **Centro de Biotecnología Vegetal (CBV), Facultad de Ciencias de la Vida, Universidad Andrés Bello (UNAB), Santiago, Chile**.
 - Liderazgo: Dr. **José Miguel Álvarez Herrera** (mencionado como director del Plant Genome Regulation Lab en UNAB Noticias y como Director de PhytoLearning).
 
 ## 2) Marco institucional: CBV UNAB
+
 - CBV declara creación (2005), misión, 8 laboratorios, ~70 integrantes y líneas de I+D en biología vegetal; también menciona vinculación con industria y redes (incluye iBio).
 - Página CBV: https://cbv.unab.cl/
 
 ## 3) Programa científico (síntesis de líneas)
+
 ### 3.1 Sequía / ABA / crecimiento vs estrés
+
 - Enfoque fuerte en mecanismos regulatorios que gobiernan la respuesta a sequía, integración con señales nutricionales y rutas de ABA.
 
 ### 3.2 Nitrógeno / nitrato + redes regulatorias
+
 - Trayectoria con una columna vertebral en señalización de nitrato/nitrógeno y redes transcripcionales (metaanálisis, redes, cromatina).
 
 ### 3.3 Big data / ML / fenotipado
+
 - Inferencia de redes regulatorias con grandes repositorios de RNA-seq + aproximaciones de ciencia de datos (PhytoLearning lo declara explícitamente).
 
 ## 4) Hitos (timeline)
+
 - **2005:** CBV UNAB se establece (según CBV).
 - **2024:** UNAB reporta adjudicación Núcleo Milenio **PhytoLearning** (ciencia de datos + resiliencia vegetal) encabezado por J.M. Álvarez.
 - **2025:** notas PhytoLearning de lanzamiento/actividades, cursos (Python-Learning), y difusión científica.
 - **2025–2026:** publicaciones recientes en redes reguladoras (ej. PLoS ONE 2025; PNAS 2026) y distinciones (EMBO Global Investigator Network 2026-2029 según EMBO/PhytoLearning/SBBMCh).
 
 ## 5) PhytoLearning (Núcleo Milenio) como “hub” público
+
 - Sitio: https://phytolearning.cl/
 - Investigadores principales listados: https://phytolearning.cl/investigadores-principales/
 - Líneas macro: https://phytolearning.cl/investigacion/
 
 ### 5.1 Vinculación con el medio (ejemplos con fuente)
+
 - **CultivaDatos** con Fundación Las Rosas (ciencia ciudadana + seguimiento de plantas): https://phytolearning.cl/2026/01/12/cultivadatos-inicia-su-camino-junto-a-residentes-de-la-fundacion-las-rosas-ciencia-que-cruza-generaciones/
 
 ### 5.2 Formación / cursos (ejemplos con fuente)
+
 - **Python-Learning** (programación aplicada a ciencias biológicas): https://phytolearning.cl/2025/08/29/phytolearning-inaugura-su-curso-python-learning-una-ventana-a-la-programacion-aplicada-a-la-ciencia-biologica/
 
 ## 6) Equipo (lo que es público y trazable)
+
 > Ojo: esto refleja **listas públicas en PhytoLearning**, no necesariamente el “roster completo” del laboratorio.
+
 - Estudiantes: https://phytolearning.cl/estudiantes/
 - Asistentes de investigación: https://phytolearning.cl/asistentes-de-investigacion/
 - Postdocs (PhytoLearning): https://phytolearning.cl/postdocs/
 
 ## 7) Colaboradores y redes
+
 - Colaboradores internacionales (PhytoLearning): https://phytolearning.cl/colaboradores-internacionales/
 - CBV también declara colaboración con instituciones internacionales y con industria (ver CBV).
 
 ## 8) Publicaciones (selección con DOI/link)
+
 ### 8.1 Papers destacados (verificados por fuente pública)
-- Desert-adapted tomato *Solanum pennellii* … (PLoS ONE, 2025) DOI: https://doi.org/10.1371/journal.pone.0324724
-- *RSL4 regulatory network* … low temperature (bioRxiv preprint) DOI: https://doi.org/10.1101/2024.04.09.588718
-- *Nitrate in 2020…* (Plant Cell) DOI: https://doi.org/10.1105/tpc.19.00748
+
+- Desert-adapted tomato _Solanum pennellii_ … (PLoS ONE, 2025) DOI: https://doi.org/10.1371/journal.pone.0324724
+- _RSL4 regulatory network_ … low temperature (bioRxiv preprint) DOI: https://doi.org/10.1101/2024.04.09.588718
+- _Nitrate in 2020…_ (Plant Cell) DOI: https://doi.org/10.1105/tpc.19.00748
 - Organ-level GRNs in tomato (Plant Communications, 2025; en PhytoLearning listan el ScienceDirect PII): https://www.sciencedirect.com/science/article/pii/S2590346225002615
 
 ### 8.2 Catálogo ampliable (ANID)
+
 - Página ANID (listado de works asociado a “researcher?id=21685”): https://investigadores.anid.cl/es/public_search/researcher?id=21685
 
 ## 9) Reconocimientos / premios / redes
+
 - **EMBO Global Investigator Network**:
   - Press release EMBO (incluye proyecto y afiliación UNAB Santiago): https://www.embo.org/press-releases/twelve-scientists-become-embo-global-investigators/
   - Nota PhytoLearning (resumen + contexto): https://phytolearning.cl/2025/12/09/dr-jose-miguel-alvarez-director-del-nucleo-milenio-phytolearning-y-academico-unab-es-seleccionado-como-embo-global-investigator/
   - Nota SBBMCh: https://www.sbbmch.cl/jose-miguel-alvarez-miembro-de-nuestra-sociedad-es-reconocido-como-embo-gin/
 
 ## 10) Fuentes institucionales UNAB (para verificación y expansión)
+
 - UNAB Noticias (Núcleo Milenio 2024): https://noticias.unab.cl/investigadores-unab-se-adjudican-dos-proyectos-nucleo-milenio-2024/
 - Perfil en Researchers UNAB (Pure): https://researchers.unab.cl/en/persons/jos%C3%A9-miguel-%C3%A1lvarez-herrera/
 
 ---
+
 ## Apéndice A — Lista de URLs detectadas en los 3 informes base
+
 > Esto sirve como “backlog” para seguir excavando con fetch/validación y completar el mapa.
 
 - https://www.sciencedirect.com/science/article/pii/S2590346225002615

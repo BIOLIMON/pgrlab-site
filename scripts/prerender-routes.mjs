@@ -21,7 +21,8 @@ const routes = [
   {
     route: '/about',
     title: 'About | Plant Genome Regulation Lab (JMA Lab)',
-    description: 'About the Plant Genome Regulation Lab (JMA Lab) at CBV-UNAB, Santiago, Chile. We study plant genome regulation and gene regulatory networks using multi-omics and systems biology to understand drought stress and nitrogen signaling.',
+    description:
+      'About the Plant Genome Regulation Lab (JMA Lab) at CBV-UNAB, Santiago, Chile. We study plant genome regulation and gene regulatory networks using multi-omics and systems biology to understand drought stress and nitrogen signaling.',
   },
   {
     route: '/research',
@@ -84,24 +85,44 @@ function prerenderHtml(routeDef) {
   html = upsertTag(
     html,
     /<meta\s+name="description"\s+content="[^"]*"\s*\/?>(\s*)/i,
-    `<meta name="description" content="${escapeAttr(routeDef.description)}" />`
+    `<meta name="description" content="${escapeAttr(routeDef.description)}" />`,
   );
 
   // Canonical
   html = upsertTag(
     html,
     /<link\s+rel="canonical"\s+href="[^"]*"\s*\/?>(\s*)/i,
-    `<link rel="canonical" href="${escapeAttr(url)}" />`
+    `<link rel="canonical" href="${escapeAttr(url)}" />`,
   );
 
   // OG url/title/desc
-  html = upsertTag(html, /<meta\s+property="og:url"\s+content="[^"]*"\s*\/?>(\s*)/i, `<meta property="og:url" content="${escapeAttr(url)}" />`);
-  html = upsertTag(html, /<meta\s+property="og:title"\s+content="[^"]*"\s*\/?>(\s*)/i, `<meta property="og:title" content="${escapeAttr(routeDef.title)}" />`);
-  html = upsertTag(html, /<meta\s+property="og:description"\s+content="[^"]*"\s*\/?>(\s*)/i, `<meta property="og:description" content="${escapeAttr(routeDef.description)}" />`);
+  html = upsertTag(
+    html,
+    /<meta\s+property="og:url"\s+content="[^"]*"\s*\/?>(\s*)/i,
+    `<meta property="og:url" content="${escapeAttr(url)}" />`,
+  );
+  html = upsertTag(
+    html,
+    /<meta\s+property="og:title"\s+content="[^"]*"\s*\/?>(\s*)/i,
+    `<meta property="og:title" content="${escapeAttr(routeDef.title)}" />`,
+  );
+  html = upsertTag(
+    html,
+    /<meta\s+property="og:description"\s+content="[^"]*"\s*\/?>(\s*)/i,
+    `<meta property="og:description" content="${escapeAttr(routeDef.description)}" />`,
+  );
 
   // Twitter title/desc
-  html = upsertTag(html, /<meta\s+name="twitter:title"\s+content="[^"]*"\s*\/?>(\s*)/i, `<meta name="twitter:title" content="${escapeAttr(routeDef.title)}" />`);
-  html = upsertTag(html, /<meta\s+name="twitter:description"\s+content="[^"]*"\s*\/?>(\s*)/i, `<meta name="twitter:description" content="${escapeAttr(routeDef.description)}" />`);
+  html = upsertTag(
+    html,
+    /<meta\s+name="twitter:title"\s+content="[^"]*"\s*\/?>(\s*)/i,
+    `<meta name="twitter:title" content="${escapeAttr(routeDef.title)}" />`,
+  );
+  html = upsertTag(
+    html,
+    /<meta\s+name="twitter:description"\s+content="[^"]*"\s*\/?>(\s*)/i,
+    `<meta name="twitter:description" content="${escapeAttr(routeDef.description)}" />`,
+  );
 
   return html;
 }
