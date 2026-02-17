@@ -1,0 +1,9 @@
+{
+  // Cloudflare Workers static assets deploy ("wrangler deploy")
+  // Needed because the Cloudflare build pipeline for this project runs: npx wrangler deploy
+  "name": "pgrlab-site",
+  "compatibility_date": "2026-02-17",
+  "assets": {
+    "directory": "./dist"
+  }
+}
