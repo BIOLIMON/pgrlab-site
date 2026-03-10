@@ -51,5 +51,7 @@ export interface Content {
     description: string;
     link: string;
     type: string;
+    logo?: string;
+    ctaLabel?: string;
   }[];
 }

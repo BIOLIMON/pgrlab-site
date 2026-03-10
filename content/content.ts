@@ -293,6 +293,7 @@ export const contentData: Content = {
         'Computational tool to explore plant gene regulatory networks through integration of curated databases, inferred GRNs, and Gene Ontology annotations — with focus on stress- and hormone-related subnetworks.',
       link: 'https://github.com/gabsga/PlantRegulatoryNetworkTool',
       type: 'Software',
+      ctaLabel: 'GitHub',
     },
     {
       name: 'PYNER',
@@ -300,6 +301,16 @@ export const contentData: Content = {
         'Integrated scientific search system to query and link genomic projects (BioProject), experimental data (SRA), and scientific publications (PubMed) using natural language.',
       link: 'https://github.com/lucianofrancoo/Pyner_PGRLAB',
       type: 'Software',
+      ctaLabel: 'GitHub',
+    },
+    {
+      name: 'INVERNADERO',
+      description:
+        'Real-time greenhouse monitoring platform developed by our team, integrating environmental sensors and cloud dashboards to support data-driven decisions in precision agriculture.',
+      link: 'https://www.inv.pgrlab.cl/',
+      type: 'Platform',
+      logo: 'https://www.inv.pgrlab.cl/favicon.svg',
+      ctaLabel: 'Visit Website',
     },
   ],
 };
