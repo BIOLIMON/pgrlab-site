@@ -1,0 +1,38 @@
+{
+  "_fuente": "Roles cotejados con las listas de phytolearning.cl (equipo_cotejo.csv, 18-oct-2026). Solo se publican personas con nombre completo y rol verificable. Pendientes de confirmar: ver 'confirmar'.",
+  "pi": {
+    "nombre": "José Miguel Álvarez",
+    "rol": "Investigador principal",
+    "bio": "Bioquímico y doctor en Ciencias Biológicas (PUC), con postdoctorado en NYU. Académico de la Facultad de Ciencias de la Vida de la Universidad Andrés Bello y director del Núcleo Milenio PhytoLearning.",
+    "credencial": "EMBO Global Investigator · promoción 2025 (12 seleccionados)",
+    "credencial_fuente": "https://www.embo.org/press-releases/twelve-scientists-become-embo-global-investigators/",
+    "orcid": "0000-0002-5073-7751",
+    "imagen": "jma.jpg"
+  },
+  "grupos": [
+    { "grupo": "Postdoctorado", "personas": [
+      { "nombre": "Tomás Moyano", "bio": "Bioinformática del laboratorio: meta-análisis transcriptómico, inferencia de redes e integración de RNA-seq a gran escala." },
+      { "nombre": "Ariel Cerda", "bio": "Postdoctorado Fondecyt. Circuitos genéticos sintéticos para desacoplar el crecimiento de la respuesta al estrés; vínculo nitrógeno–sequía." },
+      { "nombre": "Hernán Salinas-Grenet", "bio": "Desarrollo de pelos radicales bajo estrés salino y falta de fosfato." }
+    ]},
+    { "grupo": "Doctorado y magíster", "personas": [
+      { "nombre": "Rachid Sjoberg", "bio": "Doctorado en Bioinformática y Biología de Sistemas (UNAB). Resiliencia a sequía y elementos regulatorios en tomates del desierto." },
+      { "nombre": "Luciano Ahumada", "bio": "Doctorado en Bioinformática y Biología de Sistemas (UNAB). Modelamiento de redes regulatorias en respuesta a estrés." },
+      { "nombre": "Gabriela Vásquez", "bio": "Doctorado en Bioinformática y Biología de Sistemas (UNAB).", "confirmar": "rol actual (antes figuraba como asistente)" },
+      { "nombre": "Rimer Mayta Poca", "bio": "Magíster en Biotecnología (UNAB). Redes regulatorias de estrés en plantas." }
+    ]},
+    { "grupo": "Gestión", "personas": [
+      { "nombre": "Camilo Osorio", "bio": "Encargado de administración y gestión del Núcleo PhytoLearning; estandarización de técnicas del laboratorio." }
+    ]},
+    { "grupo": "Asistentes de investigación", "personas": [
+      { "nombre": "Mauricio Arias", "bio": "Magíster en Biotecnología. Estandarizó la técnica TARGET para identificar blancos directos de factores sensibles a ABA en tomate." },
+      { "nombre": "Catalina Cofré", "bio": "Efecto del nitrógeno en la resistencia a sequía en tomate." },
+      { "nombre": "Macarena Muñoz", "bio": "Apoyo a los flujos experimentales y bioinformáticos del laboratorio." },
+      { "nombre": "Nicolás Müller", "bio": "Ingeniero en Biotecnología (UNAB). Manejo de recursos en tomate con sensores de bajo costo y herramientas abiertas.", "confirmar": "rol actual (antes figuraba como tesista)" }
+    ]},
+    { "grupo": "Tesistas", "personas": [
+      { "nombre": "Sebastián Ortiz", "bio": "Tesis de pregrado, Universidad de Chile." }
+    ]}
+  ],
+  "retirados_hasta_confirmar": ["Jean Pierre Ramos (no aparece en las listas del Núcleo)", "Joaquín (sin apellido ni rol)"]
+}

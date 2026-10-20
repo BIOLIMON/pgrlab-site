@@ -1,0 +1,32 @@
+<!-- @dsCard group="Contenido" height=560 subtitle="Ficha de línea con su motivo vivo" -->
+<!doctype html>
+<html lang="es">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>ResearchLine</title>
+<style>body{padding:24px 32px;}</style></head>
+<body>
+<div id="root">
+<article class="pgr-line" data-line="nitrogeno">
+  <span class="pgr-line__num">03 ─ N</span>
+  <div>
+    <span class="pgr-tag pgr-tag--line" data-line="nitrogeno">nitrógeno</span>
+    <h3 class="heading">Señalización y eficiencia de uso de nitrógeno</h3>
+    <p class="body">Exploramos cómo las plantas detectan, interpretan y optimizan la disponibilidad de nitrógeno a través de redes regulatorias de varias capas: cromatina, transcripción y modelos computacionales.</p>
+  </div>
+  <div id="n"></div>
+</article>
+<article class="pgr-line" data-line="sequia">
+  <span class="pgr-line__num">02 ─ ∴</span>
+  <div>
+    <span class="pgr-tag pgr-tag--line" data-line="sequia">sequía</span>
+    <h3 class="heading">Estrategias de adaptación a sequía</h3>
+    <p class="body">Estudiamos los programas moleculares con que especies tolerantes, como <em>Solanum pennellii</em>, anticipan y responden a la falta de agua.</p>
+  </div>
+  <div id="s"></div>
+</article>
+</div>
+<script>
+PGR.RootGrowth(document.getElementById('n'), { line: 'nitrogeno', seed: 19, branch: 0.26 });
+PGR.RootGrowth(document.getElementById('s'), { line: 'sequia', seed: 5, branch: 0.1 });
+</script>
+</body>
+</html>

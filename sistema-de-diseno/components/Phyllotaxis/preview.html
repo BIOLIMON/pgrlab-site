@@ -1,0 +1,15 @@
+<!-- @dsCard group="Motivos" height=420 subtitle="Espiral áurea viva: crecer o resistir" -->
+<!doctype html>
+<html lang="es">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Phyllotaxis</title>
+<style>body{padding:16px 24px;} #p{width:340px;height:340px;} .hint{font-family:var(--font-mono);font-size:12px;color:var(--ink-muted);margin:8px 0 0;} .hint b{font-weight:500;color:var(--moss);}</style></head>
+<body>
+<div id="root">
+  <div id="p"></div>
+  <p class="hint">pasa el cursor: espirales de Fibonacci · clic: la planta decide · estado <b id="st">crecer</b></p>
+</div>
+<script>
+PGR.Phyllotaxis(document.getElementById('p'), { onState: function (s) { var e = document.getElementById('st'); e.textContent = s; e.style.color = s === 'resistir' ? 'var(--soil)' : 'var(--moss)'; } });
+</script>
+</body>
+</html>

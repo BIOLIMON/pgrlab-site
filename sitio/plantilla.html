@@ -1,0 +1,676 @@
+<title>PGR Lab · Plant Genome Regulation Lab</title>
+{{META}}
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Newsreader:ital,opsz,wght@0,6..72,300..600;1,6..72,300..600&display=swap">
+<style>
+/* Composición: columna de margen (rótulos §) + columna de contenido, como notas al margen de un cuaderno.
+   Solo tema claro. Tokens: sistema de diseño PGR Lab (tokens.json), compilados aquí. */
+{{TOKENS}}
+{{BUNDLECSS}}
+
+/* ── Página ─────────────────────────────────── */
+[hidden] { display: none !important; }
+/* Sin JavaScript se lee todo: los controles que dependen de JS solo aparecen si JS corre */
+html:not(.js) .js-only { display: none !important; }
+html.js .no-js-only { display: none !important; }
+html:not(.js) .hero-side, html:not(.js) .motif, html:not(.js) .hint, html:not(.js) .net-stage, html:not(.js) .helix { display: none !important; }
+html:not(.js) .pgr-hero { grid-template-columns: 1fr; }
+@media (min-width: 721px) { html:not(.js) .pgr-line { grid-template-columns: minmax(96px, 2fr) 10fr; } }
+.on-touch { display: none; }
+@media (hover: none), (pointer: coarse) { .on-hover { display: none; } .on-touch { display: inline; } }
+html { scroll-behavior: smooth; }
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+.wrap { max-width: var(--container); margin: 0 auto; padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); }
+@media (min-width: 720px) { .wrap { padding-left: max(40px, env(safe-area-inset-left, 0px)); padding-right: max(40px, env(safe-area-inset-right, 0px)); } }
+.section { padding-block: var(--space-8) 0; scroll-margin-top: 72px; }
+.section-body { display: grid; grid-template-columns: minmax(96px, 2fr) 10fr; gap: var(--space-5); margin-top: var(--space-6); }
+.section-body > * { min-width: 0; grid-column: 2; }
+.section-lede { margin: var(--space-4) 0 0; max-width: 50ch; color: var(--ink-muted); }
+.section-head-col { min-width: 0; }
+.more { margin-top: var(--space-5); }
+.hint { font-family: var(--font-mono); font-size: 12px; color: var(--ink-muted); }
+.hint::before { content: "› "; color: var(--chlorophyll); }
+
+/* Cabecera fija y fina */
+.pgr-header__brand { margin-right: auto; }
+.pgr-header nav { order: 2; }
+.pgr-motion { order: 3; }
+.motion-short { display: none; }
+.pgr-motion[aria-pressed="true"] .motion-icon { letter-spacing: 0; }
+.pub-note { margin: var(--space-4) 0 0; font-size: 16px; line-height: 1.5; color: var(--ink-muted); max-width: var(--measure); }
+.unis { margin: var(--space-6) 0 0; padding: 0; list-style: none; display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 260px), 1fr)); gap: 0 var(--space-5); border-top: var(--rule-width) solid var(--rule); }
+.unis li { border-bottom: var(--rule-width) solid var(--rule); }
+.unis a { display: block; padding: var(--space-3) 0; font-size: 17px; color: var(--ink); text-decoration: none; }
+.unis a:hover { color: var(--moss); text-decoration: underline; text-underline-offset: 0.2em; }
+.unis-head { margin: var(--space-6) 0 var(--space-2); }
+.outreach time { font-family: var(--font-mono); font-size: 14px; color: var(--ink-muted); }
+.outreach a { color: var(--ink); text-decoration-thickness: 1px; text-underline-offset: 0.2em; }
+.pi-cred { display: inline-block; margin-top: var(--space-3); font-family: var(--font-mono); font-size: 14px; color: var(--ink-muted); }
+.pi-links { display: flex; flex-wrap: wrap; gap: var(--space-2) var(--space-4); margin-top: var(--space-3); }
+.site-top { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 30; background: var(--paper); }
+.pgr-header { gap: var(--space-4); }
+.pgr-nav li { white-space: nowrap; }
+.pgr-nav .pgr-menu__panel li { white-space: normal; }
+.nav-toggle { display: none; font-family: var(--font-mono); font-size: 14px; background: none; border: 1px solid var(--ink-muted); border-radius: var(--radius-sm); padding: var(--space-2) var(--space-3); color: var(--ink); cursor: pointer; }
+.progress { position: absolute; left: 0; bottom: -1px; height: 2px; width: 100%; transform-origin: left; transform: scaleX(0); background: var(--moss); }
+
+/* Portada */
+.pgr-hero { padding-top: var(--space-7); }
+.pgr-hero__q { max-width: 11ch; text-wrap: balance; }
+.hero-side { display: flex; flex-direction: column; gap: var(--space-3); min-height: 400px; }
+.hero-field { flex: 1; min-height: 360px; }
+.hero-meta { display: flex; flex-wrap: wrap; gap: var(--space-2) var(--space-5); margin-top: var(--space-6); padding-top: var(--space-4); border-top: var(--rule-width) solid var(--rule); }
+.hero-meta span { font-family: var(--font-mono); font-size: 13px; color: var(--ink-muted); }
+.hero-meta b { font-weight: 500; color: var(--ink); }
+
+/* Líneas */
+.pgr-line .motif { min-height: 220px; }
+.pgr-line .motif--graph { min-height: 280px; align-self: stretch; }
+.pgr-line .motif--omics { min-height: 260px; align-self: stretch; }
+.pgr-line .motif--circuit { min-height: 0; align-self: start; }
+#linea-sequia .body { max-width: 44ch; }
+#linea-sequia .line-q { margin-top: var(--space-5); }
+#linea-sequia .line-q::before { content: none; }
+#linea-sequia .hint { margin-top: var(--space-2); max-width: 44ch; }
+#linea-sequia .pgr-more { margin-top: var(--space-5); }
+.hero-field { aspect-ratio: 1 / 1; max-height: 460px; }
+.hint b { font-weight: 500; color: var(--moss); }
+.pgr-line__num { display: block; }
+.line-q { margin: var(--space-4) 0 0; font-family: var(--font-mono); font-size: 13px; line-height: 1.6; color: var(--line); }
+.line-q::before { content: "? "; }
+.facts { display: grid; grid-template-columns: max-content 1fr; gap: var(--space-2) var(--space-4); margin: 0; }
+.facts dt { font-family: var(--font-mono); font-size: 12px; text-transform: uppercase; letter-spacing: 0.06em; color: var(--ink-muted); padding-top: 4px; }
+.facts dd { margin: 0; font-size: 16px; line-height: 1.5; }
+
+/* Red */
+.net-wrap { display: grid; grid-template-columns: minmax(0, 8fr) minmax(0, 3fr); gap: var(--space-5); align-items: start; }
+.net-stage { background: var(--paper-raised); border: 1px solid var(--rule); padding: var(--space-3); }
+.net-bar { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: var(--space-3); margin-bottom: var(--space-4); }
+.net-panel { position: sticky; top: 96px; display: flex; flex-direction: column; gap: var(--space-4); }
+.net-card { min-height: 236px; padding: var(--space-4); border-top: 2px solid var(--card, var(--ink)); background: var(--paper-raised); }
+.net-card h3 { margin: var(--space-1) 0 var(--space-2); font-family: var(--font-mono); font-size: 24px; font-weight: 500; }
+.net-card p { margin: 0 0 var(--space-3); font-size: 16px; line-height: 1.5; }
+.net-card .rels { font-family: var(--font-mono); font-size: 12px; line-height: 1.7; color: var(--ink-muted); }
+.net-card .rels b { font-weight: 500; color: var(--ink); }
+.legend { display: grid; grid-template-columns: 22px 1fr; gap: var(--space-2) var(--space-3); align-items: center; margin: 0; font-family: var(--font-mono); font-size: 12px; color: var(--ink-muted); }
+.legend svg { overflow: visible; }
+.lg-shape { fill: var(--paper); stroke: var(--ink); stroke-width: 1.6; }
+.lg-line { stroke: var(--ink); stroke-width: 1.4; }
+.lg-tip { fill: var(--ink); }
+.net-note { margin: var(--space-3) 0 0; font-size: 14px; line-height: 1.5; color: var(--ink-muted); font-style: italic; max-width: 80ch; }
+
+/* Publicaciones */
+.pub-tools { display: flex; flex-wrap: wrap; justify-content: space-between; gap: var(--space-3); margin-bottom: var(--space-4); align-items: baseline; }
+.pub-list { border-bottom: var(--rule-width) solid var(--rule); }
+.pgr-pub[hidden] { display: none; }
+.cite { margin: 0; padding: var(--space-3); background: var(--paper-sunk); font-family: var(--font-mono); font-size: 12px; line-height: 1.6; white-space: pre-wrap; word-break: break-word; }
+.cite-row { display: flex; gap: var(--space-3); align-items: center; margin-top: var(--space-2); }
+.linkbtn { font-family: var(--font-mono); font-size: 12px; color: var(--moss); background: none; border: 0; padding: 0; cursor: pointer; text-decoration: underline; text-underline-offset: 0.2em; }
+.empty { padding: var(--space-5) 0; color: var(--ink-muted); font-style: italic; }
+
+/* Herramientas */
+.tool-list { border-bottom: var(--rule-width) solid var(--rule); }
+.pgr-tool { transition: background-color 160ms ease-out; }
+.pgr-tool:hover { background: var(--paper-raised); }
+
+/* Equipo */
+.pi { display: grid; grid-template-columns: 160px 1fr; gap: var(--space-5); align-items: start; }
+.pi .pgr-person__portrait { width: 160px; height: 200px; }
+.pi h3 { margin: var(--space-2) 0 var(--space-3); }
+.pi p { margin: 0; max-width: var(--measure); }
+.pi .pgr-tag { margin-top: var(--space-3); }
+.roster { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 240px), 1fr)); gap: var(--space-5) var(--space-6); margin-top: var(--space-6); }
+.roster h4 { margin: 0 0 var(--space-2); }
+.roster ul { margin: 0; padding: 0; list-style: none; }
+.roster li { border-top: var(--rule-width) solid var(--rule); }
+.roster details > summary { list-style: none; cursor: pointer; display: flex; justify-content: space-between; gap: var(--space-2); padding: var(--space-2) 0; font-size: 17px; line-height: 1.4; }
+.roster details > summary::-webkit-details-marker { display: none; }
+.roster details > summary::after { content: "+"; font-family: var(--font-mono); color: var(--ink-muted); }
+.roster details[open] > summary::after { content: "−"; }
+.roster details > summary:hover { color: var(--moss); }
+.roster details p { margin: 0 0 var(--space-3); font-size: 15px; line-height: 1.5; color: var(--ink-muted); }
+
+/* Núcleo */
+.nucleo { display: grid; grid-template-columns: 6fr 5fr; gap: var(--space-6); align-items: start; }
+.nucleo > * { min-width: 0; }
+.nucleo-logo { background: var(--logo-ground); padding: var(--space-5); display: flex; align-items: center; justify-content: center; }
+.nucleo-logo img { height: 112px; width: auto; }
+.nucleo p { margin: 0 0 var(--space-4); max-width: var(--measure); }
+.nucleo .pgr-readout { margin-top: var(--space-5); }
+.outreach { margin: var(--space-6) 0 0; padding: 0; list-style: none; border-top: var(--rule-width) solid var(--rule); }
+.outreach li { display: grid; grid-template-columns: minmax(0, 9fr) minmax(0, 3fr); gap: var(--space-4); padding: var(--space-3) 0; border-bottom: var(--rule-width) solid var(--rule); align-items: baseline; }
+.outreach .small { color: var(--ink-muted); text-align: right; font-family: var(--font-mono); font-size: 13px; }
+
+/* Contacto */
+.contact { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 220px), 1fr)); gap: var(--space-5); margin: 0; }
+.contact dd { overflow-wrap: anywhere; }
+.contact dt { margin-bottom: var(--space-2); }
+.contact dd { margin: 0; font-size: 18px; line-height: 1.5; }
+.contact .linkbtn { margin-left: var(--space-2); }
+.join { margin-top: var(--space-6); padding: var(--space-5); background: var(--paper-sunk); display: grid; grid-template-columns: 1fr auto; gap: var(--space-4); align-items: center; }
+.join p { margin: 0; max-width: 56ch; }
+
+/* Pie */
+.footer { margin-top: var(--space-8); background: var(--paper-sunk); padding-block: var(--space-6); }
+.footer .helix { margin-bottom: var(--space-6); cursor: ew-resize; }
+.footer-cols { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 180px), 1fr)); gap: var(--space-5); margin-top: var(--space-6); }
+.footer-cols ul { margin: var(--space-2) 0 0; padding: 0; list-style: none; }
+.footer-cols a { font-family: var(--font-mono); font-size: 13px; line-height: 2; color: var(--ink-muted); text-decoration: none; }
+.footer-cols a:hover { color: var(--ink); }
+.footer-row { display: flex; flex-wrap: wrap; justify-content: space-between; gap: var(--space-4); margin-top: var(--space-6); padding-top: var(--space-4); border-top: var(--rule-width) solid var(--rule); }
+.footer-row span, .footer-row a { font-family: var(--font-mono); font-size: 13px; color: var(--ink-muted); }
+
+/* Navegación colapsada bajo 1080px: los ocho enlaces no caben en una línea */
+@media (max-width: 1080px) {
+  .nav-toggle { display: inline-block; order: 1; }
+  .pgr-motion { order: 1; }
+  .pgr-header nav { order: 5; }
+  html.js .pgr-header nav { display: none; width: 100%; }
+  html:not(.js) .pgr-header nav { width: 100%; }
+  .pgr-header.is-open nav { display: block; max-height: calc(100dvh - 90px); overflow-y: auto; }
+  .pgr-header.is-open .pgr-nav { flex-direction: column; gap: var(--space-3); padding-block: var(--space-3) var(--space-4); font-size: 16px; }
+  .pgr-menu__panel { position: static; min-width: 0; margin-top: var(--space-2); box-shadow: none; }
+}
+/* Tablet: sin columna de margen, el contenido usa todo el ancho */
+@media (max-width: 1024px) {
+  .section-body { grid-template-columns: 1fr; }
+  .section-body > * { grid-column: 1; }
+  .section { padding-block: var(--space-7) 0; }
+}
+@media (max-width: 900px) {
+  .pgr-hero { grid-template-columns: 1fr; gap: var(--space-5); padding-top: var(--space-6); }
+  .pgr-hero__q { max-width: 14ch; }
+  .hero-side { min-height: 0; align-items: center; }
+  .hero-field { width: min(100%, 400px); flex: none; min-height: 0; }
+  .hero-side .hint { text-align: center; }
+  .net-wrap { grid-template-columns: 1fr; }
+  .net-panel { position: static; display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: var(--space-5); align-items: start; }
+  .nucleo { grid-template-columns: 1fr; }
+  .nucleo-logo img { height: 96px; }
+}
+@media (max-width: 480px) {
+  .motion-short { display: none !important; }
+  .pgr-motion { min-width: 40px; min-height: 40px; justify-content: center; padding: 0; }
+  .pgr-header__name small { display: none; }
+  .nav-toggle { min-height: 40px; }
+}
+@media (max-width: 720px) {
+  .motion-long { display: none; }
+  .motion-short { display: inline; }
+  .pi { grid-template-columns: 1fr; }
+  .join { grid-template-columns: 1fr; }
+  .net-stage { padding: var(--space-2); }
+  .net-panel { grid-template-columns: 1fr; }
+  .net-card { min-height: 0; }
+  .pgr-line .motif { min-height: 170px; }
+  .pgr-line .motif--graph { min-height: 260px; }
+  .pgr-line .motif--omics { min-height: 250px; }
+  .pgr-line .motif--circuit { min-height: 0; }
+  .pgr-pub { grid-template-columns: 1fr; gap: var(--space-2); }
+  .outreach li { grid-template-columns: 1fr; gap: var(--space-1); }
+  .outreach .small { text-align: left; }
+  .pgr-seg button { padding: var(--space-2) var(--space-3); }
+  .footer-row { flex-direction: column; }
+  .pgr-affil { gap: var(--space-5); }
+  .pgr-affil img[alt="Núcleo Milenio PhytoLearning"] { height: 72px !important; }
+}
+</style>
+
+<script>document.documentElement.classList.add("js");</script>
+<div class="site-top">
+  <div class="wrap" style="position:relative">
+    <header class="pgr-header" id="site-header">
+      <a class="pgr-header__brand" href="#inicio"><img src="{{IMG:mark.png}}" alt="" width="40" height="40"><span class="pgr-header__name">PGR Lab<small>Plant Genome Regulation</small></span></a>
+      <button class="pgr-motion js-only" id="motion" type="button" aria-pressed="false" aria-label="Pausar animaciones"><span aria-hidden="true" class="motion-icon">❙❙</span><span class="motion-long">pausar animaciones</span><span class="motion-short">pausar</span></button>
+      <button class="nav-toggle js-only" id="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav">menú +</button>
+      <nav aria-label="Principal" id="site-nav"><ul class="pgr-nav">
+        <li class="pgr-menu">
+          <a class="no-js-only" href="#investigacion">investigación</a><button class="js-only" type="button" aria-expanded="false" aria-controls="menu-inv" id="menu-inv-btn">investigación</button>
+          <ul class="pgr-menu__panel" id="menu-inv" hidden>
+            <li data-line="redes"><a href="#linea-redes"><span>01</span>Lógica de las redes transcripcionales</a></li>
+            <li data-line="sequia"><a href="#linea-sequia"><span>02</span>Estrategias de adaptación a sequía</a></li>
+            <li data-line="nitrogeno"><a href="#linea-nitrogeno"><span>03</span>Señalización y uso de nitrógeno</a></li>
+            <li data-line="omica"><a href="#linea-omica"><span>04</span>Multi-ómica y sistemas predictivos</a></li>
+            <li><a href="#red"><span>◇</span>Explora una red génica</a></li>
+          </ul>
+        </li>
+        <li><a href="#publicaciones" data-scramble>publicaciones</a></li>
+        <li><a href="#herramientas" data-scramble>herramientas</a></li>
+        <li><a href="#equipo" data-scramble>equipo</a></li>
+        <li><a href="#nucleo" data-scramble>núcleo</a></li>
+        <li><a href="#noticias" data-scramble>noticias</a></li>
+        <li><a href="#contacto" data-scramble>contacto</a></li>
+      </ul></nav>
+    </header>
+    <div class="progress" id="progress" aria-hidden="true"></div>
+  </div>
+</div>
+
+<div class="wrap">
+  <main id="inicio">
+    <section class="pgr-hero" aria-labelledby="hero-q">
+      <div>
+        <span class="label">Plant Genome Regulation Lab · UNAB · Núcleo Milenio PhytoLearning</span>
+        <h1 class="display pgr-hero__q" id="hero-q">¿Cómo decide una planta?</h1>
+        <p class="lede pgr-hero__lede">Leemos las redes génicas con las que tomate y <em>Arabidopsis</em> perciben la falta de agua y de nitrógeno, y deciden entre crecer o resistir.</p>
+        <div class="pgr-hero__actions">
+          <a class="pgr-btn pgr-btn--primary" href="#red">Explora una red génica <span class="pgr-btn__glyph">→</span></a>
+          <a class="pgr-btn pgr-btn--quiet" href="#investigacion">Líneas de investigación</a>
+        </div>
+        <div class="hero-meta">
+          <span>sede <b>CBV · UNAB, Santiago</b></span>
+          <span>organismos <b><em>S. lycopersicum</em> · <em>S. pennellii</em> · <em>A. thaliana</em></b></span>
+        </div>
+      </div>
+      <div class="hero-side">
+        <div class="hero-field" id="hero-field"></div>
+        <span class="hint"><span class="on-hover">pasa el cursor: aparecen las espirales de Fibonacci · clic: la planta decide</span><span class="on-touch">toca la espiral: la planta decide</span> · estado <b id="hero-state">crecer</b></span>
+      </div>
+    </section>
+
+    <section class="section" id="investigacion" aria-labelledby="h-inv">
+      <header class="pgr-section-head">
+        <span class="label">§ 01</span>
+        <div class="section-head-col">
+          <h2 class="title" id="h-inv">Líneas de investigación</h2>
+          <p class="lede section-lede">Cuatro preguntas que se cruzan: la sequía y el nitrógeno se leen en las mismas redes.</p>
+        </div>
+      </header>
+      <div class="section-body"><div>
+        <article class="pgr-line" data-line="redes" id="linea-redes">
+          <span class="pgr-line__num">01 ─ ◇─◇</span>
+          <div>
+            <span class="pgr-tag pgr-tag--line" data-line="redes">redes transcripcionales</span>
+            <h3 class="heading">Lógica de las redes transcripcionales</h3>
+            <p class="body">Cómo integran las plantas señales ambientales y nutricionales a través de redes génicas dinámicas: su arquitectura, su jerarquía y la forma en que reparten recursos entre crecimiento y respuesta al estrés.</p>
+            <p class="line-q">¿qué factor de transcripción decide?</p>
+            <p class="hint"><span class="on-hover">pasa el cursor sobre un nodo para disparar su cascada · clic para silenciarlo (knockout)</span><span class="on-touch">toca un nodo para silenciarlo (knockout) y ver cómo se apaga su cascada</span></p>
+            <details class="pgr-more"><summary>ver más</summary><div class="pgr-more__body">
+              <dl class="facts">
+                <dt>Organismos</dt><dd><em>Arabidopsis thaliana</em>, tomate</dd>
+                <dt>Enfoques</dt><dd>Inferencia de redes desde RNA-seq, identificación de blancos directos (TARGET), accesibilidad de cromatina</dd>
+                <dt>Clave</dt><dd><a class="pgr-link" href="https://doi.org/10.1016/j.xplc.2025.101499">Redes por órgano en tomate, Plant Communications 2025 ↗</a></dd>
+              </dl>
+              <p class="more"><a class="pgr-link pgr-link--mono" href="#red">explora una red de ejemplo →</a></p>
+            </div></details>
+          </div>
+          <div class="motif motif--graph" data-motif="graph" data-seed="41"></div>
+        </article>
+        <article class="pgr-line" data-line="sequia" id="linea-sequia">
+          <span class="pgr-line__num">02 ─ ∴</span>
+          <div>
+            <span class="pgr-tag pgr-tag--line" data-line="sequia">sequía</span>
+            <h3 class="heading">Estrategias de adaptación a sequía</h3>
+            <p class="body">Los programas moleculares con que las plantas anticipan y responden a la falta de agua. Comparamos el tomate cultivado con <em>Solanum pennellii</em>, un pariente silvestre del desierto con un transcriptoma «listo para el estrés».</p>
+            <p class="line-q">¿cómo se prepara una planta antes de la sequía?</p>
+            <p class="hint">prueba el circuito ilustrativo · notación SBOL</p>
+            <details class="pgr-more"><summary>ver más</summary><div class="pgr-more__body">
+              <dl class="facts">
+                <dt>Organismos</dt><dd><em>S. pennellii</em>, <em>S. lycopersicum</em>, <em>Arabidopsis</em></dd>
+                <dt>Enfoques</dt><dd>Genómica comparada, transcriptómica, análisis de ortólogos y motivos regulatorios</dd>
+                <dt>Clave</dt><dd><a class="pgr-link" href="https://doi.org/10.1371/journal.pone.0324724">Tomate del desierto «stress-ready», PLoS ONE 2025 ↗</a></dd>
+              </dl>
+            </div></details>
+          </div>
+          <div class="motif motif--circuit" data-motif="circuit"></div>
+        </article>
+        <article class="pgr-line" data-line="nitrogeno" id="linea-nitrogeno">
+          <span class="pgr-line__num">03 ─ N</span>
+          <div>
+            <span class="pgr-tag pgr-tag--line" data-line="nitrogeno">nitrógeno</span>
+            <h3 class="heading">Señalización y eficiencia de uso de nitrógeno</h3>
+            <p class="body">Cómo detectan, interpretan y optimizan las plantas el nitrógeno disponible, desde la cromatina hasta la transcripción, y cómo esa señal se cruza con la de sequía a través de reguladores como NLP7.</p>
+            <p class="line-q">¿se puede usar menos fertilizante sin perder rendimiento?</p>
+            <details class="pgr-more"><summary>ver más</summary><div class="pgr-more__body">
+              <dl class="facts">
+                <dt>Organismos</dt><dd><em>Arabidopsis thaliana</em>, tomate</dd>
+                <dt>Enfoques</dt><dd>Dinámica de cromatina, redes transcripcionales, modelos computacionales</dd>
+                <dt>Clave</dt><dd><a class="pgr-link" href="https://doi.org/10.1073/pnas.2509904122">NLP7 y el antagonismo nitrógeno–sequía, PNAS 2026 ↗</a></dd>
+              </dl>
+            </div></details>
+          </div>
+          <div class="motif" data-motif="root" data-seed="19" data-branch="0.26"></div>
+        </article>
+        <article class="pgr-line" data-line="omica" id="linea-omica">
+          <span class="pgr-line__num">04 ─ ≋</span>
+          <div>
+            <span class="pgr-tag pgr-tag--line" data-line="omica">multi-ómica</span>
+            <h3 class="heading">Multi-ómica y sistemas predictivos</h3>
+            <p class="body">Integramos datos genómicos, transcriptómicos, epigenómicos, fenotípicos y ambientales en modelos de aprendizaje automático que predicen el desempeño de la planta en el campo, con sensores e inteligencia artificial para el fenotipado.</p>
+            <p class="line-q">¿podemos predecir una cosecha desde el genoma?</p>
+            <p class="hint"><span class="on-hover">mueve el cursor sobre las pistas para leer cada capa · clic: control o sequía</span><span class="on-touch">toca las pistas: alterna entre control y sequía</span></p>
+            <details class="pgr-more"><summary>ver más</summary><div class="pgr-more__body">
+              <dl class="facts">
+                <dt>Datos</dt><dd>Miles de experimentos públicos de RNA-seq, sensores de invernadero, imágenes</dd>
+                <dt>Enfoques</dt><dd>Aprendizaje automático, fenotipado automático, integración multi-ómica</dd>
+                <dt>Herramientas</dt><dd><a class="pgr-link" href="#herramientas">PRINT</a></dd>
+              </dl>
+            </div></details>
+          </div>
+          <div class="motif motif--omics" data-motif="omics" data-seed="88"></div>
+        </article>
+        <p class="hint" style="margin-top:var(--space-4)"><span class="on-hover">haz clic sobre la raíz para sembrarla de nuevo donde quieras</span><span class="on-touch">toca la raíz para sembrarla de nuevo</span></p>
+      </div></div>
+    </section>
+
+    <section class="section" id="red" aria-labelledby="h-red">
+      <header class="pgr-section-head">
+        <span class="label">§ 02</span>
+        <div class="section-head-col">
+          <h2 class="title" id="h-red">Una red, dos señales</h2>
+          <p class="lede section-lede">Cambia la condición y mira qué parte de la red se enciende. <span class="on-hover">Pasa el cursor sobre un nodo para ver a quién regula; arrástralo para reordenar la red.</span><span class="on-touch">Toca un nodo para ver a quién regula.</span></p>
+        </div>
+      </header>
+      <div class="section-body"><div>
+        <div class="net-wrap">
+          <div class="net-stage">
+            <div class="net-bar">
+              <div class="pgr-seg js-only" role="group" aria-label="Condición" id="net-state">
+                <button type="button" data-state="reposo" aria-pressed="false">reposo</button>
+                <button type="button" data-state="nitrato" aria-pressed="true">+ nitrato</button>
+                <button type="button" data-state="sequia" aria-pressed="false">sequía</button>
+                <button type="button" data-state="ambas" aria-pressed="false">ambas</button>
+              </div>
+              <span class="hint js-only" id="net-status">nitrato: se enciende el módulo de nitrógeno</span>
+            </div>
+            <div id="net"></div>
+          </div>
+          <aside class="net-panel" aria-live="polite">
+            <div class="net-card" id="net-card">
+              <span class="label">cómo leer la red</span>
+              <h3>◇ → ○</h3>
+              <p>Cada forma es un tipo de nodo. Los rellenos están encendidos en la condición elegida; las líneas punteadas que se mueven son regulaciones activas.</p>
+              <p class="rels">verde = nitrógeno · ocre = sequía · púrpura = cruce entre ambas</p>
+            </div>
+            <dl class="legend" aria-label="Leyenda">
+              <svg width="22" height="22" viewBox="-11 -11 22 22" aria-hidden="true"><path d="M0 -9 L8 6 L-8 6 Z" class="lg-shape"/></svg><dd style="margin:0">factor de transcripción</dd>
+              <svg width="22" height="22" viewBox="-11 -11 22 22" aria-hidden="true"><circle r="6" class="lg-shape"/></svg><dd style="margin:0">gen</dd>
+              <svg width="22" height="22" viewBox="-11 -11 22 22" aria-hidden="true"><rect x="-8" y="-8" width="16" height="16" class="lg-shape"/></svg><dd style="margin:0">hub (nodo muy conectado, no TF)</dd>
+              <svg width="22" height="22" viewBox="-11 -11 22 22" aria-hidden="true"><line x1="-10" y1="0" x2="5" y2="0" class="lg-line"/><path d="M4 -4 L10 0 L4 4 z" class="lg-tip"/></svg><dd style="margin:0">activa</dd>
+              <svg width="22" height="22" viewBox="-11 -11 22 22" aria-hidden="true"><line x1="-10" y1="0" x2="7" y2="0" class="lg-line"/><rect x="7" y="-5" width="2.4" height="10" class="lg-tip"/></svg><dd style="margin:0">reprime</dd>
+            </dl>
+          </aside>
+        </div>
+        <p class="no-js-only net-note">La red interactiva necesita JavaScript. Su contenido completo está en «la red en texto».</p>
+        <details class="pgr-more net-text"><summary>la red en texto</summary><div class="pgr-more__body">
+          <dl class="facts">
+            <dt>Nitrato</dt><dd>NRT1.1 (hub) activa a NLP7, TGA1, bZIP1 y NRT2.1. NLP7 activa a NIA1, NIR1 y NRT2.1. TGA1 activa a NRT2.1. bZIP1 activa a ASN1.</dd>
+            <dt>Sequía</dt><dd>NCED3 activa a SnRK2 (hub). SnRK2 activa a ABF2, ABF3 y CIPK23. ABF2 activa a RD29B y RAB18. ABF3 activa a RAB18, P5CS1 y DREB2A. DREB2A activa a RD29A.</dd>
+            <dt>Cruce</dt><dd>CIPK23 reprime a NRT1.1. SnRK2 reprime a NLP7. NLP7 reprime a ABF2.</dd>
+          </dl>
+        </div></details>
+        <p class="net-note">Esquema ilustrativo: los nodos son genes y reguladores estudiados en las respuestas a nitrato y sequía; las conexiones están simplificadas para explicar la notación y no representan un resultado publicado del laboratorio.</p>
+      </div></div>
+    </section>
+
+    <section class="section" id="publicaciones" aria-labelledby="h-pub">
+      <header class="pgr-section-head">
+        <span class="label">§ 03</span>
+        <h2 class="title" id="h-pub">Publicaciones</h2>
+      </header>
+      <div class="section-body"><div>
+        <div class="pub-tools">
+          <ul class="pgr-filter js-only" id="pub-filter" aria-label="Filtrar por línea">{{FILTERS}}</ul>
+          <span class="hint js-only" id="pub-count"></span>
+        </div>
+        <div class="pub-list" id="pub-list">{{PUBS}}</div>
+        <p class="pub-note">{{PUBS_NOTA}}</p>
+        <p class="empty" id="pub-empty" hidden>Todavía no hay publicaciones en esta línea dentro de esta selección.</p>
+        <p class="more js-only"><button class="pgr-btn pgr-btn--quiet" type="button" id="pub-more" aria-expanded="false">Mostrar todas <span class="pgr-btn__glyph">↓</span></button></p>
+      </div></div>
+    </section>
+
+    <section class="section" id="herramientas" aria-labelledby="h-tools">
+      <header class="pgr-section-head">
+        <span class="label">§ 04</span>
+        <div class="section-head-col">
+          <h2 class="title" id="h-tools">Herramientas</h2>
+          <p class="lede section-lede">Software desarrollado en el laboratorio.</p>
+        </div>
+      </header>
+      <div class="section-body"><div class="tool-list">{{HERRAMIENTAS}}</div></div>
+    </section>
+
+    <section class="section" id="equipo" aria-labelledby="h-team">
+      <header class="pgr-section-head">
+        <span class="label">§ 05</span>
+        <h2 class="title" id="h-team">Equipo</h2>
+      </header>
+      <div class="section-body"><div>
+        {{PI}}
+        <div class="roster">{{ROSTER}}</div>
+      </div></div>
+    </section>
+
+    <section class="section" id="nucleo" aria-labelledby="h-nuc">
+      <header class="pgr-section-head">
+        <span class="label">§ 06</span>
+        <h2 class="title" id="h-nuc">Núcleo Milenio PhytoLearning</h2>
+      </header>
+      <div class="section-body"><div>
+        <div class="nucleo">
+          <div>
+            <p class="lede">El laboratorio es la sede del Núcleo Milenio en Ciencia de Datos y Resiliencia Vegetal, que dirige José Miguel Álvarez.</p>
+            <p class="body">PhytoLearning reúne a investigadores de seis universidades chilenas para entender cómo integra la planta las señales de agua y nitrógeno, entrenar modelos que identifiquen los genes que las conectan y validarlos en tomate comercial, en variedades de pequeños agricultores y en sus parientes silvestres del desierto.</p>
+            {{READOUT}}
+          </div>
+          <div>
+            <div class="nucleo-logo"><img src="{{IMG:phy.png}}" alt="Núcleo Milenio PhytoLearning: Núcleo Milenio en Ciencia de Datos y Resiliencia Vegetal"></div>
+            <p class="more"><a class="pgr-link pgr-link--mono" href="https://phytolearning.cl/">phytolearning.cl ↗</a></p>
+          </div>
+        </div>
+        {{UNIVERSIDADES}}
+        {{DIVULGACION}}
+      </div></div>
+    </section>
+
+    <section class="section" id="noticias" aria-labelledby="h-news">
+      <header class="pgr-section-head">
+        <span class="label">§ 07</span>
+        <h2 class="title" id="h-news">Noticias</h2>
+      </header>
+      <div class="section-body"><div>
+        {{NOTICIAS}}
+      </div></div>
+    </section>
+
+    <section class="section" id="contacto" aria-labelledby="h-contact">
+      <header class="pgr-section-head">
+        <span class="label">§ 08</span>
+        <h2 class="title" id="h-contact">Contacto</h2>
+      </header>
+      <div class="section-body"><div>
+        <dl class="contact">
+          <div><dt class="label">Dirección</dt><dd>Av. República 330, 3er piso<br>Santiago, Chile</dd></div>
+          <div><dt class="label">Correo</dt><dd><a class="pgr-link" id="mail" href="mailto:{{CORREO}}">{{CORREO}}</a><button class="linkbtn js-only" type="button" id="copy-mail">copiar</button></dd></div>
+          <div><dt class="label">Instagram</dt><dd><a class="pgr-link" href="https://www.instagram.com/jma.lab/">@jma.lab ↗</a></dd></div>
+        </dl>
+        <div class="join">
+          <p class="body">Buscamos estudiantes de pregrado, magíster y doctorado con interés en biología de plantas, bioinformática o ciencia de datos.</p>
+          <a class="pgr-btn pgr-btn--primary" href="{{MAILTO_UNETE}}">Escríbenos para unirte <span class="pgr-btn__glyph">→</span></a>
+        </div>
+      </div></div>
+    </section>
+  </main>
+</div>
+
+<footer class="footer">
+  <div class="wrap">
+    <div class="helix" id="footer-helix" data-line="redes" title="pasa el cursor para acelerar la hélice"></div>
+    <div class="pgr-affil">
+      <img src="{{IMG:phy.png}}" alt="Núcleo Milenio PhytoLearning" style="height:88px">
+      <img src="{{IMG:unab.png}}" alt="Universidad Andrés Bello" style="height:40px">
+      <img src="{{IMG:cbv.png}}" alt="Centro de Biotecnología Vegetal" style="height:36px">
+      <img src="{{IMG:embo.svg}}" alt="EMBO" style="height:36px">
+    </div>
+    <div class="footer-cols">
+      <div><span class="label">Investigación</span><ul><li><a href="#linea-redes">redes transcripcionales</a></li><li><a href="#linea-sequia">sequía</a></li><li><a href="#linea-nitrogeno">nitrógeno</a></li><li><a href="#linea-omica">multi-ómica</a></li></ul></div>
+      <div><span class="label">Laboratorio</span><ul><li><a href="#equipo">equipo</a></li><li><a href="#publicaciones">publicaciones</a></li><li><a href="#herramientas">herramientas</a></li><li><a href="#noticias">noticias</a></li></ul></div>
+      <div><span class="label">Núcleo</span><ul><li><a href="https://phytolearning.cl/">phytolearning.cl ↗</a></li><li><a href="#nucleo">divulgación</a></li><li><a href="#contacto">únete</a></li></ul></div>
+    </div>
+    <div class="footer-row">
+      <span>Plant Genome Regulation Lab · Centro de Biotecnología Vegetal · Universidad Andrés Bello</span>
+      <a href="#inicio">↑ volver al inicio</a>
+    </div>
+  </div>
+</footer>
+
+<script src="{{BUNDLEJS_URL}}"></script>
+<script>
+(function () {
+  document.documentElement.lang = 'es';
+  /* Pausa de animaciones: visible, persistente y recordada */
+  var motionBtn = document.getElementById('motion');
+  function syncMotion() {
+    var p = PGR.isPaused();
+    motionBtn.setAttribute('aria-pressed', p);
+    motionBtn.querySelector('.motion-icon').textContent = p ? '▶' : '❙❙';
+    motionBtn.querySelector('.motion-long').textContent = p ? 'reanudar animaciones' : 'pausar animaciones';
+    motionBtn.querySelector('.motion-short').textContent = p ? 'reanudar' : 'pausar';
+    motionBtn.setAttribute('aria-label', p ? 'Reanudar animaciones' : 'Pausar animaciones');
+  }
+  motionBtn.addEventListener('click', function () { PGR.setPaused(!PGR.isPaused()); syncMotion(); });
+  syncMotion();
+  /* Motivos vivos */
+  PGR.Phyllotaxis(document.getElementById('hero-field'), { onState: function (s) { var e = document.getElementById('hero-state'); if (e) { e.textContent = s; e.style.color = s === 'resistir' ? 'var(--soil)' : 'var(--moss)'; } } });
+  document.querySelectorAll('.motif').forEach(function (el) {
+    var line = el.closest('[data-line]').getAttribute('data-line'), seed = +el.dataset.seed;
+    if (el.dataset.motif === 'root') PGR.RootGrowth(el, { line: line, seed: seed, branch: +el.dataset.branch });
+    else if (el.dataset.motif === 'graph') PGR.PulseGraph(el, { line: line, seed: seed });
+    else if (el.dataset.motif === 'omics') PGR.OmicsTracks(el, { line: line, seed: seed });
+    else if (el.dataset.motif === 'circuit') PGR.GeneCircuit(el, { line: line });
+    else PGR.AsciiField(el, { line: line, seed: seed, density: el.dataset.density ? +el.dataset.density : 0.5 });
+  });
+  PGR.Helix(document.getElementById('footer-helix'), { line: 'redes', rows: 9 });
+  PGR.scramble(document);
+
+  /* Menú de investigación y menú móvil */
+  var mBtn = document.getElementById('menu-inv-btn'), mPanel = document.getElementById('menu-inv');
+  function setMenu(open) { mBtn.setAttribute('aria-expanded', open); mPanel.hidden = !open; }
+  mBtn.addEventListener('click', function (e) { e.stopPropagation(); setMenu(mPanel.hidden); });
+  mPanel.addEventListener('click', function (e) { if (e.target.closest('a')) { setMenu(false); setNav(false); } });
+  document.addEventListener('click', function (e) { if (!e.target.closest('.pgr-menu')) setMenu(false); });
+  document.addEventListener('keydown', function (e) { if (e.key === 'Escape' && !mPanel.hidden) { setMenu(false); mBtn.focus(); } });
+  var header = document.getElementById('site-header'), nBtn = document.getElementById('nav-toggle');
+  function setNav(open) { header.classList.toggle('is-open', open); nBtn.setAttribute('aria-expanded', open); nBtn.textContent = open ? 'cerrar −' : 'menú +'; }
+  nBtn.addEventListener('click', function () { setNav(!header.classList.contains('is-open')); });
+  document.querySelectorAll('.pgr-nav > li > a').forEach(function (a) { a.addEventListener('click', function () { setNav(false); }); });
+
+  /* Sección actual en la navegación y barra de lectura */
+  var links = {}; document.querySelectorAll('.pgr-nav a[href^="#"]').forEach(function (a) { links[a.getAttribute('href').slice(1)] = a; });
+  var invIds = ['investigacion', 'red'];
+  if ('IntersectionObserver' in window) {
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (en) {
+        if (!en.isIntersecting) return;
+        Object.keys(links).forEach(function (k) { links[k].removeAttribute('aria-current'); });
+        mBtn.style.color = invIds.indexOf(en.target.id) >= 0 ? 'var(--ink)' : '';
+        if (links[en.target.id]) links[en.target.id].setAttribute('aria-current', 'page');
+      });
+    }, { rootMargin: '-45% 0px -50% 0px' });
+    document.querySelectorAll('main section[id]').forEach(function (s) { io.observe(s); });
+  }
+  var bar = document.getElementById('progress');
+  function onScroll() { var h = document.documentElement, max = h.scrollHeight - h.clientHeight; bar.style.transform = 'scaleX(' + (max > 0 ? h.scrollTop / max : 0) + ')'; }
+  addEventListener('scroll', onScroll, { passive: true }); onScroll();
+
+  /* Red génica */
+  var MOD = { nitrogeno: 'nitrógeno', sequia: 'sequía', cruce: 'cruce nitrógeno–sequía' };
+  var TYPE = { tf: 'factor de transcripción', gene: 'gen', hub: 'hub' };
+  var NODES = [
+    { id: 'NRT1.1', type: 'hub', module: 'nitrogeno', note: 'Transportador y sensor de nitrato: percibe la señal y la reparte a varios reguladores.' },
+    { id: 'NLP7', type: 'tf', module: 'nitrogeno', note: 'Factor de transcripción central de la respuesta primaria a nitrato.' },
+    { id: 'TGA1', type: 'tf', module: 'nitrogeno', note: 'Factor bZIP que activa genes de transporte de nitrato.' },
+    { id: 'bZIP1', type: 'tf', module: 'nitrogeno', note: 'Factor que transmite la señal de nitrógeno de forma transitoria («hit-and-run»).' },
+    { id: 'NIA1', type: 'gene', module: 'nitrogeno', note: 'Nitrato reductasa: primer paso de la asimilación de nitrato.' },
+    { id: 'NIR1', type: 'gene', module: 'nitrogeno', note: 'Nitrito reductasa: continúa la asimilación hacia amonio.' },
+    { id: 'NRT2.1', type: 'gene', module: 'nitrogeno', note: 'Transportador de nitrato de alta afinidad en la raíz.' },
+    { id: 'ASN1', type: 'gene', module: 'nitrogeno', note: 'Asparagina sintetasa: almacena y moviliza nitrógeno.' },
+    { id: 'NCED3', type: 'gene', module: 'sequia', note: 'Enzima clave en la síntesis de ácido abscísico (ABA) ante la falta de agua.' },
+    { id: 'SnRK2', type: 'hub', module: 'sequia', note: 'Quinasas activadas por ABA: disparan la respuesta a sequía y se cruzan con la señal de nitrógeno.' },
+    { id: 'ABF2', type: 'tf', module: 'sequia', note: 'Factor bZIP que responde a ABA; regulador clave de la expresión ante sequía.' },
+    { id: 'ABF3', type: 'tf', module: 'sequia', note: 'Factor bZIP que responde a ABA, junto a ABF2 en la respuesta a sequía.' },
+    { id: 'DREB2A', type: 'tf', module: 'sequia', note: 'Factor AP2/ERF que activa genes de tolerancia a la deshidratación.' },
+    { id: 'RD29A', type: 'gene', module: 'sequia', note: 'Gen marcador de respuesta a deshidratación.' },
+    { id: 'RD29B', type: 'gene', module: 'sequia', note: 'Gen marcador de respuesta a ABA y sequía.' },
+    { id: 'RAB18', type: 'gene', module: 'sequia', note: 'Proteína de tipo dehidrina que protege a la célula al perder agua.' },
+    { id: 'P5CS1', type: 'gene', module: 'sequia', note: 'Síntesis de prolina, un osmoprotector.' },
+    { id: 'CIPK23', type: 'gene', module: 'cruce', note: 'Quinasa que modula a NRT1.1 y participa del cierre de estomas: un punto de cruce entre ambas señales.' }
+  ];
+  var EDGES = [
+    ['NRT1.1', 'NLP7', 1], ['NRT1.1', 'TGA1', 1], ['NRT1.1', 'bZIP1', 1], ['NRT1.1', 'NRT2.1', 1],
+    ['NLP7', 'NIA1', 1], ['NLP7', 'NIR1', 1], ['NLP7', 'NRT2.1', 1], ['TGA1', 'NRT2.1', 1], ['bZIP1', 'ASN1', 1],
+    ['NCED3', 'SnRK2', 1], ['SnRK2', 'ABF2', 1], ['SnRK2', 'ABF3', 1], ['ABF3', 'DREB2A', 1],
+    ['ABF2', 'RD29B', 1], ['ABF2', 'RAB18', 1], ['ABF3', 'RAB18', 1], ['ABF3', 'P5CS1', 1], ['DREB2A', 'RD29A', 1],
+    ['SnRK2', 'CIPK23', 1], ['CIPK23', 'NRT1.1', -1], ['SnRK2', 'NLP7', -1], ['NLP7', 'ABF2', -1]
+  ].map(function (e) { return { s: e[0], t: e[1], sign: e[2] }; });
+  var N_ON = ['NRT1.1', 'NLP7', 'TGA1', 'bZIP1', 'NIA1', 'NIR1', 'NRT2.1', 'ASN1'];
+  var S_ON = ['NCED3', 'SnRK2', 'ABF2', 'ABF3', 'DREB2A', 'RD29A', 'RD29B', 'RAB18', 'P5CS1', 'CIPK23'];
+  var STATUS = {
+    reposo: 'reposo: la red está quieta, nada encendido',
+    nitrato: 'nitrato: se enciende el módulo de nitrógeno y NLP7 frena a ABF2',
+    sequia: 'sequía: ABA activa SnRK2, que frena a NLP7 y apaga la entrada de nitrato',
+    ambas: 'ambas: las dos señales compiten por los mismos reguladores'
+  };
+  var card = document.getElementById('net-card'), cardDefault = card.innerHTML;
+  var net = PGR.Network(document.getElementById('net'), {
+    label: 'Red génica de nitrógeno y sequía',
+    nodes: NODES, edges: EDGES, seed: 9,
+    states: { reposo: [], nitrato: N_ON, sequia: S_ON, ambas: N_ON.concat(S_ON) }, state: 'nitrato',
+    onSelect: function (n) {
+      if (!n) { card.innerHTML = cardDefault; card.style.removeProperty('--card'); return; }
+      var col = { nitrogeno: 'var(--moss)', sequia: 'var(--soil)', cruce: 'var(--genome)' }[n.module];
+      card.style.setProperty('--card', col);
+      function list(arr, sign) { return arr.filter(function (x) { return x.sign === sign; }).map(function (x) { return '<b>' + x.id + '</b>'; }).join(', '); }
+      var act = list(n.targets, 1), rep = list(n.targets, -1), up = n.sources.map(function (x) { return '<b>' + x.id + '</b>' + (x.sign < 0 ? ' ⊣' : ' →'); }).join(', ');
+      card.innerHTML = '<span class="label" style="color:' + col + '">' + TYPE[n.type] + ' · ' + MOD[n.module] + '</span>' +
+        '<h3>' + n.id + '</h3><p>' + n.note + '</p><p class="rels">' +
+        (act ? 'activa → ' + act + '<br>' : '') + (rep ? 'reprime ⊣ ' + rep + '<br>' : '') +
+        (up ? 'recibe de ' + up + '<br>' : '') + n.deg + ' conexiones</p>';
+    }
+  });
+  var segs = document.querySelectorAll('#net-state button'), status = document.getElementById('net-status');
+  segs.forEach(function (b) {
+    b.addEventListener('click', function () {
+      segs.forEach(function (x) { x.setAttribute('aria-pressed', x === b); });
+      net.setState(b.dataset.state); status.textContent = STATUS[b.dataset.state];
+    });
+  });
+
+  /* Publicaciones: filtro por línea, mostrar todas, cómo citar */
+  var pubs = Array.prototype.slice.call(document.querySelectorAll('#pub-list .pgr-pub')), LIMIT = 5, all = false, cur = 'todas';
+  var more = document.getElementById('pub-more'), count = document.getElementById('pub-count'), empty = document.getElementById('pub-empty');
+  function renderPubs() {
+    var match = pubs.filter(function (p) { return cur === 'todas' || p.dataset.lines.split(' ').indexOf(cur) >= 0; });
+    pubs.forEach(function (p) { p.hidden = true; });
+    match.forEach(function (p, i) { p.hidden = !all && i >= LIMIT; });
+    var shown = all ? match.length : Math.min(LIMIT, match.length);
+    count.textContent = shown + ' de ' + match.length + ' publicaciones';
+    more.hidden = match.length <= LIMIT;
+    more.firstChild.textContent = all ? 'Mostrar menos ' : 'Mostrar las ' + match.length + ' ';
+    more.querySelector('.pgr-btn__glyph').textContent = all ? '↑' : '↓';
+    more.setAttribute('aria-expanded', all);
+    empty.hidden = match.length > 0;
+  }
+  document.querySelectorAll('#pub-filter button').forEach(function (b, _, list) {
+    b.addEventListener('click', function () {
+      list.forEach(function (x) { x.setAttribute('aria-pressed', x === b); });
+      cur = b.dataset.filter; all = false; renderPubs();
+    });
+  });
+  more.addEventListener('click', function () { all = !all; renderPubs(); });
+  renderPubs();
+
+  function copyText(btn, text, fallbackEl) {
+    function select() { var r = document.createRange(); r.selectNodeContents(fallbackEl); var s = getSelection(); s.removeAllRanges(); s.addRange(r); btn.textContent = 'seleccionado'; }
+    try { navigator.clipboard.writeText(text).then(function () { btn.textContent = 'copiado'; setTimeout(function () { btn.textContent = 'copiar'; }, 1600); }, select); }
+    catch (e) { select(); }
+  }
+  document.querySelectorAll('.cite-copy').forEach(function (b) {
+    b.addEventListener('click', function () { var pre = b.closest('.pgr-more__body').querySelector('.cite'); copyText(b, pre.textContent, pre); });
+  });
+  var mb = document.getElementById('copy-mail');
+  mb.addEventListener('click', function () { var m = document.getElementById('mail'); copyText(mb, m.textContent, m); });
+})();
+</script>

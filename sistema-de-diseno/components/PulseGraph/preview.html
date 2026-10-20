@@ -1,0 +1,15 @@
+<!-- @dsCard group="Motivos" height=360 subtitle="Red regulatoria viva: cascadas, recableado, knockout" -->
+<!doctype html>
+<html lang="es">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>PulseGraph</title>
+<style>body{padding:16px 24px;} #g{height:280px;} .hint{font-family:var(--font-mono);font-size:12px;color:var(--ink-muted);margin:8px 0 0;}</style></head>
+<body>
+<div id="root">
+  <div id="g" data-line="redes"></div>
+  <p class="hint">pasa el cursor sobre un nodo para disparar su cascada · clic para silenciarlo (knockout)</p>
+</div>
+<script>
+PGR.PulseGraph(document.getElementById('g'), { line: 'redes', seed: 41 });
+</script>
+</body>
+</html>

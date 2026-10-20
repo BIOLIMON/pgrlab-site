@@ -1,0 +1,27 @@
+{
+  "_nota": "Cada cifra o credencial lleva su fuente. Cambiar aquí, no en la plantilla.",
+  "dominio": "https://pgrlab.cl/",
+  "nombre": "PGR Lab",
+  "nombre_largo": "Plant Genome Regulation Lab",
+  "nombre_pendiente": "El nombre canónico ES/EN lo decide la PI (brief §2.3 #15).",
+  "correo": "r.genomavegetal@gmail.com",
+  "direccion": "Av. República 330, 3er piso, Santiago, Chile",
+  "instagram": "https://www.instagram.com/jma.lab/",
+  "orcid_pi": "https://orcid.org/0000-0002-5073-7751",
+  "cifras": {
+    "revisados_por_pares": { "valor": 42, "criterio": "artículos, revisiones, capítulos y ponencias revisadas por pares de la PI, 2008–2026", "fuente": "https://orcid.org/0000-0002-5073-7751" }
+  },
+  "universidades": [
+    { "nombre": "Universidad Andrés Bello", "url": "https://www.unab.cl/" },
+    { "nombre": "Universidad Mayor", "url": "https://www.umayor.cl/" },
+    { "nombre": "Universidad Adolfo Ibáñez", "url": "https://www.uai.cl/" },
+    { "nombre": "Universidad de Concepción", "url": "https://www.udec.cl/" },
+    { "nombre": "Universidad Católica de Temuco", "url": "https://www.uct.cl/" },
+    { "nombre": "Universidad de O’Higgins", "url": "https://www.uoh.cl/" }
+  ],
+  "universidades_fuente": "https://noticias.unab.cl/unab-fue-sede-de-la-jornada-de-verano-del-nucleo-milenio-phytolearning/",
+  "herramientas": [
+    { "tipo": "software", "nombre": "PRINT", "descripcion": "Explorador de redes regulatorias de plantas que integra evidencia experimental de unión (TARGET, ChIP y DAP) con anotaciones de Gene Ontology.", "url": "https://github.com/gabsga/PRINT", "fuente": "README del repositorio" }
+  ],
+  "herramientas_retiradas": ["TomViz: atribución por confirmar con el laboratorio de J. T. Matus (brief §2.1 #2)"]
+}

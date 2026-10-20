@@ -1,0 +1,6 @@
+# Cabeceras para archivos estáticos (Cloudflare los sirve sin pasar por el worker).
+/assets/*
+  Cache-Control: public, max-age=31536000, immutable
+
+/genes/*
+  X-Robots-Tag: noindex, nofollow

@@ -1,0 +1,51 @@
+<!-- @dsCard height=300 -->
+<!doctype html>
+<html lang="es">
+<head><meta charset="utf-8"><title>PGR Lab — portada</title>
+<style>
+  html, body { margin: 0; background: var(--paper); }
+  .cover { position: relative; width: 960px; height: 300px; overflow: hidden; background: var(--paper); }
+  .cover svg { position: absolute; inset: 0; }
+  .moss { fill: var(--moss); }
+  .genome { fill: var(--genome); }
+  .soil { fill: var(--soil); }
+  .water { fill: var(--water); }
+  .chloro { fill: var(--chlorophyll); }
+  .dot { fill: var(--ink-faint); }
+  .cut { fill: var(--paper); }
+  .sq { rx: var(--radius-0); }
+  .text { position: absolute; left: 40px; bottom: 40px; max-width: 440px; }
+  .name { margin: 0; font-family: var(--font-serif); font-size: 104px; line-height: 0.95; font-weight: 400; letter-spacing: -0.02em; color: var(--ink); }
+  .tag { margin: 16px 0 0; font-family: var(--font-mono); font-size: 13px; line-height: 1.4; color: var(--ink-muted); }
+</style></head>
+<body>
+<div class="cover">
+  <svg width="960" height="300" viewBox="0 0 960 300" aria-hidden="true">
+    <!--
+      blocks: moss 160×232 (slab, bleeds top) · genome 120×160 · soil 120×88 (bleeds right) · water 280×40 · chlorophyll 40×40 tint — sides multiples of space-5/space-6 (24/40)
+      arrangement: a staggered descent, left to right and downward, like a root growing into soil; all right of x=480, square corners (radius-0)
+      pattern: dot grid at space-5 (24px) pitch in ink-faint, 4×9 = 36 dots, plus 6 paper cut-outs in the moss slab — "precise, technical, mono" row: the dots are the ASCII field's cells
+      scales: space-5 24px pitch, space-6 40px block step, dot r=2 (rule-width ×2), radius-0 everywhere
+    -->
+    <g>
+      <rect class="moss sq" x="560" y="0" width="160" height="232"/>
+      <rect class="genome sq" x="720" y="72" width="120" height="160"/>
+      <rect class="soil sq" x="840" y="144" width="120" height="88"/>
+      <rect class="water sq" x="680" y="232" width="280" height="40"/>
+      <rect class="chloro sq" x="640" y="232" width="40" height="40"/>
+    </g>
+    <g id="dots"></g>
+  </svg>
+  <div class="text">
+    <h1 class="name">PGR Lab</h1>
+    <p class="tag">Regulación genómica de plantas — biología que se lee como código</p>
+  </div>
+</div>
+<script>
+  var g = document.getElementById('dots'), ns = 'http://www.w3.org/2000/svg';
+  function dot(x, y, cls) { var c = document.createElementNS(ns, 'circle'); c.setAttribute('cx', x); c.setAttribute('cy', y); c.setAttribute('r', 2); c.setAttribute('class', cls); g.appendChild(c); }
+  for (var i = 0; i < 4; i++) for (var j = 0; j < 9; j++) dot(492 + i * 24, 20 + j * 24, 'dot');
+  [[596, 140], [620, 164], [644, 188], [596, 188], [668, 212], [620, 212]].forEach(function (p) { dot(p[0], p[1], 'cut'); });
+</script>
+</body>
+</html>
