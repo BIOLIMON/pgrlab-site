@@ -384,6 +384,9 @@ a{color:#8fbf73}a:hover{color:var(--night-ink)}
 .ctl{display:flex;gap:var(--space-5);flex-wrap:wrap}
 .ctl button{font-family:var(--font-mono);font-size:13px;color:var(--night-muted);background:none;border:0;padding:var(--space-1) 0;cursor:pointer;transition:color 160ms ease-out}
 .ctl button:hover,.ctl button[aria-pressed="true"]{color:var(--night-ink)}
+.vol{display:inline-flex;align-items:center;gap:var(--space-2);font-family:var(--font-mono);font-size:13px;color:var(--night-muted)}
+.vol input{width:104px;height:24px;margin:0;accent-color:#b9d870;cursor:pointer;background:none}
+.vol output{min-width:3ch;text-align:right;font-variant-numeric:tabular-nums}
 .genome{position:relative;min-height:0;display:flex;align-items:center}
 .genome canvas{display:block;width:100%;height:100%}
 .hover{position:absolute;pointer-events:none;font-family:var(--font-mono);font-size:12px;line-height:1.5;color:var(--night-muted);white-space:nowrap;opacity:0;transition:opacity 220ms ease-out;text-align:center;transform:translateX(-50%);background:rgba(15,19,14,.92);padding:var(--space-1) var(--space-3)}.hover b{font-weight:500;color:var(--night-ink)}.hover i{display:inline-block;width:6px;height:6px;border-radius:999px;margin-right:6px;vertical-align:1px}.genome canvas{cursor:crosshair}
@@ -434,6 +437,7 @@ a{color:#8fbf73}a:hover{color:var(--night-ink)}
     <div class="ctl">
       <button type="button" id="b-play" aria-pressed="false">॥ pausa</button>
       <button type="button" id="b-sound" aria-pressed="false">sonido: no</button>
+      <label class="vol" for="b-vol">volumen <input type="range" id="b-vol" min="0" max="100" step="1" value="80"><output id="vol-out" for="b-vol">80</output></label>
       <button type="button" id="b-read" aria-expanded="false">cómo leer esto +</button>
     </div>
   </div>
@@ -638,7 +642,7 @@ function runGenes() {
 
   // ── sonido: colchón armónico que cambia de acorde con cada estrato + campanas suaves por nacimiento ──
   var sound = (function () {
-    var ac = null, master, bus, verb, on = false, lastNote = 0, pending = 0, pendS = null, curS = -2, voices = [], air = null, lfoT = 0;
+    var ac = null, master, bus, verb, on = false, vol = 0.8, lastNote = 0, pending = 0, pendS = null, curS = -2, voices = [], air = null, lfoT = 0;
     // re mayor pentatónica; acordes abiertos (en semitonos sobre D2) que avanzan con las eras
     var ROOT = 73.42, PENTA = [0, 2, 4, 7, 9];
     var CHORDS = [[0, 7, 14, 16], [-3, 4, 12, 14], [5, 12, 16, 21], [2, 9, 14, 19], [0, 7, 16, 23], [-5, 7, 14, 19], [4, 11, 16, 21], [0, 9, 14, 19]];
@@ -650,7 +654,9 @@ function runGenes() {
     }
     function init() {
       ac = new (window.AudioContext || window.webkitAudioContext)();
-      master = ac.createGain(); master.gain.value = 0; master.connect(ac.destination);
+      master = ac.createGain(); master.gain.value = 0;
+      var lim = ac.createDynamicsCompressor(); lim.threshold.value = -6; lim.knee.value = 6; lim.ratio.value = 12; lim.attack.value = 0.003; lim.release.value = 0.25;
+      master.connect(lim); lim.connect(ac.destination);
       verb = ac.createConvolver(); verb.buffer = impulse(4.5); var wet = ac.createGain(); wet.gain.value = 0.55; verb.connect(wet); wet.connect(master);
       bus = ac.createGain(); bus.gain.value = 0.7; bus.connect(master); bus.connect(verb);
       // aire: ruido rosado muy filtrado que respira
@@ -689,10 +695,12 @@ function runGenes() {
       if (pan) { pan.pan.value = Math.random() * 1.2 - 0.6; g.connect(pan); pan.connect(bus); } else g.connect(bus);
       o.start(t); o2.start(t); o.stop(t + 4); o2.stop(t + 4);
     }
+    function level() { return 1.8 * vol * vol; } // curva perceptual; 80 % ≈ 1,15 (antes 0,85 fijo, ~+2,6 dB), 100 % ≈ 1,8
     function fade(to, sec) { var t = ac.currentTime; master.gain.cancelScheduledValues(t); master.gain.setValueAtTime(master.gain.value, t); master.gain.linearRampToValueAtTime(to, t + sec); }
     return {
-      enable: function (v) { on = v; if (v && !ac) init(); if (!ac) return; if (v) ac.resume(); fade(v && playing ? 0.85 : 0, 1.2); },
-      playing: function (p) { if (ac && on) fade(p ? 0.85 : 0, 0.8); },
+      enable: function (v) { on = v; if (v && !ac) init(); if (!ac) return; if (v) ac.resume(); fade(v && playing ? level() : 0, 1.2); },
+      playing: function (p) { if (ac && on) fade(p ? level() : 0, 0.8); },
+      volume: function (v) { vol = v; if (ac && on && playing) fade(level(), 0.15); },
       tick: function (now) {
         if (!ac || !on) return;
         var age = ended ? 0 : uToAge(u), si = -1; S.forEach(function (s, i) { if (s.dated && s.hi >= age) si = i; });
@@ -874,6 +882,10 @@ function runGenes() {
   // ── controles ──
   bPlay.addEventListener("click", function () { setPlaying(!playing); });
   bSound.addEventListener("click", function () { var v = !sound.on(); sound.enable(v); bSound.textContent = "sonido: " + (v ? "sí" : "no"); bSound.setAttribute("aria-pressed", String(v)); });
+  var bVol = $("b-vol"), vOut = $("vol-out");
+  function setVol(p, guardar) { p = clamp(Math.round(p), 0, 100); bVol.value = p; vOut.textContent = p; bVol.setAttribute("aria-valuetext", p + " %"); sound.volume(p / 100); if (guardar) { try { localStorage.setItem("pgr-genes-vol", String(p)); } catch (e) {} } }
+  try { var vSaved = parseFloat(localStorage.getItem("pgr-genes-vol")); if (vSaved >= 0 && vSaved <= 100) setVol(vSaved, false); } catch (e) {}
+  bVol.addEventListener("input", function () { setVol(+bVol.value, true); if (+bVol.value > 0 && !sound.on()) { sound.enable(true); bSound.textContent = "sonido: sí"; bSound.setAttribute("aria-pressed", "true"); } });
   var read = $("read"), bRead = $("b-read");
   function setRead(o) { read.classList.toggle("open", o); read.setAttribute("aria-hidden", String(!o)); bRead.setAttribute("aria-expanded", String(o)); bRead.textContent = o ? "cómo leer esto −" : "cómo leer esto +"; }
   bRead.addEventListener("click", function () { setRead(!read.classList.contains("open")); });
