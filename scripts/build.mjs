@@ -172,7 +172,11 @@ function equipoHtml(eq, img) {
         </article>`;
   const roster = eq.grupos.map((g) =>
     `<div><h4 class="label">${e(g.grupo)}</h4><ul>` +
-    g.personas.map((x) => `<li><details><summary>${e(x.nombre)}</summary><p>${e(x.bio)}</p></details></li>`).join('') +
+    g.personas.map((x) => {
+      // enlace opcional a un perfil (ORCID, LinkedIn…): { "texto": "linkedin", "url": "https://…" }
+      const enlace = x.enlace ? ` <a class="pgr-link pgr-link--mono" href="${e(x.enlace.url)}">${e(x.enlace.texto)} ↗</a>` : '';
+      return `<li><details><summary>${e(x.nombre)}</summary><p>${e(x.bio)}${enlace}</p></details></li>`;
+    }).join('') +
     '</ul></div>').join('');
   const n = 1 + eq.grupos.reduce((t, g) => t + g.personas.length, 0);
   return { piHtml, roster, n };
