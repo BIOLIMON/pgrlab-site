@@ -1,0 +1,15 @@
+<!-- @dsCard group="Motivos" height=320 subtitle="Raíz que crece, se ramifica y termina en nucleótidos" -->
+<!doctype html>
+<html lang="es">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>RootGrowth</title>
+<style>body{padding:24px 32px;}</style></head>
+<body>
+<div id="root">
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:24px"><div id="a" style="height:260px"></div><div id="b" style="height:260px"></div></div>
+</div>
+<script>
+PGR.RootGrowth(document.getElementById('a'), { line: 'sequia', seed: 3, branch: 0.1 });
+PGR.RootGrowth(document.getElementById('b'), { line: 'nitrogeno', seed: 19, branch: 0.26 });
+</script>
+</body>
+</html>

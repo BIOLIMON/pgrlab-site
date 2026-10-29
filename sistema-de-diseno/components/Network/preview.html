@@ -1,0 +1,39 @@
+<!-- @dsCard group="Motivos" height=460 subtitle="Red génica: triángulo = TF, círculo = gen, cuadrado = hub" -->
+<!doctype html>
+<html lang="es">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Network</title>
+<style>body{padding:16px 24px;} .bar{margin-bottom:12px;} #net{background:var(--paper-raised);border:1px solid var(--rule);}</style></head>
+<body>
+<div id="root">
+  <div class="bar pgr-seg" role="group" aria-label="Condición">
+    <button type="button" data-s="reposo" aria-pressed="false">reposo</button>
+    <button type="button" data-s="nitrato" aria-pressed="true">+ nitrato</button>
+    <button type="button" data-s="sequia" aria-pressed="false">sequía</button>
+  </div>
+  <div id="net"></div>
+</div>
+<script>
+var N = ['NRT1.1','NLP7','TGA1','NIA1','NRT2.1'], S = ['SnRK2','ABF2','ABF3','RD29B','RAB18','CIPK23'];
+var net = PGR.Network(document.getElementById('net'), {
+  label: 'Red de ejemplo',
+  nodes: [
+    { id: 'NRT1.1', type: 'hub', module: 'nitrogeno' }, { id: 'NLP7', type: 'tf', module: 'nitrogeno' },
+    { id: 'TGA1', type: 'tf', module: 'nitrogeno' }, { id: 'NIA1', type: 'gene', module: 'nitrogeno' },
+    { id: 'NRT2.1', type: 'gene', module: 'nitrogeno' }, { id: 'SnRK2', type: 'hub', module: 'sequia' },
+    { id: 'ABF2', type: 'tf', module: 'sequia' }, { id: 'ABF3', type: 'tf', module: 'sequia' },
+    { id: 'RD29B', type: 'gene', module: 'sequia' }, { id: 'RAB18', type: 'gene', module: 'sequia' },
+    { id: 'CIPK23', type: 'gene', module: 'cruce' }
+  ],
+  edges: [
+    { s: 'NRT1.1', t: 'NLP7', sign: 1 }, { s: 'NRT1.1', t: 'TGA1', sign: 1 }, { s: 'NLP7', t: 'NIA1', sign: 1 },
+    { s: 'NLP7', t: 'NRT2.1', sign: 1 }, { s: 'TGA1', t: 'NRT2.1', sign: 1 }, { s: 'SnRK2', t: 'ABF2', sign: 1 },
+    { s: 'SnRK2', t: 'ABF3', sign: 1 }, { s: 'ABF2', t: 'RD29B', sign: 1 }, { s: 'ABF3', t: 'RAB18', sign: 1 },
+    { s: 'SnRK2', t: 'CIPK23', sign: 1 }, { s: 'CIPK23', t: 'NRT1.1', sign: -1 }, { s: 'SnRK2', t: 'NLP7', sign: -1 }, { s: 'NLP7', t: 'ABF2', sign: -1 }
+  ],
+  states: { reposo: [], nitrato: N, sequia: S }, state: 'nitrato', seed: 9
+});
+var bs = document.querySelectorAll('[data-s]');
+bs.forEach(function (b) { b.addEventListener('click', function () { bs.forEach(function (x) { x.setAttribute('aria-pressed', x === b); }); net.setState(b.dataset.s); }); });
+</script>
+</body>
+</html>

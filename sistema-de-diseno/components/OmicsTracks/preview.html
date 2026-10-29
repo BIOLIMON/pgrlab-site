@@ -1,0 +1,15 @@
+<!-- @dsCard group="Motivos" height=340 subtitle="Capas de datos que convergen en una predicción" -->
+<!doctype html>
+<html lang="es">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>OmicsTracks</title>
+<style>body{padding:16px 24px;} #o{width:min(100%,520px);height:270px;} .hint{font-family:var(--font-mono);font-size:12px;color:var(--ink-muted);margin:8px 0 0;}</style></head>
+<body>
+<div id="root">
+  <div id="o" data-line="omica"></div>
+  <p class="hint">mueve el cursor sobre las pistas para leer cada capa · clic: control o sequía</p>
+</div>
+<script>
+PGR.OmicsTracks(document.getElementById('o'), { line: 'omica', seed: 88 });
+</script>
+</body>
+</html>

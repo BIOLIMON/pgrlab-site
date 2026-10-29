@@ -1,0 +1,922 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>¿Cuándo nació cada gen? · PGR Lab</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Newsreader:ital,opsz,wght@0,6..72,300..600;1,6..72,300..600&display=swap">
+<style>/* Tokens y componentes del sistema de diseño PGR Lab */
+/* PGR Lab — color. Solo tema claro. Fuente: tokens.json */
+:root{
+--paper:#d8dacf;--paper-raised:#e3e4db;--paper-sunk:#c9ccbf;--logo-ground:#e3e4db;
+--ink:#1a2119;--ink-muted:#4c5045;--ink-faint:#a3a796;--rule:#b3b7a7;
+--moss:#2a5530;--on-moss:#eef0e6;--chlorophyll:#6f9a35;--genome:#53346f;--soil:#7a4512;--water:#215561;
+--focus:var(--genome);--selection:#53346f33;
+/* semánticos */
+--surface-page:var(--paper);--surface-raised:var(--paper-raised);--surface-sunk:var(--paper-sunk);
+--text-body:var(--ink);--text-muted:var(--ink-muted);--text-decor:var(--ink-faint);
+--action-primary:var(--moss);--action-on-primary:var(--on-moss);--link:var(--moss);--border-control:var(--ink-muted);--border-rule:var(--rule);
+/* líneas de investigación */
+--line-redes:var(--genome);--line-sequia:var(--soil);--line-nitrogeno:var(--moss);--line-omica:var(--water);
+}
+
+/* PGR Lab — tipografía: Newsreader (lo que se lee) + IBM Plex Mono (lo que se computa) */
+:root{
+--font-serif:"Newsreader","Iowan Old Style",Georgia,serif;
+--font-mono:"IBM Plex Mono",ui-monospace,"SF Mono",Menlo,monospace;
+--type-display-size:88px;--type-display-lh:0.95;--type-display-track:-0.02em;
+--type-title-size:48px;--type-title-lh:1.05;--type-title-track:-0.015em;
+--type-heading-size:28px;--type-heading-lh:1.2;
+--type-subheading-size:21px;--type-subheading-lh:1.3;
+--type-lede-size:22px;--type-lede-lh:1.45;
+--type-body-size:18px;--type-body-lh:1.6;
+--type-small-size:15px;--type-small-lh:1.5;
+--type-label-size:12px;--type-label-lh:1.4;--type-label-track:0.08em;
+--type-mono-size:14px;--type-mono-lh:1.6;
+--type-ascii-size:13px;--type-ascii-lh:1;--type-ascii-track:0.02em;
+}
+.display{font-family:var(--font-serif);font-size:clamp(44px,5.2vw + 22px,88px);line-height:.95;font-weight:400;letter-spacing:-0.02em;font-variation-settings:"opsz" 72}
+.title{font-family:var(--font-serif);font-size:clamp(32px,2.2vw + 22px,48px);line-height:1.05;font-weight:400;letter-spacing:-0.015em;font-variation-settings:"opsz" 48}
+.heading{font-family:var(--font-serif);font-size:clamp(23px,0.6vw + 20px,28px);line-height:1.2;font-weight:500;font-variation-settings:"opsz" 24}
+.subheading{font-family:var(--font-serif);font-size:21px;line-height:1.3;font-weight:500}
+.lede{font-family:var(--font-serif);font-size:clamp(19px,0.4vw + 17px,22px);line-height:1.45;font-weight:400;font-style:italic}
+.body{font-family:var(--font-serif);font-size:18px;line-height:1.6;font-weight:400}
+.small{font-family:var(--font-serif);font-size:15px;line-height:1.5;font-weight:400}
+.label{font-family:var(--font-mono);font-size:12px;line-height:1.4;font-weight:500;letter-spacing:0.08em;text-transform:uppercase;color:var(--ink-muted)}
+.mono{font-family:var(--font-mono);font-size:14px;line-height:1.6;font-weight:400}
+.ascii{font-family:var(--font-mono);font-size:13px;line-height:1;letter-spacing:0.02em}
+@media (max-width:720px){.body{font-size:17px}}
+
+/* PGR Lab — espacio, radios, composición, movimiento */
+:root{
+--space-1:4px;--space-2:8px;--space-3:12px;--space-4:16px;--space-5:24px;--space-6:40px;--space-7:72px;--space-8:120px;
+--radius-0:0;--radius-sm:2px;--radius-pill:999px;
+--measure:68ch;--container:1240px;--rule-width:1px;
+--ease-ui:ease-out; /* @kind other */--dur-response:160ms; /* @kind other */--dur-narrative:600ms; /* @kind other */
+--shadow-menu:0 12px 32px -16px rgba(29,36,28,0.35);
+}
+
+/* Origen: sistema-de-diseno/project/components/bundle.css (sin cambios salvo la carga de fuentes, que vive en fonts.css) */
+
+/* PGR Lab — estilos de componentes. Los valores viven en tokens.css; aquí solo composición. */
+
+html { background: var(--paper); color: var(--ink); }
+body { margin: 0; background: var(--paper); color: var(--ink); font-family: var(--font-serif); -webkit-font-smoothing: antialiased; }
+::selection { background: var(--selection); color: var(--ink); }
+.label { text-transform: uppercase; color: var(--ink-muted); }
+.mono, .label, .ascii { font-family: var(--font-mono); }
+a { color: inherit; }
+:focus-visible { outline: 2px solid var(--focus); outline-offset: 2px; }
+
+/* Colores de línea: se aplican con data-line en cualquier componente */
+[data-line="redes"]    { --line: var(--genome); }
+[data-line="sequia"]   { --line: var(--soil); }
+[data-line="nitrogeno"]{ --line: var(--moss); }
+[data-line="omica"]    { --line: var(--water); }
+
+/* ── Motivos ASCII ─────────────────────────────── */
+.pgr-ascii {
+  margin: 0; overflow: hidden; white-space: pre; user-select: none;
+  font-family: var(--font-mono); font-size: 13px; line-height: 1; letter-spacing: 0.02em;
+  color: var(--ink-faint);
+}
+/* El campo nunca ensancha su contenedor: llena el ancho que le dan */
+.pgr-ascii { max-width: 100%; }
+.pgr-hero > *, .pgr-line > *, .pgr-section-head > *, .pgr-tool > *, .pgr-pub > *, .pgr-person > * { min-width: 0; }
+.pgr-hero > div:has(> .pgr-ascii), .pgr-line > div:has(> .pgr-ascii) { overflow: hidden; }
+.pgr-ascii b { font-weight: 500; color: var(--chlorophyll); }
+.pgr-ascii i { font-style: normal; color: var(--line, var(--moss)); }
+.pgr-ascii u { text-decoration: none; color: var(--ink-muted); }
+
+/* ── Acciones ──────────────────────────────────── */
+.pgr-btn {
+  display: inline-flex; align-items: center; gap: var(--space-2);
+  padding: var(--space-3) var(--space-4); border-radius: var(--radius-sm);
+  font-family: var(--font-mono); font-size: 14px; line-height: 1; letter-spacing: 0.01em;
+  text-decoration: none; cursor: pointer; border: 1px solid transparent; background: none;
+  transition: background-color 160ms ease-out, color 160ms ease-out, border-color 160ms ease-out;
+}
+.pgr-btn--primary { background: var(--moss); color: var(--on-moss); }
+.pgr-btn--primary:hover { background: var(--ink); color: var(--paper); }
+.pgr-btn--quiet { border-color: var(--ink-muted); color: var(--ink); }
+.pgr-btn--quiet:hover { background: var(--paper-raised); border-color: var(--ink); }
+.pgr-btn .pgr-btn__glyph { transition: transform 160ms ease-out; }
+.pgr-btn:hover .pgr-btn__glyph { transform: translateX(2px); }
+
+.pgr-link {
+  color: var(--moss); text-decoration: underline; text-decoration-thickness: 1px;
+  text-underline-offset: 0.2em; transition: text-decoration-thickness 160ms ease-out;
+}
+.pgr-link:hover { text-decoration-thickness: 2px; }
+.pgr-link--mono { font-family: var(--font-mono); font-size: 14px; overflow-wrap: anywhere; }
+
+/* ── Etiquetas ─────────────────────────────────── */
+.pgr-tag {
+  display: inline-flex; align-items: center; gap: var(--space-2);
+  padding: var(--space-1) var(--space-2) var(--space-1) 0;
+  font-family: var(--font-mono); font-size: 12px; line-height: 1.4; letter-spacing: 0.04em;
+  color: var(--ink-muted);
+}
+.pgr-tag::before {
+  content: ""; width: 6px; height: 6px; border-radius: var(--radius-pill);
+  background: var(--line, var(--ink-muted)); flex: none;
+}
+.pgr-tag--line { color: var(--line); }
+
+/* ── Encabezado de sección ─────────────────────── */
+.pgr-section-head {
+  display: grid; grid-template-columns: minmax(96px, 2fr) 10fr; gap: var(--space-5);
+  align-items: baseline; padding-top: var(--space-4); border-top: var(--rule-width) solid var(--rule);
+}
+.pgr-section-head h2 { margin: 0; }
+
+/* ── Línea de investigación ────────────────────── */
+.pgr-line {
+  display: grid; grid-template-columns: minmax(96px, 2fr) 6fr 4fr; gap: var(--space-5);
+  padding: var(--space-6) 0; border-top: var(--rule-width) solid var(--rule);
+}
+.pgr-line__num { font-family: var(--font-mono); font-size: 14px; color: var(--line); }
+.pgr-line h3 { margin: var(--space-3) 0 var(--space-3); }
+.pgr-line p { margin: 0; max-width: var(--measure); color: var(--ink); }
+.pgr-line .pgr-ascii { align-self: stretch; min-height: 160px; }
+
+/* ── Publicación ───────────────────────────────── */
+.pgr-pub {
+  display: grid; grid-template-columns: 72px 1fr; gap: var(--space-5);
+  padding: var(--space-5) 0; border-top: var(--rule-width) solid var(--rule);
+  transition: background-color 160ms ease-out;
+}
+.pgr-pub:hover { background: var(--paper-raised); }
+.pgr-pub__year { font-family: var(--font-mono); font-size: 14px; color: var(--ink-muted); padding-top: 4px; }
+.pgr-pub__year--featured { color: var(--soil); }
+.pgr-pub h3 { margin: 0 0 var(--space-2); }
+.pgr-pub h3 a { text-decoration: none; }
+.pgr-pub h3 a:hover { text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 0.2em; }
+.pgr-pub__authors { margin: 0 0 var(--space-2); color: var(--ink-muted); }
+.pgr-pub__authors strong { font-weight: 500; color: var(--ink); }
+.pgr-pub__meta { display: flex; flex-wrap: wrap; gap: var(--space-2) var(--space-4); align-items: center; }
+.pgr-pub__journal { font-style: italic; }
+
+/* ── Persona ───────────────────────────────────── */
+.pgr-person { display: grid; grid-template-columns: 112px 1fr; gap: var(--space-5); padding: var(--space-5) 0; border-top: var(--rule-width) solid var(--rule); }
+.pgr-person__portrait { width: 112px; height: 140px; background: var(--paper-sunk); overflow: hidden; }
+.pgr-person__portrait img { width: 100%; height: 100%; object-fit: cover; filter: grayscale(1) contrast(1.05); mix-blend-mode: multiply; }
+.pgr-person__portrait .pgr-ascii { width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; font-size: 11px; }
+.pgr-person h3 { margin: var(--space-1) 0 var(--space-2); }
+.pgr-person p { margin: 0; color: var(--ink-muted); max-width: var(--measure); }
+
+/* ── Herramienta / recurso ─────────────────────── */
+.pgr-tool { padding: var(--space-5) 0; border-top: var(--rule-width) solid var(--rule); display: grid; grid-template-columns: minmax(96px, 2fr) 10fr; gap: var(--space-5); }
+.pgr-tool__prompt { font-family: var(--font-mono); font-size: 14px; color: var(--water); }
+.pgr-tool h3 { margin: 0 0 var(--space-2); font-family: var(--font-mono); font-size: 18px; font-weight: 500; letter-spacing: 0.02em; }
+.pgr-tool p { margin: 0 0 var(--space-3); max-width: var(--measure); }
+
+/* ── Lectura (cifras) ──────────────────────────── */
+.pgr-readout { margin: 0; padding: 0; list-style: none; font-family: var(--font-mono); font-size: 14px; line-height: 1.9; max-width: 420px; }
+.pgr-readout li { display: flex; align-items: baseline; gap: var(--space-2); }
+.pgr-readout__k { color: var(--ink-muted); }
+.pgr-readout__dots { flex: 1; overflow: hidden; color: var(--ink-faint); white-space: nowrap; }
+.pgr-readout__dots::before { content: "....................................................................................................."; }
+.pgr-readout__v { color: var(--ink); font-weight: 500; }
+
+/* ── Cabecera del sitio ────────────────────────── */
+.pgr-header { display: flex; align-items: center; justify-content: space-between; gap: var(--space-5); padding: var(--space-4) 0; border-bottom: var(--rule-width) solid var(--rule); flex-wrap: wrap; }
+.pgr-header__brand { display: flex; align-items: center; gap: var(--space-3); text-decoration: none; color: var(--ink); }
+.pgr-header__brand img { height: 40px; width: auto; }
+.pgr-header__name { font-family: var(--font-serif); font-size: 21px; font-weight: 500; line-height: 1.1; }
+.pgr-header__name small { display: block; font-family: var(--font-mono); font-size: 11px; font-weight: 400; letter-spacing: 0.06em; color: var(--ink-muted); text-transform: uppercase; }
+.pgr-nav { display: flex; flex-wrap: wrap; gap: var(--space-1) var(--space-5); margin: 0; padding: 0; list-style: none; font-family: var(--font-mono); font-size: 14px; }
+.pgr-nav a { text-decoration: none; color: var(--ink-muted); }
+.pgr-nav a:hover { color: var(--ink); }
+.pgr-nav a[aria-current="page"] { color: var(--ink); }
+.pgr-nav a[aria-current="page"]::before { content: "~/"; color: var(--moss); }
+.pgr-nav__lang { color: var(--ink-muted); }
+.pgr-nav__lang strong { color: var(--ink); font-weight: 500; }
+
+/* ── Afiliaciones ──────────────────────────────── */
+.pgr-affil { display: flex; align-items: center; gap: var(--space-6); flex-wrap: wrap; padding: var(--space-4) var(--space-5); background: var(--logo-ground); }
+.pgr-affil img { width: auto; display: block; }
+
+/* ── Portada ───────────────────────────────────── */
+.pgr-hero { position: relative; display: grid; grid-template-columns: 7fr 5fr; gap: var(--space-6); align-items: end; padding: var(--space-7) 0 var(--space-6); }
+.pgr-hero__q { margin: var(--space-4) 0 var(--space-5); max-width: 12ch; }
+.pgr-hero__lede { margin: 0 0 var(--space-6); max-width: 38ch; color: var(--ink-muted); }
+.pgr-hero__actions { display: flex; flex-wrap: wrap; gap: var(--space-3); }
+.pgr-hero .pgr-ascii { align-self: stretch; min-height: 360px; }
+
+
+/* ── Red génica ────────────────────────────────── */
+.pgr-net { display: block; width: 100%; height: auto; overflow: visible; touch-action: pan-y; user-select: none; -webkit-tap-highlight-color: transparent; }
+[data-module="nitrogeno"] { --mod: var(--moss); }
+[data-module="sequia"] { --mod: var(--soil); }
+[data-module="cruce"] { --mod: var(--genome); }
+.pgr-net__edge { stroke: var(--ink-faint); stroke-width: 1.5; transition: stroke 240ms ease-out, opacity 240ms ease-out; }
+.pgr-net__edge.is-rep { stroke-dasharray: none; }
+.pgr-net__edge.is-on { stroke: var(--mod); stroke-width: 2.2; stroke-dasharray: 5 4; animation: pgr-flow 1.2s linear infinite; }
+.pgr-net__tip { fill: var(--ink-faint); }
+.pgr-net__tip--nitrogeno { fill: var(--moss); }
+.pgr-net__tip--sequia { fill: var(--soil); }
+.pgr-net__tip--cruce { fill: var(--genome); }
+.pgr-net__node { cursor: grab; outline: none; }
+.pgr-net__node:active { cursor: grabbing; }
+.pgr-net__shape { fill: var(--paper); stroke: var(--mod); stroke-width: 2; transition: fill 240ms ease-out; }
+.pgr-net__node.is-on .pgr-net__shape { fill: var(--mod); }
+.pgr-net__label { font-family: var(--font-mono); font-size: 15px; font-weight: 500; paint-order: stroke; stroke: var(--paper-raised); stroke-width: 4px; stroke-linejoin: round; fill: var(--ink-muted); text-anchor: middle; pointer-events: none; }
+.pgr-net__node.is-on .pgr-net__label { fill: var(--ink); }
+.pgr-net__node:focus-visible .pgr-net__shape { stroke: var(--focus); stroke-width: 3; }
+.pgr-net.is-focus .pgr-net__node:not(.is-near) { opacity: 0.25; }
+.pgr-net.is-focus .pgr-net__edge:not(.is-near) { opacity: 0.12; }
+.pgr-net.is-focus .pgr-net__edge.is-near { stroke: var(--mod); stroke-width: 2.2; }
+@keyframes pgr-flow { to { stroke-dashoffset: -18; } }
+.pgr-paused .pgr-net__edge.is-on { animation-play-state: paused; }
+@media (prefers-reduced-motion: reduce) { .pgr-net__edge.is-on { animation: none; stroke-dasharray: none; } }
+
+/* Selector segmentado (condición de la red, filtros) */
+.pgr-seg { display: inline-flex; flex-wrap: wrap; gap: 0; border: 1px solid var(--ink-muted); border-radius: var(--radius-sm); overflow: hidden; }
+.pgr-seg button { font-family: var(--font-mono); font-size: 13px; padding: var(--space-2) var(--space-4); background: none; border: 0; border-right: 1px solid var(--ink-muted); color: var(--ink-muted); cursor: pointer; transition: background-color 160ms ease-out, color 160ms ease-out; }
+.pgr-seg button:last-child { border-right: 0; }
+.pgr-seg button:hover { color: var(--ink); background: var(--paper-raised); }
+.pgr-seg button[aria-pressed="true"] { background: var(--ink); color: var(--paper); }
+
+/* Filtros de publicaciones por línea */
+.pgr-filter { display: flex; flex-wrap: wrap; gap: var(--space-2) var(--space-4); margin: 0; padding: 0; list-style: none; }
+.pgr-filter button { font: inherit; background: none; border: 0; padding: var(--space-1) 0; cursor: pointer; }
+.pgr-filter button .pgr-tag { padding: 0; }
+.pgr-filter button[aria-pressed="true"] .pgr-tag { color: var(--ink); text-decoration: underline; text-decoration-thickness: 2px; text-underline-offset: 0.35em; text-decoration-color: var(--line, var(--ink)); }
+.pgr-filter small { font-family: var(--font-mono); font-size: 11px; color: var(--ink-muted); margin-left: 2px; }
+
+/* Desplegable «ver más» (acordeón) */
+.pgr-more { margin-top: var(--space-3); }
+.pgr-more > summary { display: inline-flex; gap: var(--space-2); align-items: baseline; list-style: none; cursor: pointer; font-family: var(--font-mono); font-size: 13px; color: var(--ink-muted); }
+.pgr-more > summary::-webkit-details-marker { display: none; }
+.pgr-more > summary::before { content: "+"; color: var(--line, var(--moss)); font-weight: 500; width: 1ch; }
+.pgr-more[open] > summary::before { content: "−"; }
+.pgr-more > summary:hover { color: var(--ink); }
+.pgr-more__body { padding: var(--space-3) 0 0 calc(1ch + var(--space-2)); animation: pgr-unfold 220ms ease-out; }
+
+/* Interruptor de animaciones: visible y persistente; oculto si el sistema ya pide movimiento reducido */
+.pgr-motion { display: inline-flex; align-items: center; gap: var(--space-2); min-height: 32px; padding: var(--space-1) var(--space-3); font-family: var(--font-mono); font-size: 14px; color: var(--ink); background: none; border: 1px solid var(--ink-muted); border-radius: var(--radius-sm); cursor: pointer; }
+.pgr-motion:hover { background: var(--paper-raised); }
+.pgr-motion[aria-pressed="true"] { background: var(--ink); color: var(--paper); border-color: var(--ink); }
+@media (prefers-reduced-motion: reduce) { .pgr-motion { display: none; } }
+@keyframes pgr-unfold { from { opacity: 0; transform: translateY(-4px); } }
+@media (prefers-reduced-motion: reduce) { .pgr-more__body { animation: none; } }
+
+/* Menú desplegable de la cabecera */
+.pgr-menu { position: relative; }
+.pgr-menu > button { font: inherit; font-family: var(--font-mono); font-size: 14px; color: var(--ink-muted); background: none; border: 0; padding: 0; cursor: pointer; }
+.pgr-menu > button::after { content: " ▾"; font-size: 11px; }
+.pgr-menu > button[aria-expanded="true"]::after { content: " ▴"; }
+.pgr-menu > button:hover, .pgr-menu > button[aria-expanded="true"] { color: var(--ink); }
+.pgr-menu__panel { position: absolute; top: calc(100% + var(--space-3)); left: calc(-1 * var(--space-4)); z-index: 20; min-width: 300px; margin: 0; padding: var(--space-2) 0; list-style: none; background: var(--paper-raised); border: 1px solid var(--rule); box-shadow: 0 12px 32px -16px rgba(29, 36, 28, 0.35); }
+.pgr-menu__panel a { display: grid; grid-template-columns: 3ch 1fr; gap: var(--space-2); padding: var(--space-2) var(--space-4); text-decoration: none; color: var(--ink); font-family: var(--font-serif); font-size: 17px; line-height: 1.35; }
+.pgr-menu__panel a span { font-family: var(--font-mono); font-size: 12px; color: var(--line, var(--ink-muted)); padding-top: 3px; }
+.pgr-menu__panel a:hover, .pgr-menu__panel a:focus-visible { background: var(--paper-sunk); }
+
+/* Noticias */
+.pgr-news { margin: 0; padding: 0; list-style: none; border-bottom: var(--rule-width) solid var(--rule); }
+.pgr-news a { display: grid; grid-template-columns: 112px 1fr auto; gap: var(--space-5); align-items: baseline; padding: var(--space-4) 0; border-top: var(--rule-width) solid var(--rule); text-decoration: none; color: var(--ink); transition: background-color 160ms ease-out, padding 160ms ease-out; }
+.pgr-news a:hover { background: var(--paper-raised); padding-left: var(--space-3); }
+.pgr-news time { font-family: var(--font-mono); font-size: 13px; color: var(--ink-muted); }
+.pgr-news .pgr-news__src { font-family: var(--font-mono); font-size: 12px; color: var(--ink-muted); }
+.pgr-news a:hover .pgr-news__src { color: var(--moss); }
+@media (max-width: 720px) { .pgr-news a { grid-template-columns: 1fr; gap: var(--space-1); } }
+
+
+/* ── Circuito genético (SBOL) ──────────────────── */
+.pgr-circuit { display: flex; flex-direction: column; gap: var(--space-4); padding: var(--space-2) 0 var(--space-3) var(--space-5); border-left: 1px solid var(--rule); }
+.pgr-line .pgr-circuit__eyebrow { margin: 0; font-family: var(--font-mono); font-size: 11px; letter-spacing: .08em; text-transform: uppercase; color: var(--ink-muted); }
+[data-mod="sequia"] { --mod: var(--soil); }
+[data-mod="nitrogeno"] { --mod: var(--moss); }
+[data-mod="salida"] { --mod: var(--genome); }
+.pgr-circuit__svg { display: block; width: 100%; max-width: 420px; height: auto; margin-inline: auto; overflow: visible; }
+.pgr-circuit__dna { stroke: var(--ink); stroke-width: 1.5; }
+.pgr-circuit__prom, .pgr-circuit__term { fill: none; stroke: var(--ink); stroke-width: 1.8; stroke-linejoin: round; }
+.pgr-circuit__promtip { fill: var(--ink); }
+.pgr-circuit__rbs { fill: var(--paper); stroke: var(--ink); stroke-width: 1.5; }
+.pgr-circuit__cdsbg { fill: var(--paper-raised); }
+.pgr-circuit__cds { fill: var(--mod); fill-opacity: 0; stroke: var(--mod); stroke-width: 1.8; transition: fill-opacity 120ms linear; }
+.pgr-circuit__cas.is-on .pgr-circuit__prom, .pgr-circuit__cas.is-on .pgr-circuit__promtip { stroke: var(--mod); fill: var(--mod); }
+.pgr-circuit__cas.is-on .pgr-circuit__prom { fill: none; }
+.pgr-circuit__cdslab { font-family: var(--font-mono); font-size: 11px; font-weight: 500; fill: var(--ink); text-anchor: middle; }
+.pgr-circuit__cas.is-on .pgr-circuit__cdslab { fill: var(--paper); }
+.pgr-circuit__lab { font-family: var(--font-mono); font-size: 10px; fill: var(--ink-muted); text-anchor: middle; }
+.pgr-circuit__op { fill: var(--mod); fill-opacity: 0; stroke: var(--mod); stroke-width: 1.4; }
+.pgr-circuit__reg { fill: none; stroke: var(--ink-faint); stroke-width: 1.3; stroke-dasharray: 3 4; }
+.pgr-circuit__reg.is-on { stroke: var(--ink-muted); }
+.pgr-circuit__tip { fill: var(--ink-muted); stroke: var(--ink-muted); stroke-width: 2.4; }
+.pgr-circuit__tip.is-rep { fill: none; }
+.pgr-circuit__sig { cursor: pointer; }
+.pgr-circuit__sigdot { fill: var(--paper); stroke: var(--mod, var(--ink-muted)); stroke-width: 1.5; }
+[data-key="a"] { --mod: var(--soil); }
+[data-key="b"] { --mod: var(--moss); }
+.pgr-circuit__sig.is-on .pgr-circuit__sigdot { fill: var(--mod); }
+.pgr-circuit__siglab { font-family: var(--font-mono); font-size: 11px; fill: var(--ink); text-anchor: middle; pointer-events: none; }
+.pgr-circuit__sig.is-on .pgr-circuit__siglab { fill: var(--paper); }
+.pgr-circuit__gate { font-family: var(--font-mono); font-size: 26px; font-weight: 500; fill: var(--genome); text-anchor: middle; }
+.pgr-circuit__pol { fill: var(--chlorophyll); }
+.pgr-circuit__prot { fill: var(--mod); }
+.pgr-circuit__cas[data-mod="salida"].is-on .pgr-circuit__cds { filter: drop-shadow(0 0 4px var(--chlorophyll)); }
+.pgr-circuit__ctl { display: flex; flex-direction: column; gap: var(--space-4); }
+.pgr-circuit__group { display: grid; grid-template-columns: 82px minmax(0, 1fr); align-items: start; gap: var(--space-3); }
+.pgr-circuit__label { padding-top: var(--space-2); font-family: var(--font-mono); font-size: 11px; letter-spacing: .04em; color: var(--ink-muted); }
+.pgr-circuit__inputs { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--space-2); }
+.pgr-circuit__in { display: flex; flex-direction: column; align-items: flex-start; justify-content: center; gap: 2px; min-height: 50px; padding: var(--space-2) var(--space-3); font-family: var(--font-mono); font-size: 13px; color: var(--ink); background: var(--paper-raised); border: 1px solid var(--rule); border-left: 3px solid var(--mod); border-radius: var(--radius-sm); cursor: pointer; }
+.pgr-circuit__in:hover { border-color: var(--mod); }
+.pgr-circuit__in[aria-pressed="true"] { border-color: var(--mod); background: var(--paper-raised); }
+.pgr-circuit__in-state { font-size: 11px; color: var(--ink-muted); }
+.pgr-circuit__in[aria-pressed="true"] .pgr-circuit__in-state { color: var(--mod); }
+.pgr-circuit .pgr-seg { display: flex; max-width: 260px; }
+.pgr-circuit .pgr-seg button { flex: 1; min-height: 38px; padding: var(--space-1) var(--space-2); font-size: 13px; }
+.pgr-line .pgr-circuit__status { display: flex; justify-content: space-between; align-items: baseline; gap: var(--space-3); margin: 0; padding: var(--space-3) var(--space-4); border-top: 1px solid var(--rule); border-bottom: 1px solid var(--rule); font-family: var(--font-mono); font-size: 13px; color: var(--ink-muted); }
+.pgr-circuit__status strong { font-weight: 500; color: var(--ink); }
+.pgr-circuit__status[data-active="true"] strong { color: var(--moss); }
+.pgr-circuit__details { font-family: var(--font-mono); }
+.pgr-circuit__details summary { display: inline-flex; align-items: center; gap: var(--space-2); list-style: none; cursor: pointer; font-size: 12px; color: var(--ink-muted); }
+.pgr-circuit__details summary::-webkit-details-marker { display: none; }
+.pgr-circuit__details summary::before { content: "+"; color: var(--soil); }
+.pgr-circuit__details[open] summary::before { content: "−"; }
+.pgr-circuit__details summary:hover { color: var(--ink); }
+.pgr-circuit__tt { border-collapse: collapse; margin-top: var(--space-3); font-family: var(--font-mono); font-size: 13px; width: 100%; max-width: 320px; }
+.pgr-circuit__tt caption { text-align: left; font-size: 13px; color: var(--ink-muted); padding-bottom: var(--space-1); }
+.pgr-circuit__tt th { font-weight: 500; text-align: left; color: var(--ink-muted); border-bottom: 1px solid var(--rule); padding: 2px var(--space-2) 2px 0; }
+.pgr-circuit__tt td { padding: 2px var(--space-2) 2px 0; color: var(--ink-muted); }
+.pgr-circuit__tt tr.is-cur td { color: var(--ink); font-weight: 500; background: var(--paper-raised); }
+@media (min-width: 721px) and (max-width: 1024px) { .pgr-circuit { padding-left: var(--space-3); } .pgr-circuit__group, .pgr-circuit__inputs { grid-template-columns: 1fr; } .pgr-circuit__group { gap: var(--space-2); } .pgr-circuit__label { padding-top: 0; } }
+@media (max-width: 720px) { .pgr-circuit { padding: var(--space-4) 0 0; border-left: 0; border-top: 1px solid var(--rule); } }
+@media (max-width: 420px) { .pgr-circuit__group { grid-template-columns: 1fr; gap: var(--space-2); } .pgr-circuit__label { padding-top: 0; } }
+@media (prefers-reduced-motion: reduce) { .pgr-circuit__cds { transition: none; } }
+
+/* Tipografía fluida: los titulares bajan con la pantalla sin saltos */
+.display { font-size: clamp(44px, 5.2vw + 22px, 88px); }
+.title { font-size: clamp(32px, 2.2vw + 22px, 48px); }
+.heading { font-size: clamp(23px, 0.6vw + 20px, 28px); }
+.lede { font-size: clamp(19px, 0.4vw + 17px, 22px); }
+@media (max-width: 720px) { .body { font-size: 17px; } }
+
+/* Tablet: las líneas pasan a dos columnas (texto + motivo) con el número arriba */
+@media (max-width: 1024px) and (min-width: 721px) {
+  .pgr-line { grid-template-columns: minmax(0, 3fr) minmax(200px, 2fr); }
+  .pgr-line__num { grid-column: 1 / -1; }
+}
+
+@media (max-width: 720px) {
+  .pgr-section-head, .pgr-line, .pgr-tool, .pgr-hero { grid-template-columns: 1fr; }
+  .pgr-line .pgr-ascii { min-height: 120px; }
+  .pgr-hero .pgr-ascii { min-height: 200px; }
+}
+
+</style>
+<style>
+:root{--night:#0f130e;--night-raised:#171c16;--night-rule:#2a3127;--night-ink:#d8dacf;--night-muted:#9a9e90;--night-faint:#3d4539}
+html,body{margin:0;height:100%;background:var(--night);color:var(--night-ink);overflow:hidden}
+body{font-family:var(--font-serif);-webkit-font-smoothing:antialiased}
+::selection{background:#a98bc955;color:var(--night-ink)}
+a{color:#8fbf73}a:hover{color:var(--night-ink)}
+:focus-visible{outline:2px solid #a98bc9;outline-offset:2px}
+#bg{position:fixed;inset:0;width:100%;height:100%;display:block;pointer-events:none}.stage{position:fixed;inset:0;z-index:1;display:grid;grid-template-rows:auto minmax(0,1fr) auto;padding:var(--space-4) var(--space-6) var(--space-5)}
+.top{display:flex;justify-content:space-between;align-items:baseline;gap:var(--space-5);flex-wrap:wrap}
+.mark{font-family:var(--font-mono);font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--night-muted);text-decoration:none;white-space:nowrap}
+.mark span{color:#8fbf73}
+.ctl{display:flex;gap:var(--space-5);flex-wrap:wrap}
+.ctl button{font-family:var(--font-mono);font-size:13px;color:var(--night-muted);background:none;border:0;padding:var(--space-1) 0;cursor:pointer;transition:color 160ms ease-out}
+.ctl button:hover,.ctl button[aria-pressed="true"]{color:var(--night-ink)}
+.vol{display:inline-flex;align-items:center;gap:var(--space-2);font-family:var(--font-mono);font-size:13px;color:var(--night-muted)}
+.vol input{width:104px;height:24px;margin:0;accent-color:#b9d870;cursor:pointer;background:none}
+.vol output{min-width:3ch;text-align:right;font-variant-numeric:tabular-nums}
+.genome{position:relative;min-height:0;display:flex;align-items:center}
+.genome canvas{display:block;width:100%;height:100%}
+.hover{position:absolute;pointer-events:none;font-family:var(--font-mono);font-size:12px;line-height:1.5;color:var(--night-muted);white-space:nowrap;opacity:0;transition:opacity 220ms ease-out;text-align:center;transform:translateX(-50%);background:rgba(15,19,14,.92);padding:var(--space-1) var(--space-3)}.hover b{font-weight:500;color:var(--night-ink)}.hover i{display:inline-block;width:6px;height:6px;border-radius:999px;margin-right:6px;vertical-align:1px}.genome canvas{cursor:crosshair}
+.foot{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:var(--space-3) var(--space-6);align-items:end}
+.age{margin:0;font-size:clamp(40px,4.6vw + 14px,88px);line-height:.95;font-weight:400;letter-spacing:-0.02em;font-variant-numeric:tabular-nums;font-variation-settings:"opsz" 72}
+.now{display:flex;gap:var(--space-5);flex-wrap:wrap;align-items:baseline;margin-top:var(--space-3);font-family:var(--font-mono);font-size:13px;color:var(--night-muted)}
+.now b{font-weight:500;color:var(--night-ink);letter-spacing:.06em;text-transform:uppercase;font-size:12px;display:inline-flex;align-items:center;gap:var(--space-2)}
+.now b i{width:6px;height:6px;border-radius:999px;background:currentColor;display:inline-block}
+.legend{font-family:var(--font-mono);font-size:12px;color:var(--night-muted);display:flex;flex-direction:column;gap:var(--space-2);align-items:flex-end;text-align:right}
+.ramp{display:flex;align-items:center;gap:var(--space-2)}
+.ramp span{width:120px;height:6px;background:linear-gradient(90deg,#a98bc9,#6fa8b5,#7fae6a,#b9d870)}
+.axis{grid-column:1/-1;position:relative;height:56px;cursor:pointer;touch-action:none}
+.axis canvas{display:block;width:100%;height:100%}
+.intro{position:fixed;inset:0;z-index:2;display:flex;flex-direction:column;align-items:flex-start;justify-content:center;padding:0 max(var(--space-6),8vw);background:linear-gradient(90deg,rgba(15,19,14,.94) 0%,rgba(15,19,14,.82) 55%,rgba(15,19,14,.35) 100%);transition:opacity 600ms ease-out}
+.intro.gone{opacity:0;pointer-events:none}
+.intro h1{margin:0 0 var(--space-5);max-width:14ch;font-size:clamp(44px,5.2vw + 22px,88px);line-height:.95;font-weight:400;letter-spacing:-0.02em;font-variation-settings:"opsz" 72}
+.intro p{margin:0 0 var(--space-6);max-width:40ch;font-size:clamp(19px,.4vw + 17px,22px);line-height:1.45;font-style:italic;color:var(--night-muted)}
+.intro .acts{display:flex;gap:var(--space-3);flex-wrap:wrap}
+.btn{display:inline-flex;align-items:center;gap:var(--space-2);padding:var(--space-3) var(--space-4);border-radius:var(--radius-sm);font-family:var(--font-mono);font-size:14px;line-height:1;cursor:pointer;border:1px solid var(--night-muted);background:none;color:var(--night-ink);transition:background-color 160ms ease-out,color 160ms ease-out,border-color 160ms ease-out}
+.btn:hover{background:var(--night-raised);border-color:var(--night-ink)}
+.btn--primary{background:var(--night-ink);color:var(--night);border-color:var(--night-ink)}
+.btn--primary:hover{background:#b9d870;border-color:#b9d870;color:var(--night)}
+.btn .g{transition:transform 160ms ease-out}.btn:hover .g{transform:translateX(2px)}
+.read{position:fixed;top:0;right:0;bottom:0;z-index:3;width:min(480px,100%);background:var(--night-raised);border-left:1px solid var(--night-rule);overflow:auto;padding:var(--space-5) var(--space-5) var(--space-6);box-sizing:border-box;transform:translateX(100%);transition:transform 320ms ease-out}
+.read.open{transform:none}
+.read header{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:var(--space-5)}
+.read h2{margin:0;font-size:28px;font-weight:500;line-height:1.2}
+.read h3{margin:var(--space-6) 0 var(--space-3);font-family:var(--font-mono);font-size:12px;font-weight:500;letter-spacing:.08em;text-transform:uppercase;color:var(--night-muted)}
+.read p,.read li{font-size:16px;line-height:1.55;color:var(--night-ink)}
+.read ul{margin:0;padding:0;list-style:none;display:flex;flex-direction:column;gap:var(--space-3)}
+.read li{padding-left:calc(1ch + var(--space-2));text-indent:calc(-1ch - var(--space-2))}
+.read li::before{content:"·";font-family:var(--font-mono);color:var(--night-muted);margin-right:var(--space-2)}
+.read table{width:100%;border-collapse:collapse;font-family:var(--font-mono);font-size:12px}
+.read td{padding:var(--space-2) var(--space-2) var(--space-2) 0;border-top:1px solid var(--night-rule);vertical-align:top;color:var(--night-muted)}
+.read td:first-child{color:var(--night-ink)}
+.read td i{display:inline-block;width:6px;height:6px;border-radius:999px;margin-right:var(--space-2)}
+.read .x{font-family:var(--font-mono);font-size:13px;color:var(--night-muted);background:none;border:0;cursor:pointer}
+.read .x:hover{color:var(--night-ink)}
+.read .src{font-size:13px;color:var(--night-muted)}
+@media (max-width:720px){.stage{padding:var(--space-3) var(--space-4) var(--space-4)}.foot{grid-template-columns:1fr}.legend{align-items:flex-start;text-align:left}}
+</style>
+</head>
+<body>
+<canvas id="bg" aria-hidden="true"></canvas>
+<div class="stage">
+  <div class="top">
+    <a class="mark" href="/">PGR Lab <span>~/</span>genes</a>
+    <div class="ctl">
+      <button type="button" id="b-play" aria-pressed="false">॥ pausa</button>
+      <button type="button" id="b-sound" aria-pressed="false">sonido: no</button>
+      <label class="vol" for="b-vol">volumen <input type="range" id="b-vol" min="0" max="100" step="1" value="80"><output id="vol-out" for="b-vol">80</output></label>
+      <button type="button" id="b-read" aria-expanded="false">cómo leer esto +</button>
+    </div>
+  </div>
+  <div class="genome" id="genome"><canvas id="cv" aria-label="Mapa de los cinco cromosomas de Arabidopsis thaliana; cada carácter agrupa genes vecinos y se enciende cuando nace su familia génica." role="img"></canvas><div class="hover" id="hover"></div></div>
+  <div class="foot">
+    <div>
+      <p class="age" id="age" aria-live="off">hace 4,40 Ga</p>
+      <div class="now"><b id="stratum" style="color:var(--night-muted)"><i></i>—</b><span id="count">0 genes</span></div>
+    </div>
+    <div class="legend">
+      <div class="ramp">antiguo <span></span> reciente</div>
+      <div>fila inferior gris · sin homólogos, sin fecha</div>
+    </div>
+    <div class="axis" id="axis" role="slider" tabindex="0" aria-label="Tiempo" aria-valuemin="0" aria-valuemax="4400"><canvas id="cv-axis"></canvas></div>
+  </div>
+</div>
+
+<div class="intro" id="intro">
+  <h1>¿Cuándo nació cada gen de <em>Arabidopsis</em>?</h1>
+  <p>27 420 genes nucleares, cada uno con la edad de su familia: desde hace 4 400 millones de años hasta hoy.</p>
+  <div class="acts">
+    <button type="button" class="btn btn--primary" id="go-sound">comenzar con sonido <span class="g">→</span></button>
+    <button type="button" class="btn" id="go-quiet">en silencio</button>
+  </div>
+</div>
+
+<aside class="read" id="read" aria-label="Cómo leer esto" aria-hidden="true">
+  <header><h2>Cómo leer esto</h2><button type="button" class="x" id="b-close">cerrar −</button></header>
+  <p>Para cada gen codificante nuclear de <em>Arabidopsis thaliana</em> estimamos cuándo apareció su familia, a partir de los árboles de genes de Ensembl Compara. La técnica se llama filostratigrafía.</p>
+  <h3>Qué ves</h3>
+  <ul>
+    <li>Cinco bandas: los cromosomas 1–5, a escala. Cada carácter agrupa genes vecinos; se vuelve más denso a medida que nacen sus familias.</li>
+    <li>Color: edad del estrato, de púrpura (antiguo) a verde claro (reciente). Las bases <span class="mono">A T G C</span> marcan nacimientos recientes.</li>
+    <li>El eje tiene cortes (//): los períodos sin ningún estrato se comprimen y se cruzan rápido. Dentro de cada tramo el tiempo va en raíz cuadrada, que comprime lo muy antiguo. Las distancias entre tramos no están a escala; las fechas de cada corte están rotuladas.</li>
+    <li>Dentro de un estrato, el orden de aparición es aleatorio y no significa nada.</li>
+    <li>Sonido: cada estrato tiene su propio acorde de fondo; las campanas marcan nacimientos, más agudas cuanto más reciente la familia.</li>
+  </ul>
+  <h3>Qué no hay que sobreinterpretar</h3>
+  <ul>
+    <li>La edad es la de la familia génica, no la del gen concreto, y es una cota mínima. Depende de las especies que Ensembl muestrea y de cómo agrupa.</li>
+    <li>«Procariotas / LUCA» incluye familias que llegaron con el cloroplasto o la mitocondria mucho más tarde.</li>
+    <li>«Sin homólogos» no significa origen de novo: puede ser un gen muy divergente o no agrupable.</li>
+    <li>Las fechas son rangos de 1–2 estudios por nodo. Eukaryota aparece como 1,67–1,80 Ga, pero la literatura abarca 0,95–2,39 Ga.</li>
+    <li>Quedan fuera los 208 genes de cloroplasto y mitocondria.</li>
+  </ul>
+  <h3>Estratos</h3>
+  <table id="strata"></table>
+  <p class="src" style="margin-top:var(--space-5)">Datos: Ensembl Compara (rest.ensembl.org), árboles pan-taxonómicos y de plantas; anotación Araport11 sobre TAIR10. Fechas: fuentes por estrato en la tabla.</p>
+</aside>
+
+<script>
+function runGenes() {
+  "use strict";
+  var D = window.GENE_DATA, S = D.strata, G = D.genes, NS = S.length;
+  var AGE0 = 4400, SQ0 = Math.sqrt(AGE0), DUR = 150000, HOLD = 9000, BASES = "ATGC", RAMP = " .·:;=+*";
+  var reduced = matchMedia("(prefers-reduced-motion: reduce)").matches;
+  var $ = function (id) { return document.getElementById(id); };
+  function clamp(x, a, b) { return Math.max(a, Math.min(b, x)); }
+  // Eje con cortes: dentro de cada tramo con estratos el tiempo va en raíz cuadrada; los vacíos sin estratos se comprimen.
+  var SEG = [];
+  (function () {
+    var iv = D.strata.filter(function (s) { return s.dated; }).map(function (s) { return [Math.sqrt(s.hi), Math.sqrt(s.lo)]; }).sort(function (a, b) { return b[0] - a[0]; });
+    var m = []; iv.forEach(function (p) { var q = m[m.length - 1]; if (q && p[0] >= q[1] - 0.05) q[1] = Math.min(q[1], p[1]); else m.push([p[0], p[1]]); });
+    var s = SQ0, GAP = 0.9, PAD = 0.35;
+    m.forEach(function (d) { var len = s - d[0]; if (len > 0.01) SEG.push({ a: s, b: d[0], gap: true, w: Math.min(len, GAP) }); SEG.push({ a: d[0], b: d[1], gap: false, w: (d[0] - d[1]) + PAD }); s = d[1]; });
+    if (s > 0.01) SEG.push({ a: s, b: 0, gap: true, w: Math.min(s, GAP) });
+    var tot = SEG.reduce(function (t, g) { return t + g.w; }, 0), acc = 0;
+    SEG.forEach(function (g) { g.u0 = acc / tot; acc += g.w; g.u1 = acc / tot; });
+  })();
+  function ageToU(a) {
+    var s = Math.sqrt(Math.max(a, 0));
+    for (var i = 0; i < SEG.length; i++) { var g = SEG[i]; if (s <= g.a && s >= g.b) return g.u0 + (g.a - s) / (g.a - g.b) * (g.u1 - g.u0); }
+    return s >= SQ0 ? 0 : 1;
+  }
+  function uToAge(u) {
+    for (var i = 0; i < SEG.length; i++) { var g = SEG[i]; if (u >= g.u0 && u <= g.u1) { var s = g.a - (u - g.u0) / (g.u1 - g.u0) * (g.a - g.b); return s * s; } }
+    return u <= 0 ? AGE0 : 0;
+  }
+  function fmtAge(a) {
+    if (a >= 1000) return "hace " + (a / 1000).toLocaleString("es", { minimumFractionDigits: 2, maximumFractionDigits: 2 }) + " Ga";
+    if (a >= 10) return "hace " + Math.round(a).toLocaleString("es") + " Ma";
+    if (a > 0.05) return "hace " + a.toLocaleString("es", { minimumFractionDigits: 1, maximumFractionDigits: 1 }) + " Ma";
+    return "hoy";
+  }
+  function rng(a) { return function () { a |= 0; a = a + 0x6D2B79F5 | 0; var t = Math.imul(a ^ a >>> 15, 1 | a); t = t + Math.imul(t ^ t >>> 7, 61 | t) ^ t; return ((t ^ t >>> 14) >>> 0) / 4294967296; }; }
+  function hex(h) { var n = parseInt(h.slice(1), 16); return [n >> 16 & 255, n >> 8 & 255, n & 255]; }
+  var STOPS = ["#a98bc9", "#6fa8b5", "#7fae6a", "#b9d870"].map(hex);
+  function ramp(u) { u = clamp(u, 0, 1) * (STOPS.length - 1); var i = Math.min(STOPS.length - 2, Math.floor(u)), k = u - i, a = STOPS[i], b = STOPS[i + 1]; return "rgb(" + [0, 1, 2].map(function (j) { return Math.round(a[j] + (b[j] - a[j]) * k); }).join(",") + ")"; }
+
+  // ── datos: cada gen fechado recibe una edad de nacimiento dentro del rango de su estrato ──
+  var r = rng(20261018), ORPH = -1;
+  S.forEach(function (s, i) { s.idx = i; s.u = s.dated ? ageToU(s.mid) : 0; s.color = s.dated ? ramp((s.u - 0.0) / 0.995) : "#5d6358"; if (!s.dated) ORPH = i; });
+  var dated = [];
+  var byS = S.map(function () { return []; });
+  G.forEach(function (g, i) { byS[g[2]].push(i); });
+  byS.forEach(function (arr, si) {
+    for (var j = arr.length - 1; j > 0; j--) { var k = Math.floor(r() * (j + 1)), t = arr[j]; arr[j] = arr[k]; arr[k] = t; }
+    var s = S[si]; if (!s.dated) return;
+    arr.forEach(function (gi, rank) { dated.push({ g: gi, s: si, age: s.hi - (rank + 0.5) / arr.length * (s.hi - s.lo), sub: Math.floor(r() * 3) }); });
+  });
+  dated.sort(function (a, b) { return b.age - a.age; });
+  var nDated = dated.length, nOrph = D.nUndated;
+  // por gen: edad de nacimiento y momento en que se encendió (para la lupa)
+  var GA = new Float64Array(G.length).fill(-1), GT = new Float64Array(G.length).fill(-1e9);
+  dated.forEach(function (d) { GA[d.g] = d.age; d.gi = d.g; });
+  var BYCHR = [[], [], [], [], []]; G.forEach(function (g, i) { BYCHR[g[0]].push(i); });
+  BYCHR.forEach(function (a) { a.sort(function (x, y) { return G[x][1] - G[y][1]; }); });
+  var DATED_IDX = S.filter(function (s) { return s.dated; }).map(function (s) { return s.idx; });
+
+  // ── genoma ASCII en canvas ──
+  var cv = $("cv"), ctx = cv.getContext("2d"), box = $("genome");
+  var L = {}, cells = null;
+  var maxKb = Math.max.apply(null, D.chrLen) / 1000;
+  function layout() {
+    var b = box.getBoundingClientRect(), dpr = Math.min(2, devicePixelRatio || 1);
+    var fs = clamp(Math.round(b.width / 118), 9, 15);
+    ctx.font = "400 " + fs + "px 'IBM Plex Mono', ui-monospace, monospace";
+    var cw = ctx.measureText("M").width || fs * 0.6, lh = Math.round(fs * 1.08), gap = Math.round(lh * 1.1);
+    var labW = cw * 3, cols = Math.max(20, Math.floor((b.width - labW) / cw));
+    var bandH = lh * 4, totalH = bandH * 5 + gap * 4;
+    if (totalH > b.height && b.height > 0) { var k = b.height / totalH; lh = Math.max(7, Math.floor(lh * k)); gap = Math.floor(gap * k); bandH = lh * 4; totalH = bandH * 5 + gap * 4; }
+    cv.width = Math.round(b.width * dpr); cv.height = Math.round(b.height * dpr); cv.style.height = b.height + "px";
+    L = { w: b.width, h: b.height, dpr: dpr, fs: fs, cw: cw, lh: lh, gap: gap, labW: labW, cols: cols, bandH: bandH, top: Math.max(0, (b.height - totalH) / 2) };
+    L.chrCols = D.chrLen.map(function (len) { return Math.max(1, Math.round(len / 1000 / maxKb * cols)); });
+    cells = [];
+    for (var c = 0; c < 5; c++) { var rows = []; for (var y = 0; y < 4; y++) { var row = []; for (var x = 0; x < L.chrCols[c]; x++) row.push({ tot: 0, born: 0, ys: -1, t: -1e9, b: BASES[(c * 7 + y * 13 + x * 31) & 3] }); rows.push(row); } cells.push(rows); }
+    function colOf(g) { return Math.min(L.chrCols[g[0]] - 1, Math.floor(g[1] / maxKb * cols)); }
+    dated.forEach(function (d) { d.c = cells[d.g === undefined ? 0 : G[d.g][0]][d.sub][colOf(G[d.g])]; d.c.tot++; });
+    G.forEach(function (g) { if (g[2] === ORPH) cells[g[0]][3][colOf(g)].tot++; });
+    rebuild();
+  }
+
+  // ── reloj ──
+  var u = 0, ptr = 0, playing = false, last = 0, holdUntil = 0, lastSave = 0, ended = false;
+  try { var saved = parseFloat(localStorage.getItem("pgr-genes-u")); if (saved >= 0 && saved < 1) u = saved; } catch (e) {}
+  function rebuild() {
+    cells.forEach(function (rows) { rows.forEach(function (row) { row.forEach(function (c) { c.born = 0; c.ys = -1; c.t = -1e9; }); }); }); GT.fill(-1e9);
+    var age = uToAge(u); ptr = 0;
+    while (ptr < nDated && dated[ptr].age >= age) { var d = dated[ptr++]; d.c.born++; if (d.s > d.c.ys) d.c.ys = d.s; }
+  }
+  function advance(now) {
+    var age = uToAge(u), births = 0, sMax = -1, lastG = -1;
+    while (ptr < nDated && dated[ptr].age >= age) { var d = dated[ptr++]; d.c.born++; if (d.s > d.c.ys) d.c.ys = d.s; d.c.t = now; GT[d.g] = now; births++; lastG = d.g; if (d.s > sMax) sMax = d.s; }
+    if (births) { sound.births(births, S[sMax]); bgBirth(now, lastG, S[sMax]); }
+  }
+
+  function draw(now) {
+    ctx.setTransform(L.dpr, 0, 0, L.dpr, 0, 0); ctx.clearRect(0, 0, L.w, L.h);
+    ctx.textBaseline = "top";
+    for (var c = 0; c < 5; c++) {
+      var y0 = L.top + c * (L.bandH + L.gap);
+      ctx.fillStyle = "#5d6358"; ctx.fillText(String(c + 1), 0, y0 + L.lh * 1.5);
+      for (var y = 0; y < 4; y++) {
+        var row = cells[c][y], yy = y0 + y * L.lh;
+        for (var x = 0; x < row.length; x++) {
+          var cell = row[x], xx = L.labW + x * L.cw, ch;
+          if (y === 3) { if (!cell.tot) continue; ctx.fillStyle = "#5d6358"; ctx.globalAlpha = clamp(0.35 + cell.tot * 0.12, 0, 0.9); ctx.fillText(cell.tot > 2 ? ":" : "·", xx, yy); ctx.globalAlpha = 1; continue; }
+          if (!cell.born) { ctx.fillStyle = "#2a3127"; ctx.fillText(cell.tot ? "." : " ", xx, yy); continue; }
+          var f = cell.born / cell.tot, age = now - cell.t;
+          if (age < 700 && !reduced) { ctx.fillStyle = "#e9f2d6"; ctx.globalAlpha = 1 - age / 900; ctx.fillText(cell.b, xx, yy); ctx.globalAlpha = 1; continue; }
+          ch = RAMP[clamp(Math.ceil(f * (RAMP.length - 1)) + 1, 2, RAMP.length - 1)];
+          ctx.fillStyle = S[cell.ys].color; ctx.globalAlpha = 0.7 + 0.3 * f; ctx.fillText(ch, xx, yy); ctx.globalAlpha = 1;
+        }
+      }
+    }
+  }
+
+  // ── eje temporal ──
+  var ax = $("axis"), acv = $("cv-axis"), actx = acv.getContext("2d"), A = {};
+  function tickLabel(a) { return a >= 1000 ? (a / 1000).toLocaleString("es", { maximumFractionDigits: 1 }) + " Ga" : a <= 0.05 ? "hoy" : Math.round(a) + (a >= 400 ? " Ma" : ""); }
+  var TICKS = []; SEG.forEach(function (g) { if (!g.gap) { TICKS.push([g.a * g.a, tickLabel(g.a * g.a)]); } }); TICKS.push([0, "hoy"]);
+  function axLayout() { var b = ax.getBoundingClientRect(), dpr = Math.min(2, devicePixelRatio || 1); acv.width = Math.round(b.width * dpr); acv.height = Math.round(b.height * dpr); A = { w: b.width, h: b.height, dpr: dpr, base: 30 }; }
+  function axDraw() {
+    var c = actx; c.setTransform(A.dpr, 0, 0, A.dpr, 0, 0); c.clearRect(0, 0, A.w, A.h);
+    c.strokeStyle = "#2a3127"; c.lineWidth = 1; c.beginPath(); c.moveTo(0, A.base + .5); c.lineTo(A.w, A.base + .5); c.stroke();
+    S.forEach(function (s) { if (!s.dated) return; var x0 = ageToU(s.hi) * A.w, x1 = ageToU(s.lo) * A.w, h = 4 + Math.sqrt(s.n) / 7; c.fillStyle = s.color; c.globalAlpha = ageToU(s.mid) <= u ? 0.95 : 0.3; c.fillRect(x0, A.base - h, Math.max(2, x1 - x0), h); });
+    c.globalAlpha = 1; c.font = "400 11px 'IBM Plex Mono', monospace"; c.textBaseline = "top"; c.fillStyle = "#9a9e90";
+    var lastX = -1e9;
+    TICKS.forEach(function (t, i) { var x = ageToU(t[0]) * A.w, end = i === TICKS.length - 1; c.fillRect(x - .5, A.base, 1, 4); if (!end && (x - lastX < 46 || A.w - x < 50)) return; c.textAlign = end ? "right" : x < 20 ? "left" : "center"; c.fillText(t[1], end ? A.w : x, A.base + 8); lastX = x; });
+    c.fillStyle = "#5d6358"; c.textAlign = "center";
+    SEG.forEach(function (g) { if (!g.gap) return; var x = (g.u0 + g.u1) / 2 * A.w; c.clearRect(x - 5, A.base - 3, 10, 7); c.fillText("//", x, A.base - 6); });
+    c.fillStyle = "#9a9e90";
+    var px = u * A.w; c.fillStyle = "#d8dacf"; c.fillRect(px - .5, 2, 1.5, A.base - 2);
+    c.textAlign = "right"; c.fillStyle = "#5d6358"; c.fillText("eje con cortes // · raíz cuadrada dentro de cada tramo", A.w, 0);
+  }
+  function scrubTo(e) { var b = ax.getBoundingClientRect(); u = clamp((e.clientX - b.left) / b.width, 0, 0.99999); ended = false; rebuild(); hud(); }
+  var dragging = false;
+  ax.addEventListener("pointerdown", function (e) { dragging = true; ax.setPointerCapture(e.pointerId); scrubTo(e); });
+  ax.addEventListener("pointermove", function (e) { if (dragging) scrubTo(e); });
+  ax.addEventListener("pointerup", function () { dragging = false; });
+  ax.addEventListener("keydown", function (e) { var d = e.key === "ArrowRight" ? 0.01 : e.key === "ArrowLeft" ? -0.01 : 0; if (!d) return; e.preventDefault(); u = clamp(u + d, 0, 0.99999); ended = false; rebuild(); hud(); });
+
+  // ── texto ──
+  var elAge = $("age"), elS = $("stratum"), elC = $("count");
+  function hud() {
+    var age = ended ? 0 : uToAge(u); elAge.textContent = fmtAge(age);
+    var cur = null; S.forEach(function (s) { if (s.dated && s.hi >= age) cur = s; });
+    if (cur) { elS.style.color = cur.color; elS.innerHTML = "<i></i>" + cur.short; } else { elS.style.color = "#9a9e90"; elS.innerHTML = "<i></i>antes de la vida"; }
+    elC.textContent = ptr.toLocaleString("es") + " de " + nDated.toLocaleString("es") + " genes con fecha" + (u > 0.995 || ended ? " · " + nOrph.toLocaleString("es") + " sin homólogos" : "");
+    ax.setAttribute("aria-valuenow", Math.round(age)); ax.setAttribute("aria-valuetext", fmtAge(age));
+  }
+
+  // ── sonido: colchón armónico que cambia de acorde con cada estrato + campanas suaves por nacimiento ──
+  var sound = (function () {
+    var ac = null, master, bus, verb, on = false, vol = 0.8, lastNote = 0, pending = 0, pendS = null, curS = -2, voices = [], air = null, lfoT = 0;
+    // re mayor pentatónica; acordes abiertos (en semitonos sobre D2) que avanzan con las eras
+    var ROOT = 73.42, PENTA = [0, 2, 4, 7, 9];
+    var CHORDS = [[0, 7, 14, 16], [-3, 4, 12, 14], [5, 12, 16, 21], [2, 9, 14, 19], [0, 7, 16, 23], [-5, 7, 14, 19], [4, 11, 16, 21], [0, 9, 14, 19]];
+    function hz(st) { return ROOT * Math.pow(2, st / 12); }
+    function impulse(sec) {
+      var n = Math.floor(ac.sampleRate * sec), buf = ac.createBuffer(2, n, ac.sampleRate);
+      for (var ch = 0; ch < 2; ch++) { var d = buf.getChannelData(ch); for (var i = 0; i < n; i++) d[i] = (Math.random() * 2 - 1) * Math.pow(1 - i / n, 2.6); }
+      return buf;
+    }
+    function init() {
+      ac = new (window.AudioContext || window.webkitAudioContext)();
+      master = ac.createGain(); master.gain.value = 0;
+      var lim = ac.createDynamicsCompressor(); lim.threshold.value = -6; lim.knee.value = 6; lim.ratio.value = 12; lim.attack.value = 0.003; lim.release.value = 0.25;
+      master.connect(lim); lim.connect(ac.destination);
+      verb = ac.createConvolver(); verb.buffer = impulse(4.5); var wet = ac.createGain(); wet.gain.value = 0.55; verb.connect(wet); wet.connect(master);
+      bus = ac.createGain(); bus.gain.value = 0.7; bus.connect(master); bus.connect(verb);
+      // aire: ruido rosado muy filtrado que respira
+      var nb = ac.createBuffer(1, ac.sampleRate * 3, ac.sampleRate), nd = nb.getChannelData(0), b0 = 0, b1 = 0, b2 = 0;
+      for (var i = 0; i < nd.length; i++) { var w = Math.random() * 2 - 1; b0 = .997 * b0 + w * .029; b1 = .985 * b1 + w * .032; b2 = .95 * b2 + w * .048; nd[i] = (b0 + b1 + b2) * .35; }
+      var ns = ac.createBufferSource(); ns.buffer = nb; ns.loop = true; var nf = ac.createBiquadFilter(); nf.type = "bandpass"; nf.frequency.value = 600; nf.Q.value = 0.7;
+      var ng = ac.createGain(); ng.gain.value = 0.012; ns.connect(nf); nf.connect(ng); ng.connect(verb); ns.start(); air = { f: nf, g: ng };
+    }
+    function padVoice(st, t, i) {
+      var o1 = ac.createOscillator(), o2 = ac.createOscillator(), f = ac.createBiquadFilter(), g = ac.createGain(), pan = ac.createStereoPanner ? ac.createStereoPanner() : null;
+      o1.type = "triangle"; o2.type = "sine"; o1.frequency.value = hz(st); o2.frequency.value = hz(st) * 2; o1.detune.value = (Math.random() - .5) * 10; o2.detune.value = (Math.random() - .5) * 14;
+      f.type = "lowpass"; f.frequency.value = 500 + i * 160; f.Q.value = 0.3;
+      var lvl = [0.05, 0.035, 0.022, 0.016][i] || 0.015;
+      g.gain.setValueAtTime(0, t); g.gain.linearRampToValueAtTime(lvl, t + 4 + Math.random() * 2);
+      var o2g = ac.createGain(); o2g.gain.value = 0.25;
+      o1.connect(f); o2.connect(o2g); o2g.connect(f); f.connect(g);
+      if (pan) { pan.pan.value = (i % 2 ? 1 : -1) * (0.15 + 0.15 * i); g.connect(pan); pan.connect(bus); } else g.connect(bus);
+      // trémolo lento e independiente por voz
+      var lfo = ac.createOscillator(), lg = ac.createGain(); lfo.frequency.value = 0.05 + Math.random() * 0.08; lg.gain.value = lvl * 0.45; lfo.connect(lg); lg.connect(g.gain);
+      o1.start(t); o2.start(t); lfo.start(t);
+      return { o: [o1, o2, lfo], g: g, f: f };
+    }
+    function setChord(si) {
+      var t = ac.currentTime, ch = CHORDS[Math.max(0, si) % CHORDS.length];
+      voices.forEach(function (v) { v.g.gain.cancelScheduledValues(t); v.g.gain.setValueAtTime(v.g.gain.value, t); v.g.gain.linearRampToValueAtTime(0, t + 5); v.o.forEach(function (o) { o.stop(t + 5.2); }); });
+      voices = ch.map(function (st, i) { return padVoice(st, t, i); });
+    }
+    function bell(s, n) {
+      var t = ac.currentTime, base = Math.round(s.u * 10) + Math.floor(Math.random() * 4) - 1, step = clamp(base, 0, 13);
+      var oct = Math.floor(step / 5), f = hz(24 + 12 * oct + PENTA[step % 5]);
+      var v = clamp(0.025 + Math.log(1 + n) * 0.012, 0.025, 0.07), g = ac.createGain(), o = ac.createOscillator(), o2 = ac.createOscillator(), g2 = ac.createGain();
+      o.type = "sine"; o.frequency.value = f; o2.type = "sine"; o2.frequency.value = f * 2.76; g2.gain.value = 0.12;
+      g.gain.setValueAtTime(0, t); g.gain.linearRampToValueAtTime(v, t + 0.02); g.gain.exponentialRampToValueAtTime(0.0001, t + 2.8 + Math.random());
+      var pan = ac.createStereoPanner ? ac.createStereoPanner() : null;
+      o.connect(g); o2.connect(g2); g2.connect(g);
+      if (pan) { pan.pan.value = Math.random() * 1.2 - 0.6; g.connect(pan); pan.connect(bus); } else g.connect(bus);
+      o.start(t); o2.start(t); o.stop(t + 4); o2.stop(t + 4);
+    }
+    function level() { return 1.8 * vol * vol; } // curva perceptual; 80 % ≈ 1,15 (antes 0,85 fijo, ~+2,6 dB), 100 % ≈ 1,8
+    function fade(to, sec) { var t = ac.currentTime; master.gain.cancelScheduledValues(t); master.gain.setValueAtTime(master.gain.value, t); master.gain.linearRampToValueAtTime(to, t + sec); }
+    return {
+      enable: function (v) { on = v; if (v && !ac) init(); if (!ac) return; if (v) ac.resume(); fade(v && playing ? level() : 0, 1.2); },
+      playing: function (p) { if (ac && on) fade(p ? level() : 0, 0.8); },
+      volume: function (v) { vol = v; if (ac && on && playing) fade(level(), 0.15); },
+      tick: function (now) {
+        if (!ac || !on) return;
+        var age = ended ? 0 : uToAge(u), si = -1; S.forEach(function (s, i) { if (s.dated && s.hi >= age) si = i; });
+        if (si !== curS) { curS = si; setChord(si); }
+        // el filtro de las voces se abre y cierra despacio: el colchón respira
+        lfoT += 0.016; var br = 0.5 + 0.5 * Math.sin(lfoT * 0.35) * Math.sin(lfoT * 0.13 + 1);
+        voices.forEach(function (v, i) { v.f.frequency.setTargetAtTime(380 + i * 150 + br * 900 + u * 500, ac.currentTime, 1.5); });
+        if (air) { air.f.frequency.setTargetAtTime(400 + br * 900, ac.currentTime, 2); air.g.gain.setTargetAtTime(0.008 + br * 0.012, ac.currentTime, 2); }
+        if (pending && now - lastNote > clamp(700 - pending * 4, 180, 700)) { bell(pendS, pending); pending = 0; lastNote = now; }
+      },
+      births: function (n, s) { pending += n; pendS = s; },
+      on: function () { return on; }
+    };
+  })();
+
+  // ── fondo: campo ASCII que respira, toma el color de la era y responde al cursor y a los nacimientos ──
+  var bg = $("bg"), bctx = bg.getContext("2d"), B = {}, bgLast = 0, bz = 0, waves = [], lastWave = 0, mp = { x: -999, y: -999, on: false };
+  var bnoise = (function (seed) {
+    var p = new Uint8Array(512), rr = rng(seed), i; for (i = 0; i < 256; i++) p[i] = i;
+    for (i = 255; i > 0; i--) { var j = Math.floor(rr() * (i + 1)), t = p[i]; p[i] = p[j]; p[j] = t; } for (i = 0; i < 256; i++) p[i + 256] = p[i];
+    function hh(x, y, z) { return p[p[p[x & 255] + (y & 255)] + (z & 255)] / 255; } function sm(t) { return t * t * (3 - 2 * t); } function lp(a, b, t) { return a + (b - a) * t; }
+    return function (x, y, z) { var xi = Math.floor(x), yi = Math.floor(y), zi = Math.floor(z), xf = sm(x - xi), yf = sm(y - yi), zf = sm(z - zi);
+      return lp(lp(lp(hh(xi, yi, zi), hh(xi + 1, yi, zi), xf), lp(hh(xi, yi + 1, zi), hh(xi + 1, yi + 1, zi), xf), yf), lp(lp(hh(xi, yi, zi + 1), hh(xi + 1, yi, zi + 1), xf), lp(hh(xi, yi + 1, zi + 1), hh(xi + 1, yi + 1, zi + 1), xf), yf), zf); };
+  })(4207);
+  var BRAMP = " ..·:;=+";
+  function bgLayout() {
+    var dpr = Math.min(2, devicePixelRatio || 1), w = innerWidth, hgt = innerHeight;
+    bg.width = Math.round(w * dpr); bg.height = Math.round(hgt * dpr);
+    var fs = clamp(Math.round(w / 110), 11, 16); bctx.setTransform(dpr, 0, 0, dpr, 0, 0); bctx.font = "400 " + fs + "px 'IBM Plex Mono', ui-monospace, monospace";
+    var cw = bctx.measureText("M").width || fs * 0.6;
+    B = { w: w, h: hgt, dpr: dpr, fs: fs, cw: cw, lh: Math.round(fs * 1.25), cols: Math.ceil(w / cw), rows: Math.ceil(hgt / Math.round(fs * 1.25)) };
+  }
+  function geneXY(gi) {
+    var g = G[gi], gb = box.getBoundingClientRect();
+    return { x: gb.left + L.labW + g[1] / maxKb * L.cols * L.cw, y: gb.top + L.top + g[0] * (L.bandH + L.gap) + L.bandH * 0.4 };
+  }
+  function bgBirth(now, gi, s) {
+    if (gi < 0 || reduced || now - lastWave < 380) return; lastWave = now;
+    var p = geneXY(gi); waves.push({ x: p.x, y: p.y, t: now, c: s.color }); if (waves.length > 6) waves.shift();
+  }
+  function rgbOf(c) { var m = /rgb\((\d+),(\d+),(\d+)\)/.exec(c); return m ? [+m[1], +m[2], +m[3]] : hex(c); }
+  function bgDraw(now) {
+    if (now - bgLast < 66) return; var dt = now - bgLast; bgLast = now;
+    if (playing && !reduced) bz += dt * (0.00010 + 0.00022 * u);
+    var c = bctx; c.setTransform(B.dpr, 0, 0, B.dpr, 0, 0); c.clearRect(0, 0, B.w, B.h); c.textBaseline = "top";
+    var cur = null, age = ended ? 0 : uToAge(u); S.forEach(function (s) { if (s.dated && s.hi >= age) cur = s; });
+    var tint = rgbOf(cur ? cur.color : "#5d6358"), base = [34, 41, 32];
+    var gb = box.getBoundingClientRect(), gTop = gb.top + L.top - 6, gBot = gb.top + L.top + 5 * L.bandH + 4 * L.gap + 6;
+    waves = waves.filter(function (w) { return now - w.t < 2600; });
+    var wv = waves.map(function (w) { return { x: w.x, y: w.y, rad: (now - w.t) * 0.22, a: 1 - (now - w.t) / 2600, c: rgbOf(w.c) }; });
+    for (var y = 0; y < B.rows; y++) {
+      var py = y * B.lh, inBand = py > gTop && py < gBot;
+      for (var x = 0; x < B.cols; x++) {
+        var px = x * B.cw;
+        var n = bnoise(x * 0.055, y * 0.11, bz) * 0.72 + bnoise(x * 0.16 + 40, y * 0.3, bz * 1.6) * 0.28;
+        var glow = 0;
+        if (mp.on) { var dx = px - mp.x, dy = (py - mp.y) * 1.3; glow = Math.exp(-(dx * dx + dy * dy) / 16000); n += glow * 0.35; }
+        var wc = null, wa = 0;
+        for (var k = 0; k < wv.length; k++) { var W = wv[k], ex = px - W.x, ey = (py - W.y) * 1.2, rr = Math.sqrt(ex * ex + ey * ey) - W.rad, e = Math.exp(-rr * rr / 900) * W.a; if (e > wa) { wa = e; wc = W.c; } }
+        n += wa * 0.3;
+        var v = (n - 0.5) / 0.5; if (v <= 0) continue;
+        var ch = BRAMP[Math.min(BRAMP.length - 1, Math.floor(v * BRAMP.length))]; if (ch === " ") continue;
+        var mixK = Math.min(1, glow * 0.7 + wa * 0.9 + v * 0.18), col = wc && wa > glow ? wc : tint;
+        var r = Math.round(base[0] + (col[0] - base[0]) * mixK * 0.55), g2 = Math.round(base[1] + (col[1] - base[1]) * mixK * 0.55), b2 = Math.round(base[2] + (col[2] - base[2]) * mixK * 0.55);
+        c.globalAlpha = inBand ? 0.35 : 0.9;
+        c.fillStyle = "rgb(" + r + "," + g2 + "," + b2 + ")"; c.fillText(ch, px, py);
+      }
+    }
+    c.globalAlpha = 1;
+  }
+  addEventListener("pointermove", function (e) { mp.x = e.clientX; mp.y = e.clientY; mp.on = true; });
+  document.addEventListener("pointerleave", function () { mp.on = false; });
+  addEventListener("pointerdown", function (e) { if (reduced) return; if (e.target.closest && e.target.closest("button,a,.axis,.read")) return; waves.push({ x: e.clientX, y: e.clientY, t: performance.now(), c: "#b9d870" }); if (waves.length > 6) waves.shift(); });
+
+  // ── bucle ──
+  var bPlay = $("b-play"), bSound = $("b-sound");
+  function setPlaying(p) { playing = p; bPlay.textContent = p ? "॥ pausa" : "▸ seguir"; bPlay.setAttribute("aria-pressed", String(!p)); sound.playing(p); last = performance.now(); }
+  function frame(now) {
+    requestAnimationFrame(frame);
+    var dt = Math.min(100, now - last); last = now;
+    if (playing) {
+      if (ended) { if (now > holdUntil) { u = 0; ended = false; rebuild(); } }
+      else { u += dt / DUR; if (u >= 1) { u = 1; advance(now); ended = true; holdUntil = now + HOLD; u = 0.99999; } else advance(now); }
+      if (now - lastSave > 1000) { lastSave = now; try { localStorage.setItem("pgr-genes-u", String(u)); } catch (e) {} }
+    }
+    bgDraw(now); sound.tick(now); draw(now); drawLens(now); axDraw(); hud();
+  }
+
+  // ── lupa: burbuja orgánica que abre el cromosoma gen por gen ──
+  // dentro: horizontal = posición (±WIN kb, con ojo de pez), vertical = estrato (arriba antiguo, abajo reciente; fila inferior sin homólogos)
+  var hov = $("hover"), WIN = 700, LR = 132;
+  var lens = { x: 0, y: 0, tx: 0, ty: 0, r: 0, on: false, band: 0, kb: 0, near: -1 };
+  function bandAt(y) { var band = Math.floor((y - L.top) / (L.bandH + L.gap)); return band; }
+  function fish(d) { var k = 2.2, a = Math.abs(d); return Math.sign(d) * a * (1 + k) / (1 + k * a); }
+  function lensPath(c, cx, cy, r, t) {
+    c.beginPath();
+    for (var i = 0; i <= 64; i++) { var th = i / 64 * 6.2832, rr = r * (1 + 0.022 * Math.sin(3 * th + t * 0.0016) + 0.014 * Math.sin(5 * th - t * 0.0023)); var px = cx + Math.cos(th) * rr, py = cy + Math.sin(th) * rr; i ? c.lineTo(px, py) : c.moveTo(px, py); }
+    c.closePath();
+  }
+  function drawLens(now) {
+    var RM = Math.max(60, Math.min(LR, L.h * 0.42, L.w * 0.22)), tx = clamp(lens.tx, RM + 4, L.w - RM - 4), ty = clamp(lens.ty, RM + 4, L.h - RM - 4); lens.x += (tx - lens.x) * 0.16; lens.y += (ty - lens.y) * 0.16;
+    var RMAX = Math.max(60, Math.min(LR, L.h * 0.42, L.w * 0.22)); lens.r += ((lens.on ? RMAX : 0) - lens.r) * (lens.on ? 0.14 : 0.22);
+    if (lens.r < 1.5) { hov.style.opacity = 0; return; }
+    var c = ctx, R = lens.r, cx = lens.x, cy = lens.y, age = ended ? 0 : uToAge(u);
+    var genes = BYCHR[lens.band], kb = lens.kb, lo = kb - WIN, hi = kb + WIN;
+    c.save();
+    lensPath(c, cx, cy, R, now); c.fillStyle = "rgba(15,19,14,0.96)"; c.fill();
+    c.clip();
+    // guías: rieles de estrato y eje central
+    var NR = DATED_IDX.length + 1;
+    function rowY(si) { var k = si === ORPH ? NR - 1 : DATED_IDX.indexOf(si); var ny = -0.82 + k / (NR - 1) * 1.64; return cy + fish(ny) / 1 * R * 0.86; }
+    c.strokeStyle = "#1d231b"; c.lineWidth = 1;
+    for (var k = 0; k < NR; k++) { var yy = cy + fish(-0.82 + k / (NR - 1) * 1.64) * R * 0.86; c.beginPath(); c.moveTo(cx - R, yy + .5); c.lineTo(cx + R, yy + .5); c.stroke(); }
+    c.strokeStyle = "#3d4539"; c.beginPath(); c.moveTo(cx + .5, cy - R); c.lineTo(cx + .5, cy + R); c.stroke();
+    // genes
+    c.textAlign = "center"; c.textBaseline = "middle";
+    var nIn = 0, nBorn = 0, best = -1, bd = 1e9, comp = {};
+    for (var i = 0; i < genes.length; i++) {
+      var gi = genes[i], g = G[gi]; if (g[1] < lo) continue; if (g[1] > hi) break;
+      var nx = (g[1] - kb) / WIN, fx = fish(nx), px = cx + fx * R * 0.92, py = rowY(g[2]);
+      var dd = Math.abs(g[1] - kb); if (dd < bd) { bd = dd; best = gi; }
+      var mag = 1 - Math.abs(fx), fs = 8 + 10 * mag * mag; nIn++;
+      c.font = "500 " + fs.toFixed(1) + "px 'IBM Plex Mono', ui-monospace, monospace";
+      if (g[2] === ORPH) { c.fillStyle = "#5d6358"; c.globalAlpha = 0.5 + 0.5 * mag; c.fillText("?", px, py); c.globalAlpha = 1; continue; }
+      var born = GA[gi] >= age;
+      if (!born) { c.fillStyle = "#3d4539"; c.globalAlpha = 0.6 + 0.4 * mag; c.fillText("·", px, py); c.globalAlpha = 1; continue; }
+      nBorn++; comp[g[2]] = (comp[g[2]] || 0) + 1;
+      var fresh = now - GT[gi];
+      c.fillStyle = fresh < 900 && !reduced ? "#e9f2d6" : S[g[2]].color; c.globalAlpha = 0.55 + 0.45 * mag;
+      c.fillText(BASES[gi & 3], px, py); c.globalAlpha = 1;
+    }
+    if (best >= 0) { var bg = G[best], bx = cx + fish((bg[1] - kb) / WIN) * R * 0.92, by = rowY(bg[2]); c.strokeStyle = bg[2] === ORPH ? "#9a9e90" : S[bg[2]].color; c.lineWidth = 1.2; c.beginPath(); c.arc(bx, by, 9, 0, 6.2832); c.stroke(); }
+    c.font = "400 9px 'IBM Plex Mono', monospace"; c.fillStyle = "#5d6358"; c.textAlign = "left";
+    c.fillText("antiguo", cx - R * 0.42, cy - R * 0.80); c.fillText("reciente", cx - R * 0.42, cy + R * 0.62);
+    c.restore();
+    // borde: en el color del gen más cercano
+    lensPath(c, cx, cy, R, now); c.lineWidth = 1.5; c.strokeStyle = best >= 0 && G[best][2] !== ORPH && GA[best] >= age ? S[G[best][2]].color : "#3d4539"; c.globalAlpha = Math.min(1, R / RM); c.stroke(); c.globalAlpha = 1;
+    // lectura bajo la burbuja
+    var mb = (kb / 1000).toLocaleString("es", { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+    var nearTxt = "";
+    if (best >= 0) {
+      var s = S[G[best][2]];
+      if (!s.dated) nearTxt = '<i style="background:#5d6358"></i>sin homólogos · sin fecha';
+      else if (GA[best] >= age) nearTxt = '<i style="background:' + s.color + '"></i><b>' + s.short + '</b> · su familia, ' + fmtAge(s.mid).replace("hace ", "hace ~");
+      else nearTxt = '<i style="background:#3d4539"></i>aún sin nacer';
+    }
+    var top = Object.keys(comp).sort(function (a, b) { return comp[b] - comp[a]; })[0];
+    hov.innerHTML = "<b>Cr " + (lens.band + 1) + " · " + mb + " Mb</b><br>" + nBorn + " de " + nIn + " genes nacidos en ±" + (WIN / 1000).toLocaleString("es") + " Mb" + (top != null ? " · más: " + S[top].short.toLowerCase() : "") + "<br>gen más cercano: " + nearTxt;
+    hov.style.maxWidth = "none"; hov.style.whiteSpace = "nowrap";
+    var hw = hov.offsetWidth || 320, hh = hov.offsetHeight || 60, below = cy + R + 10, above = cy - R - hh - 10;
+    if (below + hh < L.h || above > 0) {
+      hov.style.transform = "translateX(-50%)"; hov.style.textAlign = "center";
+      hov.style.left = clamp(cx, hw / 2, L.w - hw / 2) + "px"; hov.style.top = (below + hh < L.h ? below : above) + "px";
+    } else {
+      hov.style.transform = "none"; hov.style.textAlign = "left";
+      var gapR = L.w - (cx + R + 16), gapL = cx - R - 16, side = gapR >= gapL ? "r" : "l", room = Math.max(gapR, gapL);
+      if (hw > room) { hov.style.whiteSpace = "normal"; hov.style.maxWidth = Math.max(140, room) + "px"; hw = hov.offsetWidth; hh = hov.offsetHeight; }
+      if (room >= 140) {
+        hov.style.left = (side === "r" ? cx + R + 16 : cx - R - 16 - hw) + "px";
+        hov.style.top = clamp(cy - hh / 2, 0, L.h - hh) + "px";
+      } else {
+        hov.style.left = (cx > L.w / 2 ? 0 : L.w - hw) + "px"; hov.style.top = "0px";
+      }
+    }
+    hov.style.opacity = lens.on ? 1 : 0;
+  }
+  function lensMove(e) {
+    var b = cv.getBoundingClientRect(), x = e.clientX - b.left, y = e.clientY - b.top, band = bandAt(y);
+    var inBand = band >= 0 && band <= 4 && (y - L.top) - band * (L.bandH + L.gap) <= L.bandH + L.gap * 0.5;
+    var kb = (x - L.labW) / (L.cols * L.cw) * maxKb;
+    if (!inBand || kb < 0 || kb > D.chrLen[band] / 1000) { lens.on = false; return; }
+    if (!lens.on && lens.r < 2) { lens.x = x; lens.y = y; }
+    lens.on = true; lens.band = band; lens.kb = kb; lens.tx = x; lens.ty = y;
+  }
+  cv.addEventListener("pointermove", lensMove);
+  cv.addEventListener("pointerdown", lensMove);
+  cv.addEventListener("pointerleave", function () { lens.on = false; });
+
+  // ── controles ──
+  bPlay.addEventListener("click", function () { setPlaying(!playing); });
+  bSound.addEventListener("click", function () { var v = !sound.on(); sound.enable(v); bSound.textContent = "sonido: " + (v ? "sí" : "no"); bSound.setAttribute("aria-pressed", String(v)); });
+  var bVol = $("b-vol"), vOut = $("vol-out");
+  function setVol(p, guardar) { p = clamp(Math.round(p), 0, 100); bVol.value = p; vOut.textContent = p; bVol.setAttribute("aria-valuetext", p + " %"); sound.volume(p / 100); if (guardar) { try { localStorage.setItem("pgr-genes-vol", String(p)); } catch (e) {} } }
+  try { var vSaved = parseFloat(localStorage.getItem("pgr-genes-vol")); if (vSaved >= 0 && vSaved <= 100) setVol(vSaved, false); } catch (e) {}
+  bVol.addEventListener("input", function () { setVol(+bVol.value, true); if (+bVol.value > 0 && !sound.on()) { sound.enable(true); bSound.textContent = "sonido: sí"; bSound.setAttribute("aria-pressed", "true"); } });
+  var read = $("read"), bRead = $("b-read");
+  function setRead(o) { read.classList.toggle("open", o); read.setAttribute("aria-hidden", String(!o)); bRead.setAttribute("aria-expanded", String(o)); bRead.textContent = o ? "cómo leer esto −" : "cómo leer esto +"; }
+  bRead.addEventListener("click", function () { setRead(!read.classList.contains("open")); });
+  $("b-close").addEventListener("click", function () { setRead(false); });
+  document.addEventListener("keydown", function (e) {
+    if (e.key === "Escape") setRead(false);
+    if (e.key === " " && document.activeElement === document.body) { e.preventDefault(); setPlaying(!playing); }
+  });
+  function start(withSound) {
+    $("intro").classList.add("gone");
+    setPlaying(!reduced);
+    if (withSound) { sound.enable(true); bSound.textContent = "sonido: sí"; bSound.setAttribute("aria-pressed", "true"); }
+  }
+  $("go-sound").addEventListener("click", function () { start(true); });
+  $("go-quiet").addEventListener("click", function () { start(false); });
+
+  // tabla de estratos
+  $("strata").innerHTML = S.map(function (s) {
+    var rg = s.dated ? (s.lo >= 1000 ? (s.lo / 1000).toLocaleString("es", { maximumFractionDigits: 2 }) + "–" + (s.hi / 1000).toLocaleString("es", { maximumFractionDigits: 2 }) + " Ga" : s.lo.toLocaleString("es") + "–" + s.hi.toLocaleString("es") + " Ma") : "sin fecha";
+    var src = s.url ? '<a href="' + s.url + '" target="_blank" rel="noopener">fuente ↗</a>' : "";
+    return "<tr><td><i style=\"background:" + s.color + "\"></i>" + s.short + "</td><td>" + rg + "</td><td style=\"text-align:right\">" + s.n.toLocaleString("es") + "</td><td>" + src + "</td></tr>";
+  }).join("");
+
+  function resize() { layout(); axLayout(); bgLayout(); bgLast = 0; var t = performance.now(); bgDraw(t); draw(t); axDraw(); }
+  if (document.fonts && document.fonts.ready) document.fonts.ready.then(resize);
+  addEventListener("resize", resize);
+  if ("ResizeObserver" in window) { var ro = new ResizeObserver(function () { resize(); }); ro.observe(box); ro.observe(ax); ro.observe(document.documentElement); }
+  resize(); hud();
+  requestAnimationFrame(function (t) { last = t; frame(t); });
+}
+fetch("genes.json").then(function (r) { return r.json(); }).then(function (d) { window.GENE_DATA = d; runGenes(); });
+</script>
+</body>
+</html>

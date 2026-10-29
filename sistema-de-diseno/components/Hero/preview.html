@@ -1,0 +1,25 @@
+<!-- @dsCard group="Estructura" height=540 subtitle="Portada: pregunta, bajada, acciones y espiral viva" -->
+<!doctype html>
+<html lang="es">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Hero</title>
+<style>body{padding:24px 32px;}.pgr-hero{padding-top:8px} #f{aspect-ratio:1/1;max-height:420px;}</style></head>
+<body>
+<div id="root">
+<section class="pgr-hero">
+  <div>
+    <span class="label">Plant Genome Regulation Lab · UNAB · Núcleo Milenio PhytoLearning</span>
+    <h1 class="display pgr-hero__q">¿Cómo decide una planta?</h1>
+    <p class="lede pgr-hero__lede">Desde la célula hasta el campo, leemos las redes génicas con las que los cultivos perciben la sequía y el nitrógeno, y se adaptan.</p>
+    <div class="pgr-hero__actions">
+      <a class="pgr-btn pgr-btn--primary" href="#">Líneas de investigación <span class="pgr-btn__glyph">→</span></a>
+      <a class="pgr-btn pgr-btn--quiet" href="#">Publicaciones</a>
+    </div>
+  </div>
+  <div id="f"></div>
+</section>
+</div>
+<script>
+PGR.Phyllotaxis(document.getElementById('f'));
+</script>
+</body>
+</html>

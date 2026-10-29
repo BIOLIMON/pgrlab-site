@@ -1,0 +1,1408 @@
+{
+ "meta": {
+  "descripcion": "45 trabajos de la PI: 42 revisados por pares + 3 preprints sin versión publicada. Excluye 1 posible homónimo, 1 resumen de congreso, 1 respuesta de autores (eLife), 2 preprints con versión publicada y 1 tesis.",
+  "fuentes": [
+   "OpenAlex A5100769244 (ORCID 0000-0002-5073-7751)",
+   "Crossref (títulos de las 11 publicaciones del sitio)",
+   "PubMed (verificación cruzada)"
+  ],
+  "fecha_de_consulta": "2026-10-18",
+  "criterio_42": "artículos + revisiones + capítulos + ponencias revisadas por pares, 2008–2026 (incluye los dos trabajos de 2008)",
+  "advertencias": [
+   "Las líneas propuestas son interpretación; el laboratorio debe validarlas.",
+   "citas_openalex puede diferir de Google Scholar y favorece a los trabajos antiguos.",
+   "posición_PI = lugar de la PI / total de autores.",
+   "El PNAS 2022 (10.1073/pnas.2107879119) va en nitrógeno, no en sequía."
+  ]
+ },
+ "publicaciones": [
+  {
+   "id": 43,
+   "doi": "10.1073/pnas.2509904122",
+   "url": "https://doi.org/10.1073/pnas.2509904122",
+   "año": 2026,
+   "tipo": "articulo",
+   "revista": "Proceedings of the National Academy of Sciences",
+   "título": "Antagonistic regulation of nitrogen and drought signaling mediated by NIN-like protein 7 transcription factor in Arabidopsis thaliana",
+   "autores": [
+    "Nathan Johnson",
+    "Tomás C. Moyano",
+    "Viviana Araus",
+    "Camilo Osorio",
+    "Ji Huang",
+    "Samantha Frangos",
+    "Ariel Herrera-Vásquez",
+    "Blanco-Herrera Francisca",
+    "Gloria M. Coruzzi",
+    "Elena A. Vidal",
+    "José Miguel Álvarez"
+   ],
+   "posición_PI": "11/11",
+   "citas_openalex": 4,
+   "acceso_abierto": "hybrid",
+   "líneas_propuestas": [
+    "nitrogeno",
+    "sequia"
+   ],
+   "línea_principal": "nitrogeno",
+   "en_sitio_actual": true,
+   "fuente_título": "Crossref",
+   "pmid": "41481473",
+   "líneas_en_maqueta_v1": [
+    "nitrogeno",
+    "sequia"
+   ]
+  },
+  {
+   "id": 44,
+   "doi": "10.64898/2026.10.13.758863",
+   "url": "https://doi.org/10.64898/2026.10.13.758863",
+   "año": 2026,
+   "tipo": "preprint",
+   "revista": "bioRxiv (Cold Spring Harbor Laboratory)",
+   "título": "SlEIL3-1 associates with a conserved EIL3/SLIM1 sulfate deficiency response core in tomato",
+   "autores": [
+    "José David Fernández",
+    "Ariel Cerda",
+    "Jonathan Morales-Espinoza",
+    "Tomás C. Moyano",
+    "Diego Landaeta-Sepúlveda",
+    "Lorena Melet",
+    "Nathan Johnson",
+    "José Tomás Matus",
+    "Javier Canales",
+    "José Miguel Álvarez",
+    "Elena A. Vidal"
+   ],
+   "posición_PI": "10/11",
+   "citas_openalex": 0,
+   "acceso_abierto": "green",
+   "líneas_propuestas": [
+    "nitrogeno",
+    "redes"
+   ],
+   "línea_principal": "nitrogeno",
+   "en_sitio_actual": false,
+   "fuente_título": "OpenAlex",
+   "pmid": null
+  },
+  {
+   "id": 45,
+   "doi": "10.64898/2026.08.28.747924",
+   "url": "https://doi.org/10.64898/2026.08.28.747924",
+   "año": 2026,
+   "tipo": "preprint",
+   "revista": "bioRxiv (Cold Spring Harbor Laboratory)",
+   "título": "ABF2 and bZIP2 remodel root system architecture under combined phosphate deficiency and salinity in Arabidopsis",
+   "autores": [
+    "Hernán Salinas‐Grenet",
+    "Nathan Johnson",
+    "Miguel Angel Ibeas",
+    "Tomás C. Moyano",
+    "Jorge Pérez‐Díaz",
+    "Romina Acha",
+    "Luciano Ahumada-Langer",
+    "Ah‐Ram Kim",
+    "Victoria Berdion Gabarain",
+    "G Vásquez-Marambio",
+    "Norbert Perrimon",
+    "José Miguel Álvarez",
+    "José M. Estevez"
+   ],
+   "posición_PI": "12/13",
+   "citas_openalex": 0,
+   "acceso_abierto": "green",
+   "líneas_propuestas": [
+    "raiz/pelos radicales",
+    "salinidad/otros estreses"
+   ],
+   "línea_principal": "otras",
+   "en_sitio_actual": false,
+   "fuente_título": "OpenAlex",
+   "pmid": null
+  },
+  {
+   "id": 35,
+   "doi": "10.1111/nph.20406",
+   "url": "https://doi.org/10.1111/nph.20406",
+   "año": 2025,
+   "tipo": "articulo",
+   "revista": "New Phytologist",
+   "título": "Two antagonistic gene regulatory networks drive Arabidopsis root hair growth at low temperature linked to a low‐nutrient environment",
+   "autores": [
+    "Tomás Urzúa Lehuedé",
+    "Victoria Berdion Gabarain",
+    "Miguel Angel Ibeas",
+    "Hernán Salinas‐Grenet",
+    "Romina Acha",
+    "Tomás C. Moyano",
+    "Lucía Ferrero",
+    "Gerardo Núñez‐Lillo",
+    "Jorge Pérez‐Díaz",
+    "María Florencia Perotti",
+    "Virginia Natalí Miguel",
+    "Fiorella Paola Spies",
+    "Miguel Angel Rosas",
+    "Ayako Kawamura",
+    "Diana Rosa Rodríguez Garcia",
+    "Ah‐Ram Kim",
+    "Trevor M. Nolan",
+    "Adrián A. Moreno",
+    "Keiko Sugimoto",
+    "Norbert Perrimon",
+    "Karen A. Sanguinet",
+    "Claudio Meneses",
+    "Raquel Lía Chan",
+    "Federico Ariel",
+    "José Miguel Álvarez",
+    "José M. Estevez"
+   ],
+   "posición_PI": "25/26",
+   "citas_openalex": 13,
+   "acceso_abierto": "green",
+   "líneas_propuestas": [
+    "raiz/pelos radicales",
+    "redes"
+   ],
+   "línea_principal": "redes",
+   "en_sitio_actual": true,
+   "fuente_título": "Crossref",
+   "pmid": "39891516",
+   "líneas_en_maqueta_v1": [
+    "redes"
+   ]
+  },
+  {
+   "id": 36,
+   "doi": "10.1016/j.xplc.2025.101499",
+   "url": "https://doi.org/10.1016/j.xplc.2025.101499",
+   "año": 2025,
+   "tipo": "articulo",
+   "revista": "Plant Communications",
+   "título": "Organ-level gene-regulatory networks inferred from transcriptomic data reveal context-specific regulation and highlight novel regulators of ripening and ABA-mediated responses in tomato",
+   "autores": [
+    "José David Fernández",
+    "David Navarro‐Payá",
+    "Antonio Santiago",
+    "Ariel Cerda",
+    "Jonathan Canan",
+    "Sebastián Contreras-Riquelme",
+    "Tomás C. Moyano",
+    "Diego Landaeta-Sepúlveda",
+    "Lorena Melet",
+    "Javier Canales",
+    "Nathan Johnson",
+    "José Miguel Álvarez",
+    "José Tomás Matus",
+    "Elena A. Vidal"
+   ],
+   "posición_PI": "12/14",
+   "citas_openalex": 11,
+   "acceso_abierto": "gold",
+   "líneas_propuestas": [
+    "redes",
+    "omica",
+    "fruto/cultivos"
+   ],
+   "línea_principal": "redes",
+   "en_sitio_actual": true,
+   "fuente_título": "Crossref",
+   "pmid": "40908642",
+   "líneas_en_maqueta_v1": [
+    "redes",
+    "omica"
+   ]
+  },
+  {
+   "id": 37,
+   "doi": "10.1093/jxb/eraf264",
+   "url": "https://doi.org/10.1093/jxb/eraf264",
+   "año": 2025,
+   "tipo": "articulo",
+   "revista": "Journal of Experimental Botany",
+   "título": "Plant resilience to abiotic stresses: revealing the role of silicon in drought and metal(loid) tolerance",
+   "autores": [
+    "Rodrigo Mora-Sanhueza",
+    "Braulio J. Soto‐Cerda",
+    "Ricardo Tighe‐Neira",
+    "Marjorie Reyes‐Díaz",
+    "José Miguel Álvarez",
+    "Adriano Nunes‐Nesi",
+    "Cristian Ibáñez",
+    "Claudio Inostroza‐Blancheteau"
+   ],
+   "posición_PI": "5/8",
+   "citas_openalex": 8,
+   "acceso_abierto": "green",
+   "líneas_propuestas": [
+    "sequia",
+    "salinidad/otros estreses"
+   ],
+   "línea_principal": "sequia",
+   "en_sitio_actual": false,
+   "fuente_título": "OpenAlex",
+   "pmid": "40570197"
+  },
+  {
+   "id": 38,
+   "doi": "10.1371/journal.pone.0324724",
+   "url": "https://doi.org/10.1371/journal.pone.0324724",
+   "año": 2025,
+   "tipo": "articulo",
+   "revista": "PLoS ONE",
+   "título": "Desert-adapted tomato Solanum pennellii exhibit unique regulatory elements and stress-ready transcriptome patterns to drought",
+   "autores": [
+    "Sebastián Contreras-Riquelme",
+    "Miguel Contreras",
+    "Tomás C. Moyano",
+    "Rachid Sjoberg",
+    "José M. Jiménez‐Gómez",
+    "José Miguel Álvarez"
+   ],
+   "posición_PI": "6/6",
+   "citas_openalex": 6,
+   "acceso_abierto": "gold",
+   "líneas_propuestas": [
+    "sequia",
+    "redes"
+   ],
+   "línea_principal": "sequia",
+   "en_sitio_actual": true,
+   "fuente_título": "Crossref",
+   "pmid": "40392843",
+   "líneas_en_maqueta_v1": [
+    "sequia"
+   ]
+  },
+  {
+   "id": 39,
+   "doi": "10.3390/plants14071064",
+   "url": "https://doi.org/10.3390/plants14071064",
+   "año": 2025,
+   "tipo": "articulo",
+   "revista": "Plants",
+   "título": "Exploring Alternative Splicing in Response to Salinity: A Tissue-Level Comparative Analysis Using Arabidopsis thaliana Public Transcriptomic Data",
+   "autores": [
+    "Jesús Hernández-Urrieta",
+    "José Miguel Álvarez",
+    "José Antonio O’Brien"
+   ],
+   "posición_PI": "2/3",
+   "citas_openalex": 5,
+   "acceso_abierto": "gold",
+   "líneas_propuestas": [
+    "salinidad/otros estreses",
+    "omica"
+   ],
+   "línea_principal": "omica",
+   "en_sitio_actual": false,
+   "fuente_título": "OpenAlex",
+   "pmid": "40219132"
+  },
+  {
+   "id": 40,
+   "doi": "10.3389/fpls.2025.1626044",
+   "url": "https://doi.org/10.3389/fpls.2025.1626044",
+   "año": 2025,
+   "tipo": "articulo",
+   "revista": "Frontiers in Plant Science",
+   "título": "Kallfu and Wenutram: two Chilean flaxseed varieties with contrasting mucilage production, composition, and structure",
+   "autores": [
+    "Susana Grant‐Grant",
+    "Dayán Sanhueza",
+    "Pablo Sepúlveda-Orellana",
+    "Sebastian Zúñiga",
+    "Sebastián Contreras-Riquelme",
+    "José Miguel Álvarez",
+    "Asier Largo‐Gosens",
+    "Susana Saez‐Aguayo"
+   ],
+   "posición_PI": "6/8",
+   "citas_openalex": 2,
+   "acceso_abierto": "gold",
+   "líneas_propuestas": [
+    "fruto/cultivos"
+   ],
+   "línea_principal": "otras",
+   "en_sitio_actual": false,
+   "fuente_título": "OpenAlex",
+   "pmid": "40949557"
+  },
+  {
+   "id": 41,
+   "doi": "10.1101/2025.11.14.688560",
+   "url": "https://doi.org/10.1101/2025.11.14.688560",
+   "año": 2025,
+   "tipo": "preprint",
+   "revista": "bioRxiv (Cold Spring Harbor Laboratory)",
+   "título": "Consistent drought regulation in grapevine is driven by directional transcription factor activity",
+   "autores": [
+    "G Vásquez-Marambio",
+    "Tomás C. Moyano",
+    "D Navarro-Payá",
+    "Álvaro Sequeida",
+    "Felipe Gaínza‐Cortés",
+    "José Tomás Matus",
+    "Ariel Orellana",
+    "José Miguel Álvarez"
+   ],
+   "posición_PI": "8/8",
+   "citas_openalex": 0,
+   "acceso_abierto": "green",
+   "líneas_propuestas": [
+    "sequia",
+    "redes"
+   ],
+   "línea_principal": "sequia",
+   "en_sitio_actual": false,
+   "fuente_título": "OpenAlex",
+   "pmid": null
+  },
+  {
+   "id": 42,
+   "doi": "10.1109/sccc67219.2025.11420384",
+   "url": "https://doi.org/10.1109/sccc67219.2025.11420384",
+   "año": 2025,
+   "tipo": "ponencia",
+   "revista": "Proceedings/Proceedings - International Conference of the Chilean Computer Science Society",
+   "título": "Low-Cost Microscopic Imaging and YOLO-Based Stomatal Analysis for Drought Detection in Plants",
+   "autores": [
+    "Martina Ortiz Lara",
+    "Elena Rojas-Roa",
+    "Camilo Osorio",
+    "José Miguel Álvarez",
+    "Carlos Navarrete",
+    "Mabel Vidal"
+   ],
+   "posición_PI": "4/6",
+   "citas_openalex": 0,
+   "acceso_abierto": "closed",
+   "líneas_propuestas": [
+    "omica",
+    "sequia"
+   ],
+   "línea_principal": "omica",
+   "en_sitio_actual": false,
+   "fuente_título": "OpenAlex",
+   "pmid": null
+  },
+  {
+   "id": 30,
+   "doi": "10.1093/plcell/koae038",
+   "url": "https://doi.org/10.1093/plcell/koae038",
+   "año": 2024,
+   "tipo": "articulo",
+   "revista": "The Plant Cell",
+   "título": "Nitrogen sensing and regulatory networks: it's about time and space",
+   "autores": [
+    "Carly M. Shanks",
+    "Karin Rothkegel",
+    "Matthew D. Brooks",
+    "Chia‐Yi Cheng",
+    "José Miguel Álvarez",
+    "Sandrine Ruffel",
+    "Gabriel Krouk",
+    "Rodrigo A. Gutiérrez",
+    "Gloria M. Coruzzi"
+   ],
+   "posición_PI": "5/9",
+   "citas_openalex": 41,
+   "acceso_abierto": "hybrid",
+   "líneas_propuestas": [
+    "nitrogeno",
+    "redes"
+   ],
+   "línea_principal": "nitrogeno",
+   "en_sitio_actual": false,
+   "fuente_título": "OpenAlex",
+   "pmid": "38366121"
+  },
+  {
+   "id": 31,
+   "doi": "10.1093/plphys/kiae346",
+   "url": "https://doi.org/10.1093/plphys/kiae346",
+   "año": 2024,
+   "tipo": "revision",
+   "revista": "PLANT PHYSIOLOGY",
+   "título": "Filling the gaps on root hair development under salt stress and phosphate starvation using current evidence coupled with a meta-analysis approach",
+   "autores": [
+    "Miguel Angel Ibeas",
+    "Hernán Salinas‐Grenet",
+    "Nathan Johnson",
+    "Jorge Pérez‐Díaz",
+    "Elena A. Vidal",
+    "José Miguel Álvarez",
+    "José M. Estevez"
+   ],
+   "posición_PI": "6/7",
+   "citas_openalex": 16,
+   "acceso_abierto": "green",
+   "líneas_propuestas": [
+    "raiz/pelos radicales",
+    "salinidad/otros estreses"
+   ],
+   "línea_principal": "otras",
+   "en_sitio_actual": false,
+   "fuente_título": "OpenAlex",
+   "pmid": "38918899"
+  },
+  {
+   "id": 32,
+   "doi": "10.1111/pce.15018",
+   "url": "https://doi.org/10.1111/pce.15018",
+   "año": 2024,
+   "tipo": "articulo",
+   "revista": "Plant Cell & Environment",
+   "título": "Dynamic changes in mRNA nucleocytoplasmic localization in the nitrate response of Arabidopsis roots",
+   "autores": [
+    "Alejandro Fonseca",
+    "Eleodoro Riveras",
+    "Tomás C. Moyano",
+    "José Miguel Álvarez",
+    "Stefanie Rosa",
+    "Rodrigo A. Gutiérrez"
+   ],
+   "posición_PI": "4/6",
+   "citas_openalex": 9,
+   "acceso_abierto": "bronze",
+   "líneas_propuestas": [
+    "nitrogeno",
+    "redes"
+   ],
+   "línea_principal": "nitrogeno",
+   "en_sitio_actual": true,
+   "fuente_título": "Crossref",
+   "pmid": "38950037",
+   "líneas_en_maqueta_v1": [
+    "nitrogeno"
+   ]
+  },
+  {
+   "id": 33,
+   "doi": "10.1111/mpp.70044",
+   "url": "https://doi.org/10.1111/mpp.70044",
+   "año": 2024,
+   "tipo": "articulo",
+   "revista": "Molecular Plant Pathology",
+   "título": "The Negative Regulators of the Basal Defence WRKY7, WRKY11 and WRKY17 Modulate the Jasmonic Acid Pathway and an Alternative Splicing Regulatory Network in Response to Pseudomonas syringae in Arabidopsis thaliana",
+   "autores": [
+    "Isabel Fuenzalida‐Valdivia",
+    "Ariel Herrera‐Vásquez",
+    "María Victoria Gangas",
+    "Julio Sáez‐Vasquez",
+    "José Miguel Álvarez",
+    "Claudio Meneses",
+    "Francisca Blanco‐Herrera"
+   ],
+   "posición_PI": "5/7",
+   "citas_openalex": 7,
+   "acceso_abierto": "gold",
+   "líneas_propuestas": [
+    "defensa y patógenos",
+    "redes"
+   ],
+   "línea_principal": "redes",
+   "en_sitio_actual": false,
+   "fuente_título": "OpenAlex",
+   "pmid": "39717006"
+  },
+  {
+   "id": 34,
+   "doi": "10.1111/tpj.17143",
+   "url": "https://doi.org/10.1111/tpj.17143",
+   "año": 2024,
+   "tipo": "articulo",
+   "revista": "The Plant Journal",
+   "título": "The root hairless mutant buzz in Brachypodium distachyon shows increased nitrate uptake and signaling but does not affect overall nitrogen use efficiency",
+   "autores": [
+    "Miguel Angel Rosas",
+    "José Miguel Álvarez",
+    "Karen A. Sanguinet"
+   ],
+   "posición_PI": "2/3",
+   "citas_openalex": 1,
+   "acceso_abierto": "hybrid",
+   "líneas_propuestas": [
+    "nitrogeno",
+    "raiz/pelos radicales"
+   ],
+   "línea_principal": "nitrogeno",
+   "en_sitio_actual": false,
+   "fuente_título": "OpenAlex",
+   "pmid": "39570729"
+  },
+  {
+   "id": 25,
+   "doi": "10.1111/nph.18723",
+   "url": "https://doi.org/10.1111/nph.18723",
+   "año": 2023,
+   "tipo": "articulo",
+   "revista": "New Phytologist",
+   "título": "Cell surface receptor kinase FERONIA linked to nutrient sensor TORC signaling controls root hair growth at low temperature linked to low nitrate in Arabidopsis thaliana",
+   "autores": [
+    "Javier Martínez Pacheco",
+    "Limei Song",
+    "Lenka Kuběnová",
+    "Miroslav Ovečka",
+    "Victoria Berdion Gabarain",
+    "Juan Manuel Peralta",
+    "Tomás Urzúa Lehuedé",
+    "Miguel Angel Ibeas",
+    "Martiniano M. Ricardi",
+    "Sirui Zhu",
+    "Yanan Shen",
+    "Mikhail V. Schepetilnikov",
+    "Lyubov A. Ryabova",
+    "José Miguel Álvarez",
+    "Rodrigo A. Gutiérrez",
+    "Guido Großmann",
+    "Jozef Šamaj",
+    "Feng Yu",
+    "José M. Estevez"
+   ],
+   "posición_PI": "14/19",
+   "citas_openalex": 49,
+   "acceso_abierto": "bronze",
+   "líneas_propuestas": [
+    "raiz/pelos radicales",
+    "nitrogeno"
+   ],
+   "línea_principal": "nitrogeno",
+   "en_sitio_actual": false,
+   "fuente_título": "OpenAlex",
+   "pmid": "36716782"
+  },
+  {
+   "id": 26,
+   "doi": "10.1111/nph.19403",
+   "url": "https://doi.org/10.1111/nph.19403",
+   "año": 2023,
+   "tipo": "articulo",
+   "revista": "New Phytologist",
+   "título": "Insights into molecular links and transcription networks integrating drought stress and nitrogen signaling",
+   "autores": [
+    "Ariel Cerda",
+    "José Miguel Álvarez"
+   ],
+   "posición_PI": "2/2",
+   "citas_openalex": 33,
+   "acceso_abierto": "bronze",
+   "líneas_propuestas": [
+    "nitrogeno",
+    "sequia",
+    "redes"
+   ],
+   "línea_principal": "nitrogeno",
+   "en_sitio_actual": true,
+   "fuente_título": "Crossref",
+   "pmid": "37974513",
+   "líneas_en_maqueta_v1": [
+    "sequia",
+    "nitrogeno"
+   ]
+  },
+  {
+   "id": 27,
+   "doi": "10.3390/jof9010084",
+   "url": "https://doi.org/10.3390/jof9010084",
+   "año": 2023,
+   "tipo": "articulo",
+   "revista": "Journal of Fungi",
+   "título": "The Botrytis cinerea Gene Expression Browser",
+   "autores": [
+    "Gabriel Pérez-Lara",
+    "Tomás C. Moyano",
+    "Andrea Vega",
+    "Luis Fernando Larrondo",
+    "Rubén Polanco",
+    "José Miguel Álvarez",
+    "Daniel Aguayo",
+    "Paulo Canessa"
+   ],
+   "posición_PI": "6/8",
+   "citas_openalex": 6,
+   "acceso_abierto": "gold",
+   "líneas_propuestas": [
+    "omica",
+    "defensa y patógenos"
+   ],
+   "línea_principal": "omica",
+   "en_sitio_actual": false,
+   "fuente_título": "OpenAlex",
+   "pmid": "36675905"
+  },
+  {
+   "id": 28,
+   "doi": "10.1007/978-1-0716-3354-0_7",
+   "url": "https://doi.org/10.1007/978-1-0716-3354-0_7",
+   "año": 2023,
+   "tipo": "capitulo",
+   "revista": "Methods in molecular biology",
+   "título": "DamID-seq: A Genome-Wide DNA Methylation Method that Captures Both Transient and Stable TF-DNA Interactions in Plant Cells",
+   "autores": [
+    "José Miguel Álvarez",
+    "Will Edward Hinckley",
+    "Lauriebeth Leonelli",
+    "Matthew D. Brooks",
+    "Gloria M. Coruzzi"
+   ],
+   "posición_PI": "1/5",
+   "citas_openalex": 5,
+   "acceso_abierto": "closed",
+   "líneas_propuestas": [
+    "redes"
+   ],
+   "línea_principal": "redes",
+   "en_sitio_actual": false,
+   "fuente_título": "OpenAlex",
+   "pmid": "37682471"
+  },
+  {
+   "id": 29,
+   "doi": "10.1007/s00344-023-11153-2",
+   "url": "https://doi.org/10.1007/s00344-023-11153-2",
+   "año": 2023,
+   "tipo": "articulo",
+   "revista": "Journal of Plant Growth Regulation",
+   "título": "NAC072 Interacts with HB12, HAT9, and MYBR1 in a Temporal Regulatory Network Controlling Peach Fruit Development",
+   "autores": [
+    "Gerardo Núñez‐Lillo",
+    "José Zabala",
+    "Victoria Lillo-Carmona",
+    "José Miguel Álvarez",
+    "Romina Pedreschi",
+    "Claudio Meneses"
+   ],
+   "posición_PI": "4/6",
+   "citas_openalex": 0,
+   "acceso_abierto": "closed",
+   "líneas_propuestas": [
+    "fruto/cultivos",
+    "redes"
+   ],
+   "línea_principal": "redes",
+   "en_sitio_actual": false,
+   "fuente_título": "OpenAlex",
+   "pmid": null
+  },
+  {
+   "id": 20,
+   "doi": "10.1073/pnas.2107879119",
+   "url": "https://doi.org/10.1073/pnas.2107879119",
+   "año": 2022,
+   "tipo": "articulo",
+   "revista": "Proceedings of the National Academy of Sciences",
+   "título": "Spatiotemporal analysis identifies ABF2 and ABF3 as key hubs of endodermal response to nitrate",
+   "autores": [
+    "Orlando Contreras‐López",
+    "Elena A. Vidal",
+    "Eleodoro Riveras",
+    "José Miguel Álvarez",
+    "Tomás C. Moyano",
+    "Erin E. Sparks",
+    "Joaquı́n Medina",
+    "Angelo V. Pasquino",
+    "Philip N. Benfey",
+    "Gloria M. Coruzzi",
+    "Rodrigo A. Gutiérrez"
+   ],
+   "posición_PI": "4/11",
+   "citas_openalex": 50,
+   "acceso_abierto": "hybrid",
+   "líneas_propuestas": [
+    "nitrogeno",
+    "redes"
+   ],
+   "línea_principal": "nitrogeno",
+   "en_sitio_actual": true,
+   "fuente_título": "Crossref",
+   "pmid": "35046022",
+   "líneas_en_maqueta_v1": [
+    "sequia",
+    "redes"
+   ]
+  },
+  {
+   "id": 21,
+   "doi": "10.1016/j.cub.2022.03.022",
+   "url": "https://doi.org/10.1016/j.cub.2022.03.022",
+   "año": 2022,
+   "tipo": "articulo",
+   "revista": "Current Biology",
+   "título": "Molecular mechanisms underlying nitrate responses in plants",
+   "autores": [
+    "Liliana Lamig",
+    "Sebastián Moreno",
+    "José Miguel Álvarez",
+    "Rodrigo A. Gutiérrez"
+   ],
+   "posición_PI": "3/4",
+   "citas_openalex": 28,
+   "acceso_abierto": "bronze",
+   "líneas_propuestas": [
+    "nitrogeno"
+   ],
+   "línea_principal": "nitrogeno",
+   "en_sitio_actual": true,
+   "fuente_título": "Crossref",
+   "pmid": "35537398",
+   "líneas_en_maqueta_v1": [
+    "nitrogeno"
+   ]
+  },
+  {
+   "id": 22,
+   "doi": "10.3389/fpls.2022.1006044",
+   "url": "https://doi.org/10.3389/fpls.2022.1006044",
+   "año": 2022,
+   "tipo": "articulo",
+   "revista": "Frontiers in Plant Science",
+   "título": "Validation of a high-confidence regulatory network for gene-to-NUE phenotype in field-grown rice",
+   "autores": [
+    "Carly M. Shanks",
+    "Ji Huang",
+    "Chia‐Yi Cheng",
+    "Hung-Jui S. Shih",
+    "Matthew D. Brooks",
+    "José Miguel Álvarez",
+    "Viviana Araus",
+    "Joseph Swift",
+    "Amelia Henry",
+    "Gloria M. Coruzzi"
+   ],
+   "posición_PI": "6/10",
+   "citas_openalex": 15,
+   "acceso_abierto": "gold",
+   "líneas_propuestas": [
+    "nitrogeno",
+    "redes",
+    "omica"
+   ],
+   "línea_principal": "nitrogeno",
+   "en_sitio_actual": false,
+   "fuente_título": "OpenAlex",
+   "pmid": "36507422"
+  },
+  {
+   "id": 23,
+   "doi": "10.7554/elife.83691",
+   "url": "https://doi.org/10.7554/elife.83691",
+   "año": 2022,
+   "tipo": "articulo",
+   "revista": "eLife",
+   "título": "Comprehensive re-analysis of hairpin small RNAs in fungi reveals loci with conserved links",
+   "autores": [
+    "Nathan Johnson",
+    "Luis Fernando Larrondo",
+    "José Miguel Álvarez",
+    "Elena A. Vidal"
+   ],
+   "posición_PI": "3/4",
+   "citas_openalex": 11,
+   "acceso_abierto": "gold",
+   "líneas_propuestas": [
+    "hongos y ARN pequeños"
+   ],
+   "línea_principal": "otras",
+   "en_sitio_actual": false,
+   "fuente_título": "OpenAlex",
+   "pmid": "36484778"
+  },
+  {
+   "id": 24,
+   "doi": "10.3390/plants11243473",
+   "url": "https://doi.org/10.3390/plants11243473",
+   "año": 2022,
+   "tipo": "articulo",
+   "revista": "Plants",
+   "título": "Transcriptome and Gene Regulatory Network Analyses Reveal New Transcription Factors in Mature Fruit Associated with Harvest Date in Prunus persica",
+   "autores": [
+    "Gerardo Núñez‐Lillo",
+    "Wellasmin Pérez-Reyes",
+    "Aníbal Riveros",
+    "Victoria Lillo-Carmona",
+    "Karin Rothkegel",
+    "José Miguel Álvarez",
+    "Francisca Blanco‐Herrera",
+    "Romina Pedreschi",
+    "Reinaldo Campos‐Vargas",
+    "Claudio Meneses"
+   ],
+   "posición_PI": "6/10",
+   "citas_openalex": 10,
+   "acceso_abierto": "gold",
+   "líneas_propuestas": [
+    "fruto/cultivos",
+    "redes"
+   ],
+   "línea_principal": "redes",
+   "en_sitio_actual": false,
+   "fuente_título": "OpenAlex",
+   "pmid": "36559585"
+  },
+  {
+   "id": 18,
+   "doi": "10.1146/annurev-arplant-081320-090914",
+   "url": "https://doi.org/10.1146/annurev-arplant-081320-090914",
+   "año": 2021,
+   "tipo": "revision",
+   "revista": "Annual Review of Plant Biology",
+   "título": "Time-Based Systems Biology Approaches to Capture and Model Dynamic Gene Regulatory Networks",
+   "autores": [
+    "José Miguel Álvarez",
+    "Matthew D. Brooks",
+    "Joseph Swift",
+    "Gloria M. Coruzzi"
+   ],
+   "posición_PI": "1/4",
+   "citas_openalex": 42,
+   "acceso_abierto": "bronze",
+   "líneas_propuestas": [
+    "redes"
+   ],
+   "línea_principal": "redes",
+   "en_sitio_actual": false,
+   "fuente_título": "OpenAlex",
+   "pmid": "33667112"
+  },
+  {
+   "id": 19,
+   "doi": "10.1007/978-1-0716-1534-8_3",
+   "url": "https://doi.org/10.1007/978-1-0716-1534-8_3",
+   "año": 2021,
+   "tipo": "capitulo",
+   "revista": "Methods in molecular biology",
+   "título": "Genomic Footprinting Analyses from DNase-seq Data to Construct Gene Regulatory Networks",
+   "autores": [
+    "Tomás C. Moyano",
+    "Rodrigo A. Gutiérrez",
+    "José Miguel Álvarez"
+   ],
+   "posición_PI": "3/3",
+   "citas_openalex": 4,
+   "acceso_abierto": "closed",
+   "líneas_propuestas": [
+    "redes"
+   ],
+   "línea_principal": "redes",
+   "en_sitio_actual": false,
+   "fuente_título": "OpenAlex",
+   "pmid": "34251618"
+  },
+  {
+   "id": 13,
+   "doi": "10.1105/tpc.19.00748",
+   "url": "https://doi.org/10.1105/tpc.19.00748",
+   "año": 2020,
+   "tipo": "articulo",
+   "revista": "The Plant Cell",
+   "título": "Nitrate in 2020: Thirty Years from Transport to Signaling Networks",
+   "autores": [
+    "Elena A. Vidal",
+    "José Miguel Álvarez",
+    "Viviana Araus",
+    "Eleodoro Riveras",
+    "Matthew D. Brooks",
+    "Gabriel Krouk",
+    "Sandrine Ruffel",
+    "Laurence Lejay",
+    "Nigel M. Crawford",
+    "Gloria M. Coruzzi",
+    "Rodrigo A. Gutiérrez"
+   ],
+   "posición_PI": "2/11",
+   "citas_openalex": 382,
+   "acceso_abierto": "hybrid",
+   "líneas_propuestas": [
+    "nitrogeno",
+    "redes"
+   ],
+   "línea_principal": "nitrogeno",
+   "en_sitio_actual": true,
+   "fuente_título": "Crossref",
+   "pmid": "32169959",
+   "líneas_en_maqueta_v1": [
+    "nitrogeno"
+   ]
+  },
+  {
+   "id": 14,
+   "doi": "10.1038/s41467-020-14979-6",
+   "url": "https://doi.org/10.1038/s41467-020-14979-6",
+   "año": 2020,
+   "tipo": "articulo",
+   "revista": "Nature Communications",
+   "título": "Transient genome-wide interactions of the master transcription factor NLP7 initiate a rapid nitrogen-response cascade",
+   "autores": [
+    "José Miguel Álvarez",
+    "Anna-Lena M. Schinke",
+    "Matthew D. Brooks",
+    "Angelo V. Pasquino",
+    "Lauriebeth Leonelli",
+    "Kranthi Varala",
+    "Alaeddine Safi",
+    "Gabriel Krouk",
+    "Anne Krapp",
+    "Gloria M. Coruzzi"
+   ],
+   "posición_PI": "1/10",
+   "citas_openalex": 175,
+   "acceso_abierto": "gold",
+   "líneas_propuestas": [
+    "nitrogeno",
+    "redes"
+   ],
+   "línea_principal": "nitrogeno",
+   "en_sitio_actual": false,
+   "fuente_título": "OpenAlex",
+   "pmid": "32123177"
+  },
+  {
+   "id": 15,
+   "doi": "10.1093/jxb/eraa054",
+   "url": "https://doi.org/10.1093/jxb/eraa054",
+   "año": 2020,
+   "tipo": "articulo",
+   "revista": "Journal of Experimental Botany",
+   "título": "A balancing act: how plants integrate nitrogen and water signals",
+   "autores": [
+    "Viviana Araus",
+    "Joseph Swift",
+    "José Miguel Álvarez",
+    "Amelia Henry",
+    "Gloria M. Coruzzi"
+   ],
+   "posición_PI": "3/5",
+   "citas_openalex": 101,
+   "acceso_abierto": "hybrid",
+   "líneas_propuestas": [
+    "nitrogeno",
+    "sequia"
+   ],
+   "línea_principal": "nitrogeno",
+   "en_sitio_actual": false,
+   "fuente_título": "OpenAlex",
+   "pmid": "31990028"
+  },
+  {
+   "id": 16,
+   "doi": "10.1073/pnas.1918619117",
+   "url": "https://doi.org/10.1073/pnas.1918619117",
+   "año": 2020,
+   "tipo": "articulo",
+   "revista": "Proceedings of the National Academy of Sciences",
+   "título": "Nutrient dose-responsive transcriptome changes driven by Michaelis–Menten kinetics underlie plant growth rates",
+   "autores": [
+    "Joseph Swift",
+    "José Miguel Álvarez",
+    "Viviana Araus",
+    "Rodrigo A. Gutiérrez",
+    "Gloria M. Coruzzi"
+   ],
+   "posición_PI": "2/5",
+   "citas_openalex": 76,
+   "acceso_abierto": "hybrid",
+   "líneas_propuestas": [
+    "nitrogeno"
+   ],
+   "línea_principal": "nitrogeno",
+   "en_sitio_actual": false,
+   "fuente_título": "OpenAlex",
+   "pmid": "32414922"
+  },
+  {
+   "id": 17,
+   "doi": "10.1093/plphys/kiaa012",
+   "url": "https://doi.org/10.1093/plphys/kiaa012",
+   "año": 2020,
+   "tipo": "articulo",
+   "revista": "PLANT PHYSIOLOGY",
+   "título": "ConnecTF: A platform to integrate transcription factor–gene interactions and validate regulatory networks",
+   "autores": [
+    "Matthew D. Brooks",
+    "Che-Lun Juang",
+    "Manpreet Singh Katari",
+    "José Miguel Álvarez",
+    "Angelo V. Pasquino",
+    "Hung-Jui S. Shih",
+    "Ji Huang",
+    "Carly M. Shanks",
+    "Jacopo Cirrone",
+    "Gloria M. Coruzzi"
+   ],
+   "posición_PI": "4/10",
+   "citas_openalex": 58,
+   "acceso_abierto": "hybrid",
+   "líneas_propuestas": [
+    "redes",
+    "omica"
+   ],
+   "línea_principal": "redes",
+   "en_sitio_actual": false,
+   "fuente_título": "OpenAlex",
+   "pmid": "33631799"
+  },
+  {
+   "id": 11,
+   "doi": "10.1038/s41467-019-09522-1",
+   "url": "https://doi.org/10.1038/s41467-019-09522-1",
+   "año": 2019,
+   "tipo": "articulo",
+   "revista": "Nature Communications",
+   "título": "Network Walking charts transcriptional dynamics of nitrogen signaling by integrating validated and predicted genome-wide interactions",
+   "autores": [
+    "Matthew D. Brooks",
+    "Jacopo Cirrone",
+    "Angelo V. Pasquino",
+    "José Miguel Álvarez",
+    "Joseph Swift",
+    "Shipra Mittal",
+    "Che-Lun Juang",
+    "Kranthi Varala",
+    "Rodrigo A. Gutiérrez",
+    "Gabriel Krouk",
+    "Dennis E. Shasha",
+    "Gloria M. Coruzzi"
+   ],
+   "posición_PI": "4/12",
+   "citas_openalex": 151,
+   "acceso_abierto": "gold",
+   "líneas_propuestas": [
+    "nitrogeno",
+    "redes",
+    "omica"
+   ],
+   "línea_principal": "nitrogeno",
+   "en_sitio_actual": true,
+   "fuente_título": "Crossref",
+   "pmid": "30952851",
+   "líneas_en_maqueta_v1": [
+    "redes",
+    "nitrogeno",
+    "omica"
+   ]
+  },
+  {
+   "id": 12,
+   "doi": "10.1016/j.molp.2019.09.002",
+   "url": "https://doi.org/10.1016/j.molp.2019.09.002",
+   "año": 2019,
+   "tipo": "articulo",
+   "revista": "Molecular Plant",
+   "título": "Local Changes in Chromatin Accessibility and Transcriptional Networks Underlying the Nitrate Response in Arabidopsis Roots",
+   "autores": [
+    "José Miguel Álvarez",
+    "Tomás C. Moyano",
+    "Tao Zhang",
+    "Diana E. Gras",
+    "Francisco J. Herrera",
+    "Viviana Araus",
+    "José Antonio O’Brien",
+    "Laura Carrillo",
+    "Joaquı́n Medina",
+    "Jesús Vicente‐Carbajosa",
+    "Jiming Jiang",
+    "Rodrigo A. Gutiérrez"
+   ],
+   "posición_PI": "1/12",
+   "citas_openalex": 49,
+   "acceso_abierto": "hybrid",
+   "líneas_propuestas": [
+    "nitrogeno",
+    "redes"
+   ],
+   "línea_principal": "nitrogeno",
+   "en_sitio_actual": true,
+   "fuente_título": "Crossref",
+   "pmid": "31526863",
+   "líneas_en_maqueta_v1": [
+    "nitrogeno",
+    "redes"
+   ]
+  },
+  {
+   "id": 9,
+   "doi": "10.1111/tpj.13656",
+   "url": "https://doi.org/10.1111/tpj.13656",
+   "año": 2017,
+   "tipo": "articulo",
+   "revista": "The Plant Journal",
+   "título": "Nitrate induction of root hair density is mediated by TGA 1/ TGA 4 and CPC transcription factors in Arabidopsis thaliana",
+   "autores": [
+    "Javier Canales",
+    "Orlando Contreras‐López",
+    "José Miguel Álvarez",
+    "Rodrigo A. Gutiérrez"
+   ],
+   "posición_PI": "3/4",
+   "citas_openalex": 128,
+   "acceso_abierto": "green",
+   "líneas_propuestas": [
+    "nitrogeno",
+    "raiz/pelos radicales"
+   ],
+   "línea_principal": "nitrogeno",
+   "en_sitio_actual": false,
+   "fuente_título": "OpenAlex",
+   "pmid": "28771873"
+  },
+  {
+   "id": 10,
+   "doi": "10.1093/jxb/erx041",
+   "url": "https://doi.org/10.1093/jxb/erx041",
+   "año": 2017,
+   "tipo": "articulo",
+   "revista": "Journal of Experimental Botany",
+   "título": "Nitrate signaling and early responses in Arabidopsis roots",
+   "autores": [
+    "Soledad Francisca Undurraga",
+    "Catalina Ibarra-Henríquez",
+    "Isabel Fredes",
+    "José Miguel Álvarez",
+    "Rodrigo A. Gutiérrez"
+   ],
+   "posición_PI": "4/5",
+   "citas_openalex": 99,
+   "acceso_abierto": "green",
+   "líneas_propuestas": [
+    "nitrogeno"
+   ],
+   "línea_principal": "nitrogeno",
+   "en_sitio_actual": false,
+   "fuente_título": "OpenAlex",
+   "pmid": "28369507"
+  },
+  {
+   "id": 8,
+   "doi": "10.1073/pnas.1603229113",
+   "url": "https://doi.org/10.1073/pnas.1603229113",
+   "año": 2016,
+   "tipo": "articulo",
+   "revista": "Proceedings of the National Academy of Sciences",
+   "título": "Mapping transcription factor interactome networks using HaloTag protein arrays",
+   "autores": [
+    "Junshi Yazaki",
+    "Mary Galli",
+    "Alice Y. Kim",
+    "Kazumasa Nito",
+    "Fernando Alemán",
+    "Katherine Noelani Chang",
+    "Anne‐Ruxandra Carvunis",
+    "Rosa Quan",
+    "Hien P. Nguyen",
+    "Liang Song",
+    "José Miguel Álvarez",
+    "Shao‐shan Carol Huang",
+    "Huaming Chen",
+    "Niroshan Ramachandran",
+    "Stefan Altmann",
+    "Rodrigo A. Gutiérrez",
+    "DAVID EDWIN HILL",
+    "Julian I. Schroeder",
+    "Joanne Chory",
+    "Joshua LaBaer",
+    "Marc Vidal",
+    "Pascal Falter‐Braun",
+    "Joseph R. Ecker"
+   ],
+   "posición_PI": "11/23",
+   "citas_openalex": 78,
+   "acceso_abierto": "green",
+   "líneas_propuestas": [
+    "redes"
+   ],
+   "línea_principal": "redes",
+   "en_sitio_actual": false,
+   "fuente_título": "OpenAlex",
+   "pmid": "27357687"
+  },
+  {
+   "id": 6,
+   "doi": "10.1104/pp.15.00961",
+   "url": "https://doi.org/10.1104/pp.15.00961",
+   "año": 2015,
+   "tipo": "articulo",
+   "revista": "PLANT PHYSIOLOGY",
+   "título": "The Calcium Ion Is a Second Messenger in the Nitrate Signaling Pathway of Arabidopsis",
+   "autores": [
+    "Eleodoro Riveras",
+    "José Miguel Álvarez",
+    "Elena A. Vidal",
+    "Carolina Oses",
+    "Andrea Vega",
+    "Rodrigo A. Gutiérrez"
+   ],
+   "posición_PI": "2/6",
+   "citas_openalex": 260,
+   "acceso_abierto": "green",
+   "líneas_propuestas": [
+    "nitrogeno"
+   ],
+   "línea_principal": "nitrogeno",
+   "en_sitio_actual": false,
+   "fuente_título": "OpenAlex",
+   "pmid": "26304850"
+  },
+  {
+   "id": 7,
+   "doi": "10.1016/j.pbi.2015.06.010",
+   "url": "https://doi.org/10.1016/j.pbi.2015.06.010",
+   "año": 2015,
+   "tipo": "revision",
+   "revista": "Current Opinion in Plant Biology",
+   "título": "Transcriptional networks in the nitrate response of Arabidopsis thaliana",
+   "autores": [
+    "Elena A. Vidal",
+    "José Miguel Álvarez",
+    "Tomás C. Moyano",
+    "Rodrigo A. Gutiérrez"
+   ],
+   "posición_PI": "2/4",
+   "citas_openalex": 96,
+   "acceso_abierto": "green",
+   "líneas_propuestas": [
+    "nitrogeno",
+    "redes"
+   ],
+   "línea_principal": "nitrogeno",
+   "en_sitio_actual": false,
+   "fuente_título": "OpenAlex",
+   "pmid": "26247122"
+  },
+  {
+   "id": 4,
+   "doi": "10.1111/tpj.12618",
+   "url": "https://doi.org/10.1111/tpj.12618",
+   "año": 2014,
+   "tipo": "articulo",
+   "revista": "The Plant Journal",
+   "título": "Systems approach identifies TGA 1 and TGA 4 transcription factors as important regulatory components of the nitrate response of A rabidopsis thaliana roots",
+   "autores": [
+    "José Miguel Álvarez",
+    "Eleodoro Riveras",
+    "Elena A. Vidal",
+    "Diana E. Gras",
+    "Orlando Contreras‐López",
+    "Karem P. Tamayo",
+    "Felipe F. Aceituno",
+    "Isabel Gómez",
+    "Sandrine Ruffel",
+    "Laurence Lejay",
+    "Xavier Jordana",
+    "Rodrigo A. Gutiérrez"
+   ],
+   "posición_PI": "1/12",
+   "citas_openalex": 321,
+   "acceso_abierto": "bronze",
+   "líneas_propuestas": [
+    "nitrogeno",
+    "redes"
+   ],
+   "línea_principal": "nitrogeno",
+   "en_sitio_actual": false,
+   "fuente_título": "OpenAlex",
+   "pmid": "25039575"
+  },
+  {
+   "id": 5,
+   "doi": "10.4161/psb.28501",
+   "url": "https://doi.org/10.4161/psb.28501",
+   "año": 2014,
+   "tipo": "articulo",
+   "revista": "Plant Signaling & Behavior",
+   "título": "Nitrate regulation of AFB3 and NAC4 gene expression in Arabidopsis roots depends on NRT1.1 nitrate transport function",
+   "autores": [
+    "Elena A. Vidal",
+    "José Miguel Álvarez",
+    "Rodrigo A. Gutiérrez"
+   ],
+   "posición_PI": "2/3",
+   "citas_openalex": 87,
+   "acceso_abierto": "bronze",
+   "líneas_propuestas": [
+    "nitrogeno"
+   ],
+   "línea_principal": "nitrogeno",
+   "en_sitio_actual": false,
+   "fuente_título": "OpenAlex",
+   "pmid": "24642706"
+  },
+  {
+   "id": 3,
+   "doi": "10.1016/j.pbi.2012.03.009",
+   "url": "https://doi.org/10.1016/j.pbi.2012.03.009",
+   "año": 2012,
+   "tipo": "revision",
+   "revista": "Current Opinion in Plant Biology",
+   "título": "Integration of local and systemic signaling pathways for plant N responses",
+   "autores": [
+    "José Miguel Álvarez",
+    "Elena A. Vidal",
+    "Rodrigo A. Gutiérrez"
+   ],
+   "posición_PI": "1/3",
+   "citas_openalex": 158,
+   "acceso_abierto": "green",
+   "líneas_propuestas": [
+    "nitrogeno"
+   ],
+   "línea_principal": "nitrogeno",
+   "en_sitio_actual": false,
+   "fuente_título": "OpenAlex",
+   "pmid": "22480431"
+  },
+  {
+   "id": 1,
+   "doi": "10.1016/j.fgb.2008.10.002",
+   "url": "https://doi.org/10.1016/j.fgb.2008.10.002",
+   "año": 2008,
+   "tipo": "articulo",
+   "revista": "Fungal Genetics and Biology",
+   "título": "Expression of genes encoding laccase and manganese-dependent peroxidase in the fungus Ceriporiopsis subvermispora is mediated by an ACE1-like copper-fist transcription factor",
+   "autores": [
+    "José Miguel Álvarez",
+    "Paulo Canessa",
+    "Rodrigo A. Mancilla",
+    "Rubén Polanco",
+    "Patricio Santibáñez",
+    "Rafael Vicuña"
+   ],
+   "posición_PI": "1/6",
+   "citas_openalex": 76,
+   "acceso_abierto": "green",
+   "líneas_propuestas": [
+    "hongos y ARN pequeños"
+   ],
+   "línea_principal": "otras",
+   "en_sitio_actual": false,
+   "fuente_título": "OpenAlex",
+   "pmid": "18955150"
+  },
+  {
+   "id": 2,
+   "doi": "10.1099/mic.0.2007/013128-0",
+   "url": "https://doi.org/10.1099/mic.0.2007/013128-0",
+   "año": 2008,
+   "tipo": "articulo",
+   "revista": "Microbiology",
+   "título": "The copper-dependent ACE1 transcription factor activates the transcription of the mco1 gene from the basidiomycete Phanerochaete chrysosporium",
+   "autores": [
+    "Paulo Canessa",
+    "José Miguel Álvarez",
+    "Rubén Polanco",
+    "Paulina Bull",
+    "Rafael Vicuña"
+   ],
+   "posición_PI": "2/5",
+   "citas_openalex": 22,
+   "acceso_abierto": "green",
+   "líneas_propuestas": [
+    "hongos y ARN pequeños"
+   ],
+   "línea_principal": "otras",
+   "en_sitio_actual": false,
+   "fuente_título": "OpenAlex",
+   "pmid": "18227253"
+  }
+ ]
+}
