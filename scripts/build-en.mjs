@@ -34,6 +34,7 @@ const bundleLiterals = {
   'tabla de verdad ·':'truth table ·'
 };
 for (const [from, to] of Object.entries(bundleLiterals)) bundle = bundle.replaceAll(from, to);
+bundle = bundle.replace('n.deg + " connections"', 'n.deg + (n.deg === 1 ? " connection" : " connections")');
 const bundleHash = crypto.createHash('sha256').update(bundle).digest('hex').slice(0, 10);
 const englishAsset = `/assets/pgr.en.${bundleHash}.js`;
 fs.writeFileSync(path.join(dist, englishAsset.slice(1)), bundle);
@@ -208,6 +209,7 @@ const literals = {
   "'seleccionado'":"'selected'", "'copiado'":"'copied'", "'copiar'":"'copy'"
 };
 for (const [from, to] of Object.entries(literals)) html = html.replaceAll(from, to);
+html = html.replace("n.deg + ' conexiones</p>'", "n.deg + (n.deg === 1 ? ' connection' : ' connections') + '</p>'");
 
 const attributes = {
   'aria-label="Pausar animaciones"':'aria-label="Pause animations"',
