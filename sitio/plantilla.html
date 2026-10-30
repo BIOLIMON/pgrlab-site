@@ -161,8 +161,8 @@ html { scroll-behavior: smooth; }
 .footer-row { display: flex; flex-wrap: wrap; justify-content: space-between; gap: var(--space-4); margin-top: var(--space-6); padding-top: var(--space-4); border-top: var(--rule-width) solid var(--rule); }
 .footer-row span, .footer-row a { font-family: var(--font-mono); font-size: 13px; color: var(--ink-muted); }
 
-/* Navegación colapsada bajo 1080px: los ocho enlaces no caben en una línea */
-@media (max-width: 1080px) {
+/* Navegación colapsada bajo 1200px para incluir el selector de idioma */
+@media (max-width: 1200px) {
   .nav-toggle { display: inline-block; order: 1; }
   .pgr-motion { order: 1; }
   .pgr-header nav { order: 5; }
@@ -241,6 +241,7 @@ html { scroll-behavior: smooth; }
         <li><a href="#nucleo" data-scramble>núcleo</a></li>
         <li><a href="#noticias" data-scramble>noticias</a></li>
         <li><a href="#contacto" data-scramble>contacto</a></li>
+        <li><a href="/en/" lang="en" hreflang="en" aria-label="View site in English">EN</a></li>
       </ul></nav>
     </header>
     <div class="progress" id="progress" aria-hidden="true"></div>

@@ -265,6 +265,9 @@ function main() {
   const ldJson = JSON.stringify(org).replaceAll('</', '<\\/');
   const meta = `<meta name="description" content="${e(desc)}">
 <link rel="canonical" href="${e(sitio.dominio)}">
+<link rel="alternate" hreflang="es" href="${e(sitio.dominio)}">
+<link rel="alternate" hreflang="en" href="${e(sitio.dominio)}en/">
+<link rel="alternate" hreflang="x-default" href="${e(sitio.dominio)}">
 <link rel="icon" href="/favicon.png">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="${e(sitio.nombre)}">
