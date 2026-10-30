@@ -8,7 +8,7 @@
     "node": ">=18"
   },
   "scripts": {
-    "build": "node scripts/build.mjs",
+    "build": "node scripts/build.mjs && node scripts/build-en.mjs",
     "dev": "node scripts/build.mjs && npx wrangler dev",
     "deploy": "node scripts/build.mjs && npx wrangler deploy",
     "verify:titles": "python3 scripts/verificar_titulos.py dist/index.html",

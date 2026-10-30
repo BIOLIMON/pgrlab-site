@@ -22,7 +22,7 @@ Requiere Node ≥ 18. No hay dependencias que instalar.
 
 | Comando | Qué hace |
 |---|---|
-| `npm run build` | Genera `dist/` desde `sitio/` y `public/` |
+| `npm run build` | Genera las portadas en español (`dist/index.html`) e inglés (`dist/en/index.html`) desde `sitio/` y `public/` |
 | `npm run dev` | Build + servidor local del Worker en http://localhost:8787 (`wrangler dev`) |
 | `npm run deploy` | Build + despliegue en Cloudflare (`wrangler deploy`) |
 | `npm run verify:titles` | Compara los títulos de las publicaciones con Crossref (Python 3, requiere internet) |
@@ -42,6 +42,7 @@ sistema-de-diseno/      Sistema de diseño (tokens, bundle.css, bundle.js con lo
 public/                 Se copia tal cual a dist/: imágenes, favicon, robots, sitemap, _headers
   genes/                Página oculta «¿Cuándo nació cada gen?» (noindex, sin enlace desde el sitio)
 scripts/build.mjs       Generador del sitio (sin dependencias)
+scripts/build-en.mjs    Traducciones de la versión inglesa, incluida la interfaz interactiva
 src/worker.ts           Worker: redirecciones de rutas antiguas, 404 y diagnóstico
 ```
 
@@ -50,6 +51,8 @@ src/worker.ts           Worker: redirecciones de rutas antiguas, 404 y diagnóst
 1. Edita el archivo correspondiente en `sitio/contenido/`.
 2. Corre `npm run build` y revisa con `npm run dev`.
 3. Si tocaste publicaciones, corre `npm run verify:titles`: debe dar 0 diferencias.
+
+La portada en inglés se sirve en `/en/`. Al cambiar contenido en español, actualiza las traducciones correspondientes en `scripts/build-en.mjs` y vuelve a generar ambas páginas. Se conservan los títulos originales de las publicaciones y las URL de sus fuentes.
 
 Reglas del contenido (del brief de diseño): cada cifra o credencial lleva su fuente en `sitio.json`; no se publica una persona sin nombre completo y rol confirmados; no se dejan controles sin función.
 

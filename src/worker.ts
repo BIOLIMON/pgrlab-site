@@ -29,6 +29,9 @@ export default {
     if (url.pathname === '/__worker_ping') {
       return tag(new Response('ok', { status: 200, headers: { 'content-type': 'text/plain' } }));
     }
+    if (url.pathname === '/en') {
+      return tag(Response.redirect(new URL('/en/' + url.search + url.hash, url.origin).toString(), 301));
+    }
 
     // Rutas antiguas: con y sin barra final.
     const limpio = url.pathname.replace(/\/+$/, '') || '/';
@@ -39,7 +42,8 @@ export default {
 
     if (res.status === 404) {
       // Con el manejo de HTML por defecto de Cloudflare, /404.html redirige a /404: se pide /404 directamente.
-      const pagina = await env.ASSETS.fetch(new Request(new URL('/404', url.origin).toString(), { headers: { accept: 'text/html' } }));
+      const notFoundPath = url.pathname.startsWith('/en/') ? '/en/404' : '/404';
+      const pagina = await env.ASSETS.fetch(new Request(new URL(notFoundPath, url.origin).toString(), { headers: { accept: 'text/html' } }));
       if (pagina.ok) {
         return tag(new Response(pagina.body, { status: 404, headers: { 'content-type': 'text/html; charset=utf-8' } }));
       }

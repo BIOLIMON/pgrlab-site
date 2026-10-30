@@ -161,14 +161,14 @@ html { scroll-behavior: smooth; }
 .footer-row { display: flex; flex-wrap: wrap; justify-content: space-between; gap: var(--space-4); margin-top: var(--space-6); padding-top: var(--space-4); border-top: var(--rule-width) solid var(--rule); }
 .footer-row span, .footer-row a { font-family: var(--font-mono); font-size: 13px; color: var(--ink-muted); }
 
-/* Navegación colapsada bajo 1080px: los ocho enlaces no caben en una línea */
-@media (max-width: 1080px) {
+/* Navegación colapsada bajo 1200px para incluir el selector de idioma */
+@media (max-width: 1200px) {
   .nav-toggle { display: inline-block; order: 1; }
   .pgr-motion { order: 1; }
   .pgr-header nav { order: 5; }
   html.js .pgr-header nav { display: none; width: 100%; }
   html:not(.js) .pgr-header nav { width: 100%; }
-  .pgr-header.is-open nav { display: block; max-height: calc(100dvh - 90px); overflow-y: auto; }
+  html.js .pgr-header.is-open nav { display: block; max-height: calc(100dvh - 90px); overflow-y: auto; }
   .pgr-header.is-open .pgr-nav { flex-direction: column; gap: var(--space-3); padding-block: var(--space-3) var(--space-4); font-size: 16px; }
   .pgr-menu__panel { position: static; min-width: 0; margin-top: var(--space-2); box-shadow: none; }
 }
@@ -221,7 +221,7 @@ html { scroll-behavior: smooth; }
 <div class="site-top">
   <div class="wrap" style="position:relative">
     <header class="pgr-header" id="site-header">
-      <a class="pgr-header__brand" href="#inicio"><img src="{{IMG:mark.png}}" alt="" width="40" height="40"><span class="pgr-header__name">PGR Lab<small>Plant Genome Regulation</small></span></a>
+      <a class="pgr-header__brand" href="#"><img src="{{IMG:mark.png}}" alt="" width="40" height="40"><span class="pgr-header__name">PGR Lab<small>Plant Genome Regulation</small></span></a>
       <button class="pgr-motion js-only" id="motion" type="button" aria-pressed="false" aria-label="Pausar animaciones"><span aria-hidden="true" class="motion-icon">❙❙</span><span class="motion-long">pausar animaciones</span><span class="motion-short">pausar</span></button>
       <button class="nav-toggle js-only" id="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav">menú +</button>
       <nav aria-label="Principal" id="site-nav"><ul class="pgr-nav">
@@ -241,6 +241,7 @@ html { scroll-behavior: smooth; }
         <li><a href="#nucleo" data-scramble>núcleo</a></li>
         <li><a href="#noticias" data-scramble>noticias</a></li>
         <li><a href="#contacto" data-scramble>contacto</a></li>
+        <li><a href="/en/" lang="en" hreflang="en" aria-label="View site in English">EN</a></li>
       </ul></nav>
     </header>
     <div class="progress" id="progress" aria-hidden="true"></div>
@@ -511,7 +512,7 @@ html { scroll-behavior: smooth; }
     </div>
     <div class="footer-row">
       <span>Plant Genome Regulation Lab · Centro de Biotecnología Vegetal · Universidad Andrés Bello</span>
-      <a href="#inicio">↑ volver al inicio</a>
+      <a href="#">↑ volver al inicio</a>
     </div>
   </div>
 </footer>
